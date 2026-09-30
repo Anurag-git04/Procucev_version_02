@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Outfit:wght@500;600;700;800&display=swap');
+
+:root {
+  /* Version 2: Strict Blue & White Modern Palette */
+  --bg-dark-navy: #07152e;
+  --bg-dark-blue: #091e42;
+  --bg-navy-card: rgba(15, 34, 64, 0.85);
+
+  --brand-blue: #074193;
+  --brand-blue-bright: #1d6bf3;
+  --brand-blue-cyan: #38bdf8;
+  --brand-blue-light: #eff6ff;
+  --brand-blue-glow: rgba(56, 189, 248, 0.25);
+
+  --bg-light: #ffffff;
+  --bg-offwhite: #f8fafc;
+  --bg-cream: #ffffff;
+
+  --text-dark: #0f172a;
+  --text-body: #334155;
+  --text-muted: #64748b;
+  --text-white: #ffffff;
+  --text-light-blue: #93c5fd;
+
+  --border-light: #e2e8f0;
+  --border-dark: rgba(255, 255, 255, 0.12);
+
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-display: 'Outfit', sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --shadow-sm: 0 2px 8px rgba(7, 65, 147, 0.06);
+  --shadow-md: 0 12px 30px rgba(7, 65, 147, 0.12);
+  --shadow-lg: 0 24px 50px rgba(7, 65, 147, 0.2);
+
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-dark);
+  line-height: 1.25;
+}
+
+.serif-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Button Utilities - Clean Blue & White Theme */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 99px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.btn-blue {
+  background: var(--brand-blue-bright);
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(29, 107, 243, 0.35);
+}
+
+.btn-blue:hover {
+  background: #1255cc;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(29, 107, 243, 0.5);
+}
+
+.btn-white {
+  background: #ffffff;
+  color: var(--brand-blue);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-light);
+}
+
+.btn-white:hover {
+  background: #f8fafc;
+  color: #04285c;
+  transform: translateY(-2px);
+}
+
+.btn-outline-white {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+}
+
+.btn-outline-white:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #ffffff;
+}
+
+.btn-lg {
+  padding: 14px 28px;
+  font-size: 1rem;
+}
+
+.badge-blue {
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--brand-blue-cyan);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.text-center { text-align: center; }
+
+@media (max-width: 992px) {
+  .container {
+    padding: 0 16px;
+  }
+}
