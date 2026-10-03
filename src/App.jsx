@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import VideoHero from './components/VideoHero';
-import TrustLogoStrip from './components/TrustLogoStrip';
-import AutonomousSection from './components/AutonomousSection';
-import CalculatorSection from './components/CalculatorSection';
-import Footer from './components/Footer';
+import AboutSection from './components/AboutSection';
+import QuaAiSection from './components/QuaAiSection';
+import EquaAiSection from './components/EquaAiSection';
+import ConsultingSection from './components/ConsultingSection';
+import ClientsSection from './components/ClientsSection';
+import TeamSection from './components/TeamSection';
+import ContactSection from './components/ContactSection';
 import QuaAiWidget from './components/QuaAiWidget';
 import DemoModal from './components/DemoModal';
 
@@ -15,24 +18,33 @@ export default function App() {
   const handleCloseDemo = () => setIsDemoModalOpen(false);
 
   return (
-    <div className="min-h-screen bg-[#fcfbf7] text-[#09162e] font-sans selection:bg-[#ff4800]/20 selection:text-[#ff4800]">
+    <div className="v2-app-root" style={{ minHeight: '100vh', background: '#F8FAFC', color: '#334155', fontFamily: "'Poppins', sans-serif" }}>
       {/* Levelpath-style Dark Top Navigation */}
       <Navbar onOpenDemo={handleOpenDemo} />
 
-      {/* Hero Section with Video Background */}
+      {/* Section 1: Home (#home) - Video Stream & Rotating Statements */}
       <VideoHero onOpenDemo={handleOpenDemo} />
 
-      {/* Enterprise Logo Ticker Strip */}
-      <TrustLogoStrip />
+      {/* Section 2: About us (#about) */}
+      <AboutSection onOpenDemo={handleOpenDemo} />
 
-      {/* Autonomous Source-to-Pay Workflow Section */}
-      <AutonomousSection onOpenDemo={handleOpenDemo} />
+      {/* Section 3: Qua AI (#qua-ai) - GMT & BFS */}
+      <QuaAiSection onOpenDemo={handleOpenDemo} />
 
-      {/* Procurement ROI & Direct Profit Calculator */}
-      <CalculatorSection onOpenDemo={handleOpenDemo} />
+      {/* Section 4: eQua AI (#equa-ai) - Enterprise AI Platform */}
+      <EquaAiSection onOpenDemo={handleOpenDemo} />
 
-      {/* Levelpath-style Dark Footer */}
-      <Footer onOpenDemo={handleOpenDemo} />
+      {/* Section 5: Consulting (#consulting) - Services & Interactive Savings Calculator */}
+      <ConsultingSection onOpenDemo={handleOpenDemo} />
+
+      {/* Section 6: Our Clients (#clients) - Brands, Industries & Testimonials */}
+      <ClientsSection />
+
+      {/* Section 7: Team (#team) - Leadership */}
+      <TeamSection />
+
+      {/* Section 8: Contact us (#contact) - Enquiry Form, Details & Footer */}
+      <ContactSection />
 
       {/* Floating QUA AI Assistant */}
       <QuaAiWidget onOpenDemo={handleOpenDemo} />

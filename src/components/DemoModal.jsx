@@ -4,11 +4,7 @@ import { X, CheckCircle2, ArrowRight, ShieldCheck, Sparkles, Building, Mail, Pho
 export default function DemoModal({ isOpen, onClose }) {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    spendCategory: 'Packaging & Cartons'
+    name: '', email: '', phone: '', company: '', spendCategory: 'Packaging & Cartons',
   });
 
   if (!isOpen) return null;
@@ -23,164 +19,213 @@ export default function DemoModal({ isOpen, onClose }) {
     onClose();
   };
 
+  const inputStyle = {
+    width: '100%',
+    background: '#F8FAFC',
+    border: '1px solid #E2E8F0',
+    borderRadius: '10px',
+    padding: '10px 12px 10px 38px',
+    fontSize: '0.88rem',
+    color: '#334155',
+    fontFamily: "'Poppins', sans-serif",
+    outline: 'none',
+  };
+  const labelStyle = {
+    display: 'block',
+    fontSize: '0.75rem',
+    fontWeight: 700,
+    color: '#64748B',
+    textTransform: 'uppercase',
+    letterSpacing: '0.4px',
+    marginBottom: '6px',
+  };
+  const iconWrapStyle = { position: 'relative' };
+  const iconStyle = {
+    position: 'absolute', left: '12px', top: '11px',
+    width: '16px', height: '16px', color: '#94A3B8',
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-xl bg-[#07152e] text-white border border-slate-700/60 rounded-3xl shadow-2xl overflow-hidden">
-        
-        {/* Close Button */}
+    <div
+      style={{
+        position: 'fixed', inset: 0, zIndex: 300,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '16px',
+        background: 'rgba(12, 74, 110, 0.55)',
+        backdropFilter: 'blur(10px)',
+      }}
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div
+        style={{
+          position: 'relative', width: '100%', maxWidth: '560px',
+          background: '#ffffff', borderRadius: '24px',
+          boxShadow: '0 32px 80px rgba(12,74,110,0.22)',
+          overflow: 'hidden',
+          border: '1px solid #E2E8F0',
+          animation: 'modalIn 0.28s ease',
+        }}
+      >
+        <style>{`
+          @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.94) translateY(12px); }
+            to   { opacity: 1; transform: scale(1) translateY(0); }
+          }
+        `}</style>
+
+        {/* Close */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 z-10 p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-full transition-colors"
           aria-label="Close Modal"
+          id="modal-close-btn"
+          style={{
+            position: 'absolute', top: '16px', right: '16px', zIndex: 10,
+            background: '#F8FAFC', border: '1px solid #E2E8F0',
+            borderRadius: '50%', padding: '6px', cursor: 'pointer', color: '#64748B',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}
         >
-          <X className="w-5 h-5" />
+          <X style={{ width: '18px', height: '18px' }} />
         </button>
 
+        {/* Orange top stripe */}
+        <div style={{ height: '4px', background: 'linear-gradient(90deg, #0EA5E9, #F97316)' }} />
+
         {!submitted ? (
-          <div className="p-8 sm:p-10">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="p-2 bg-[#1d6bf3]/20 rounded-xl text-[#38bdf8]">
-                <Sparkles className="w-5 h-5" />
+          <div style={{ padding: '32px 36px' }}>
+            {/* Badge */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+              <div style={{
+                padding: '7px', background: 'rgba(14,165,233,0.10)',
+                borderRadius: '10px', color: '#0EA5E9',
+              }}>
+                <Sparkles style={{ width: '16px', height: '16px' }} />
               </div>
-              <span className="text-xs font-semibold text-[#38bdf8] uppercase tracking-wider">
+              <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#0EA5E9', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 Procucev Autonomous Platform
               </span>
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-bold font-serif text-white">
+            <h3 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#0C4A6E', marginBottom: '6px' }}>
               Schedule a 15-Min Live Platform Demo
             </h3>
-            <p className="text-sm text-slate-300 mt-2 mb-6 leading-relaxed">
-              Experience zero human intervention from PR to supplier quotation comparison. Saving at procurement is direct profit for your company.
+            <p style={{ fontSize: '0.88rem', color: '#64748B', marginBottom: '24px', lineHeight: 1.65 }}>
+              Experience zero human intervention from PR to supplier quotation comparison.
+              Saving at procurement is direct profit for your company.
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    Full Name *
-                  </label>
-                  <div className="relative">
-                    <User className="absolute left-3.5 top-3 w-4 h-4 text-slate-400" />
+                  <label style={labelStyle}>Full Name *</label>
+                  <div style={iconWrapStyle}>
+                    <User style={iconStyle} />
                     <input
-                      type="text"
-                      required
+                      type="text" required placeholder="e.g. Ramesh Kumar"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. Ramesh Kumar"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1d6bf3]"
+                      onChange={e => setFormData({ ...formData, name: e.target.value })}
+                      style={inputStyle} id="modal-name"
                     />
                   </div>
                 </div>
-
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    Official Email *
-                  </label>
-                  <div className="relative">
-                    <Mail className="absolute left-3.5 top-3 w-4 h-4 text-slate-400" />
+                  <label style={labelStyle}>Official Email *</label>
+                  <div style={iconWrapStyle}>
+                    <Mail style={iconStyle} />
                     <input
-                      type="email"
-                      required
+                      type="email" required placeholder="name@company.com"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="name@company.com"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1d6bf3]"
+                      onChange={e => setFormData({ ...formData, email: e.target.value })}
+                      style={inputStyle} id="modal-email"
                     />
                   </div>
                 </div>
               </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    Mobile Number *
-                  </label>
-                  <div className="relative">
-                    <Phone className="absolute left-3.5 top-3 w-4 h-4 text-slate-400" />
+                  <label style={labelStyle}>Mobile Number *</label>
+                  <div style={iconWrapStyle}>
+                    <Phone style={iconStyle} />
                     <input
-                      type="tel"
-                      required
+                      type="tel" required placeholder="+91 98765 43210"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+91 98765 43210"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1d6bf3]"
+                      onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                      style={inputStyle} id="modal-phone"
                     />
                   </div>
                 </div>
-
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    Company Name *
-                  </label>
-                  <div className="relative">
-                    <Building className="absolute left-3.5 top-3 w-4 h-4 text-slate-400" />
+                  <label style={labelStyle}>Company Name *</label>
+                  <div style={iconWrapStyle}>
+                    <Building style={iconStyle} />
                     <input
-                      type="text"
-                      required
+                      type="text" required placeholder="e.g. Retail Enterprises Ltd"
                       value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      placeholder="e.g. Retail Enterprises Ltd"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1d6bf3]"
+                      onChange={e => setFormData({ ...formData, company: e.target.value })}
+                      style={inputStyle} id="modal-company"
                     />
                   </div>
                 </div>
               </div>
-
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                  Primary Procurement Category
-                </label>
+                <label style={labelStyle}>Primary Procurement Category</label>
                 <select
                   value={formData.spendCategory}
-                  onChange={(e) => setFormData({ ...formData, spendCategory: e.target.value })}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:ring-2 focus:ring-[#1d6bf3]"
+                  onChange={e => setFormData({ ...formData, spendCategory: e.target.value })}
+                  style={{ ...inputStyle, paddingLeft: '14px', cursor: 'pointer' }}
+                  id="modal-category"
                 >
-                  <option value="Packaging & Cartons">Packaging & Corrugated Cartons</option>
-                  <option value="Raw Materials & Metals">Raw Materials & Industrial Metals</option>
-                  <option value="Logistics & Freight">Logistics & Transportation</option>
-                  <option value="Chemicals & Ingredients">Chemicals & Ingredients</option>
-                  <option value="MRO & Consumables">MRO & Indirect Supplies</option>
+                  <option>Packaging & Corrugated Cartons</option>
+                  <option>Raw Materials & Industrial Metals</option>
+                  <option>Logistics & Transportation</option>
+                  <option>Chemicals & Ingredients</option>
+                  <option>MRO & Indirect Supplies</option>
                 </select>
               </div>
 
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  className="w-full py-3.5 bg-[#1d6bf3] hover:bg-[#1255cc] text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-blue-500/30 flex items-center justify-center gap-2 text-sm"
-                >
-                  Confirm Live Demo Booking <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
+              <button
+                type="submit"
+                className="btn btn-primary btn-lg"
+                style={{ width: '100%', marginTop: '4px' }}
+                id="modal-submit"
+              >
+                Confirm Live Demo Booking <ArrowRight style={{ width: '16px', height: '16px' }} />
+              </button>
 
-              <div className="flex items-center justify-center gap-2 text-xs text-slate-400 pt-2">
-                <ShieldCheck className="w-4 h-4 text-green-400" />
-                <span>Zero Upfront Fee • Gain-Share Model Available</span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontSize: '0.78rem', color: '#94A3B8' }}>
+                <ShieldCheck style={{ width: '14px', height: '14px', color: '#10B981' }} />
+                <span>Zero Upfront Fee · Gain-Share Model Available</span>
               </div>
             </form>
           </div>
         ) : (
-          <div className="p-10 text-center space-y-4">
-            <div className="w-16 h-16 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mx-auto">
-              <CheckCircle2 className="w-10 h-10" />
+          <div style={{ padding: '48px 36px', textAlign: 'center' }}>
+            <div style={{
+              width: '64px', height: '64px', borderRadius: '50%',
+              background: 'rgba(16,185,129,0.12)',
+              border: '1px solid rgba(16,185,129,0.3)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              margin: '0 auto 16px',
+            }}>
+              <CheckCircle2 style={{ width: '32px', height: '32px', color: '#10B981' }} />
             </div>
-            <h3 className="text-2xl font-bold font-serif text-white">
+            <h3 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#0C4A6E', marginBottom: '8px' }}>
               Demo Booking Confirmed!
             </h3>
-            <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
-              Thank you, <strong className="text-white">{formData.name}</strong>. Our procurement solution architect will contact you at <strong className="text-white">{formData.email}</strong> shortly with your customized demo link.
+            <p style={{ fontSize: '0.9rem', color: '#64748B', maxWidth: '380px', margin: '0 auto 24px', lineHeight: 1.65 }}>
+              Thank you, <strong style={{ color: '#0C4A6E' }}>{formData.name}</strong>. Our procurement solution
+              architect will contact you at <strong style={{ color: '#0C4A6E' }}>{formData.email}</strong> shortly
+              with your customized demo link.
             </p>
-            <div className="pt-4">
-              <button
-                onClick={handleReset}
-                className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-semibold transition-colors"
-              >
-                Close Window
-              </button>
-            </div>
+            <button
+              onClick={handleReset}
+              className="btn btn-white"
+              id="modal-close-confirm"
+            >
+              Close Window
+            </button>
           </div>
         )}
-
       </div>
     </div>
   );

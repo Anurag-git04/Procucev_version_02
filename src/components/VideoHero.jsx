@@ -1,624 +1,584 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ArrowUpRight, Heart, TrendingUp, ShieldCheck, CheckCircle2, Play, Pause, Volume2, VolumeX, Sparkles } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowUpRight, CheckCircle2, TrendingUp, Zap, Users, BarChart3, Clock } from 'lucide-react';
 
 export default function VideoHero({ onOpenDemo }) {
-  // 4 Core Rotating Slides (3 original headlines + 1 grouped 5-statement value chain slide)
-  const heroStatements = [
+  const headlines = [
     {
       id: 0,
-      titlePrefix: "Made with the ",
-      titleHighlight: "Love of Procurement",
-      titleSuffix: ""
+      prefix: 'Made with the ',
+      highlight: 'Love of Procurement',
+      suffix: '',
     },
     {
       id: 1,
-      titlePrefix: "Saving at procurement is the ",
-      titleHighlight: "direct profit for company",
-      titleSuffix: ""
+      prefix: 'Saving at procurement is the ',
+      highlight: 'direct profit',
+      suffix: ' for your company',
     },
     {
       id: 2,
-      titlePrefix: "",
-      titleHighlight: "Zero Human intervention",
-      titleSuffix: " from PR to Comparison"
+      prefix: '',
+      highlight: 'Zero human intervention',
+      suffix: ' from PR to Comparison',
     },
-    {
-      id: 3,
-      isGrouped: true,
-      items: [
-        "Raise RFQ easier",
-        "Reach Vendors faster",
-        "Get Quotations quicker",
-        "Compare Quotations better",
-        "Spend Time & Money lesser"
-      ]
-    }
   ];
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const rightVideoRef = useRef(null);
+  const [activeIdx, setActiveIdx] = useState(0);
 
-  // Auto-rotate every 4.0s
   useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % heroStatements.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [heroStatements.length]);
+    const t = setInterval(() => setActiveIdx(i => (i + 1) % headlines.length), 4200);
+    return () => clearInterval(t);
+  }, [headlines.length]);
 
-  const togglePlay = () => {
-    if (!rightVideoRef.current) return;
-    if (isPlaying) {
-      rightVideoRef.current.pause();
-    } else {
-      rightVideoRef.current.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
+  const stats = [
+    { label: 'Verified Suppliers', value: '45,000+', icon: <Users size={16} /> },
+    { label: 'Registered Buyers',  value: '1,800+',  icon: <BarChart3 size={16} /> },
+    { label: 'Quote Turnaround',   value: '< 24 Hrs', icon: <Clock size={16} /> },
+  ];
 
-  const toggleMute = () => {
-    if (!rightVideoRef.current) return;
-    rightVideoRef.current.muted = !isMuted;
-    setIsMuted(!isMuted);
-  };
+  const highlights = [
+    'Raise RFQs easier',
+    'Reach vendors faster',
+    'Get quotations quicker',
+    'Compare quotations better',
+    'Spend less time and money',
+  ];
+
+  const liveMetrics = [
+    { dept: 'Packaging Material', rfqs: 112, savings: '18.4%', color: '#0EA5E9' },
+    { dept: 'MRO & Spares',       rfqs: 95,  savings: '19.1%', color: '#F97316' },
+    { dept: 'IT Consumables',     rfqs: 48,  savings: '16.8%', color: '#0C4A6E' },
+    { dept: 'Chemicals',          rfqs: 29,  savings: '15.5%', color: '#0EA5E9' },
+  ];
 
   return (
-    <section className="video-hero-section">
-      {/* Background Video Stream */}
-      <div className="video-background-container">
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          className="hero-bg-video"
-          poster="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80"
-        >
-          <source 
-            src="https://assets.mixkit.co/videos/preview/mixkit-cargo-container-ship-sailing-in-the-sea-42045-large.mp4" 
-            type="video/mp4" 
-          />
-          <source 
-            src="https://assets.mixkit.co/videos/preview/mixkit-workers-in-a-large-logistics-warehouse-42995-large.mp4" 
-            type="video/mp4" 
-          />
-        </video>
-        {/* Dark Overlay Layer for Video */}
-        <div className="video-overlay"></div>
+    <section className="v2-hero" id="home">
+      {/* ── Background decoration ── */}
+      <div className="v2-hero-bg-deco" aria-hidden="true">
+        <div className="deco-circle deco-1" />
+        <div className="deco-circle deco-2" />
+        <div className="deco-stripe" />
       </div>
 
-      <div className="container hero-content-relative">
-        <div className="hero-split-grid">
-          
-          {/* Left Column: Rotating Headline Statements */}
-          <div className="hero-left-column">
-            
-            {/* Rotating Statement Stage */}
-            <div className="v2-statement-stage">
-              {heroStatements.map((item, idx) => {
-                const isActive = idx === activeIndex;
+      <div className="container v2-hero-grid">
+        {/* ── Left Column ── */}
+        <div className="v2-hero-left">
+          {/* Tagline badge */}
+          <div className="badge-tag-pill">
+            <Zap size={13} />
+            B2B Procurement Marketplace &amp; Consulting
+          </div>
 
-                if (item.isGrouped) {
-                  return (
-                    <div 
-                      key={item.id} 
-                      className={`v2-headline-slide ${isActive ? 'active' : 'inactive'}`}
-                    >
-                      <div className="grouped-statements-grid">
-                        {item.items.map((stmt, sIdx) => (
-                          <div key={sIdx} className="grouped-statement-pill">
-                            <span className="bullet-dot-orange"></span>
-                            <span className="serif-title text-orange">{stmt}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-
+          {/* Rotating Headlines */}
+          <div className="v2-headline-stage" role="region" aria-live="polite">
+            {headlines.map((item, idx) => {
+              const isActive = idx === activeIdx;
+              if (item.isGrouped) {
                 return (
-                  <div 
-                    key={item.id} 
-                    className={`v2-headline-slide ${isActive ? 'active' : 'inactive'}`}
-                  >
-                    <h1 className="hero-main-title">
-                      {item.titlePrefix}
-                      <span className="serif-title text-orange">{item.titleHighlight}</span>
-                      {item.titleSuffix}
+                  <div key={item.id} className={`v2-slide${isActive ? ' active' : ''}`}>
+                    <h1 className="v2-hero-h1">
+                      {item.items.map((s, si) => (
+                        <span key={si} className="v2-grouped-item">
+                          <span className="v2-dot-orange" aria-hidden="true" />
+                          <span className="v2-highlight">{s}</span>
+                        </span>
+                      ))}
                     </h1>
                   </div>
                 );
-              })}
-            </div>
-
-            {/* Hero CTAs */}
-            <div className="hero-actions-row">
-              <button className="btn btn-orange-primary btn-lg" onClick={onOpenDemo}>
-                Request a Demo <ArrowUpRight size={18} />
-              </button>
-              <a href="#capabilities" className="btn btn-outline-white btn-lg">
-                Explore Capabilities
-              </a>
-            </div>
-
+              }
+              return (
+                <div key={item.id} className={`v2-slide${isActive ? ' active' : ''}`}>
+                  <h1 className="v2-hero-h1">
+                    {item.prefix}
+                    <span className="v2-highlight">{item.highlight}</span>
+                    {item.suffix}
+                  </h1>
+                </div>
+              );
+            })}
           </div>
 
-          {/* Right Column: Premium Blue Video Demo Box */}
-          <div className="hero-right-column">
-            <div className="v2-blue-video-card">
-              
-              {/* Card Header Bar with Blue & Cyan Badges */}
-              <div className="video-card-top-bar flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="live-blue-pulse">
-                    <span className="blue-pulse-dot"></span>
-                  </span>
-                  <span className="video-title-tag">AI S2P PLATFORM DEMO</span>
-                </div>
-                <span className="blue-badge-pill">
-                  <Sparkles size={12} className="text-cyan" /> LIVE SYSTEM
-                </span>
-              </div>
+          {/* Sub-headline */}
+          <p className="v2-hero-sub">
+            Every rupee saved in procurement goes straight to your bottom line. Procucev
+            brings AI, a verified supplier network and sourcing expertise together — so you
+            raise RFQs faster, compare quotes better and buy at the right price.
+          </p>
 
-              {/* Embedded Video Showcase Container */}
-              <div className="blue-video-frame">
-                <video 
-                  ref={rightVideoRef}
-                  autoPlay 
-                  loop 
-                  muted={isMuted} 
-                  playsInline 
-                  className="showcase-video"
-                  poster="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1000&q=80"
-                >
-                  <source 
-                    src="https://assets.mixkit.co/videos/preview/mixkit-logistics-center-with-automated-machines-42043-large.mp4" 
-                    type="video/mp4" 
-                  />
-                  <source 
-                    src="https://assets.mixkit.co/videos/preview/mixkit-workers-in-a-large-logistics-warehouse-42995-large.mp4" 
-                    type="video/mp4" 
-                  />
-                </video>
+          {/* Highlight chips */}
+          <div className="v2-chip-strip">
+            {highlights.map((h, i) => (
+              <span key={i} className="v2-chip">
+                <CheckCircle2 size={13} className="chip-icon" />
+                {h}
+              </span>
+            ))}
+          </div>
 
-                {/* Gradient Blue Overlay matching site shades */}
-                <div className="blue-video-overlay"></div>
+          {/* CTAs */}
+          <div className="v2-hero-ctas">
+            <button className="btn btn-primary btn-lg" onClick={onOpenDemo} id="hero-rfq-btn">
+              Raise an RFQ, it's free <ArrowUpRight size={18} />
+            </button>
+            <button className="btn btn-ghost btn-lg" onClick={onOpenDemo} id="hero-supplier-btn">
+              Become a Supplier
+            </button>
+          </div>
 
-                {/* Floating Live Feature Badges Overlaid on Video */}
-                <div className="video-floating-badge top-right">
-                  <ShieldCheck size={14} className="text-cyan" />
-                  <span>50,000+ Verified Suppliers</span>
-                </div>
-
-                <div className="video-floating-badge bottom-left">
-                  <span className="blue-dot-small"></span>
-                  <span>Automated L1/L2 Comparison</span>
-                </div>
-
-                {/* Center Play Button Overlay */}
-                <button 
-                  className={`center-play-overlay-btn ${!isPlaying ? 'show' : ''}`}
-                  onClick={togglePlay}
-                  aria-label={isPlaying ? "Pause video" : "Play video"}
-                >
-                  {isPlaying ? <Pause size={22} /> : <Play size={22} className="ml-1" />}
-                </button>
-
-                {/* Bottom Video Controls Bar */}
-                <div className="video-bottom-controls-bar">
-                  <button className="control-icon-btn" onClick={togglePlay}>
-                    {isPlaying ? <Pause size={15} /> : <Play size={15} />}
-                  </button>
-                  
-                  <div className="video-progress-track">
-                    <div className="video-progress-fill"></div>
+          {/* Stats bar */}
+          <div className="v2-stats-bar">
+            {stats.map((s, i) => (
+              <React.Fragment key={i}>
+                {i > 0 && <div className="v2-stat-divider" />}
+                <div className="v2-stat">
+                  <span className="v2-stat-icon">{s.icon}</span>
+                  <div>
+                    <span className="v2-stat-val">{s.value}</span>
+                    <span className="v2-stat-label">{s.label}</span>
                   </div>
-
-                  <button className="control-icon-btn" onClick={toggleMute}>
-                    {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
-                  </button>
                 </div>
-              </div>
-
-              {/* Bottom Metrics Bar matching shades of blue */}
-              <div className="video-card-footer-metrics">
-                <div className="blue-metric-item">
-                  <span className="b-label">CYCLE TIME</span>
-                  <span className="b-val text-cyan">Instant (BFS)</span>
-                </div>
-                <div className="blue-metric-item border-l border-r border-cyan-800/40">
-                  <span className="b-label">HUMAN INTERVENTION</span>
-                  <span className="b-val text-white">0% (PR to PO)</span>
-                </div>
-                <div className="blue-metric-item">
-                  <span className="b-label">DIRECT EBITDA SAVED</span>
-                  <span className="b-val text-orange">+18% Direct</span>
-                </div>
-              </div>
-
-            </div>
+              </React.Fragment>
+            ))}
           </div>
-
         </div>
 
+        {/* ── Right Column: Live Procurement Dashboard ── */}
+        <div className="v2-hero-right" aria-label="Live procurement platform preview">
+          <div className="v2-dashboard-card">
+            {/* Dashboard header */}
+            <div className="v2-dash-header">
+              <div className="v2-dash-title-row">
+                <div className="v2-dash-dot green" />
+                <span className="v2-dash-title">Procucev Live Platform</span>
+              </div>
+              <span className="v2-dash-live-badge">
+                <span className="blink-dot" />
+                LIVE
+              </span>
+            </div>
+
+            {/* Summary row */}
+            <div className="v2-dash-summary">
+              <div className="v2-dash-summary-item">
+                <TrendingUp size={14} className="ds-icon orange" />
+                <span className="ds-label">Active RFQs</span>
+                <span className="ds-val orange">284</span>
+              </div>
+              <div className="v2-dash-summary-item">
+                <CheckCircle2 size={14} className="ds-icon blue" />
+                <span className="ds-label">Orders Today</span>
+                <span className="ds-val blue">47</span>
+              </div>
+              <div className="v2-dash-summary-item">
+                <BarChart3 size={14} className="ds-icon green" />
+                <span className="ds-label">Avg. Savings</span>
+                <span className="ds-val green">17.4%</span>
+              </div>
+            </div>
+
+            {/* Live metrics table */}
+            <div className="v2-dash-table-head">
+              <span>Department</span>
+              <span>Live RFQs</span>
+              <span>Savings</span>
+            </div>
+            <div className="v2-dash-rows">
+              {liveMetrics.map((m, i) => (
+                <div key={i} className="v2-dash-row" style={{ animationDelay: `${i * 120}ms` }}>
+                  <div className="v2-dept-col">
+                    <span className="v2-dept-dot" style={{ background: m.color }} />
+                    <span className="v2-dept-name">{m.dept}</span>
+                  </div>
+                  <span className="v2-rfq-count">{m.rfqs}</span>
+                  <span className="v2-savings-tag">{m.savings}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Footer */}
+            <div className="v2-dash-footer">
+              <span className="v2-dash-footer-text">45,000+ verified suppliers · Quotes within 24h</span>
+              <button className="v2-dash-action btn btn-primary" onClick={onOpenDemo}>
+                View Dashboard <ArrowUpRight size={13} />
+              </button>
+            </div>
+          </div>
+
+          {/* Floating accent card */}
+          <div className="v2-float-card">
+            <CheckCircle2 size={18} className="fc-icon" />
+            <div>
+              <div className="fc-val">₹284 Cr+</div>
+              <div className="fc-label">Procurement Managed</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <style>{`
-        .video-hero-section {
+        /* ── V2 Hero ── */
+        .v2-hero {
           position: relative;
-          min-height: 84vh;
-          display: flex;
-          align-items: center;
-          padding: 50px 0 40px;
-          color: #ffffff;
+          padding: clamp(3rem, 6vw, 6rem) 0 clamp(3rem, 5vw, 5rem);
           overflow: hidden;
-          background: #07152e;
+          background: #F8FAFC;
         }
 
-        /* Background Video Container */
-        .video-background-container {
+        /* Background decorations */
+        .v2-hero-bg-deco { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+        .deco-circle {
           position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
+          border-radius: 50%;
+          opacity: 0.45;
+        }
+        .deco-1 {
+          width: 700px; height: 700px;
+          background: radial-gradient(circle, rgba(14,165,233,0.12) 0%, transparent 70%);
+          top: -200px; right: -200px;
+        }
+        .deco-2 {
+          width: 500px; height: 500px;
+          background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
+          bottom: -100px; left: -100px;
+        }
+        .deco-stripe {
+          position: absolute;
+          bottom: 0; left: 0; right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #0EA5E9 40%, #F97316 60%, transparent);
+          opacity: 0.35;
+        }
+
+        /* Grid: split-screen */
+        .v2-hero-grid {
+          position: relative;
           z-index: 1;
-          overflow: hidden;
-        }
-        .hero-bg-video {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-        .video-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(180deg, rgba(7, 21, 46, 0.86) 0%, rgba(7, 21, 46, 0.94) 100%);
-        }
-
-        .hero-content-relative {
-          position: relative;
-          z-index: 2;
-          width: 100%;
-        }
-
-        .hero-split-grid {
           display: grid;
-          grid-template-columns: 1.15fr 0.85fr;
-          gap: 40px;
+          grid-template-columns: 1fr 1fr;
+          gap: clamp(2rem, 5vw, 5rem);
           align-items: center;
         }
 
-        /* Left Column Text Stage */
-        .v2-statement-stage {
-          position: relative;
-          min-height: 120px;
+        /* LEFT */
+        .v2-hero-left { display: flex; flex-direction: column; gap: 0; }
+
+        /* Headline stage */
+        .v2-headline-stage {
+          display: grid;
+          grid-template-areas: "slide";
+          margin: 8px 0 16px;
+        }
+        .v2-slide {
+          grid-area: slide;
+          opacity: 0;
+          transform: translateY(14px);
+          pointer-events: none;
+          transition: opacity 0.65s ease, transform 0.65s ease;
           display: flex;
           align-items: flex-start;
         }
-
-        .grouped-statements-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 10px 18px;
-          padding: 2px 0;
+        .v2-slide.active {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+          z-index: 2;
         }
-        .grouped-statement-pill {
+        .v2-hero-h1 {
+          font-family: 'Poppins', sans-serif;
+          font-size: clamp(2rem, 4vw, 3rem);
+          font-weight: 800;
+          color: #0C4A6E;
+          line-height: 1.2;
+          letter-spacing: -0.5px;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 6px;
+        }
+        .v2-highlight {
+          color: #F97316;
+          font-style: italic;
+        }
+        .v2-grouped-item {
           display: flex;
           align-items: center;
           gap: 8px;
-          font-size: 1.22rem;
-          font-weight: 700;
-        }
-        .bullet-dot-orange {
-          width: 7px;
-          height: 7px;
-          border-radius: 50%;
-          background: #ff5722;
-          box-shadow: 0 0 8px #ff5722;
-          flex-shrink: 0;
-        }
-
-        .v2-headline-slide {
-          position: absolute;
-          top: 0;
-          left: 0;
           width: 100%;
-          transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1), transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+          margin-bottom: 4px;
+          font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+        }
+        .v2-dot-orange {
+          width: 9px; height: 9px;
+          border-radius: 50%;
+          background: #F97316;
+          flex-shrink: 0;
+          box-shadow: 0 0 8px rgba(249,115,22,0.6);
         }
 
-        .v2-headline-slide.active {
-          opacity: 1;
-          visibility: visible;
-          transform: translateY(0) scale(1);
-          pointer-events: auto;
-          z-index: 10;
-        }
-
-        .v2-headline-slide.inactive {
-          opacity: 0;
-          visibility: hidden;
-          transform: translateY(20px) scale(0.96);
-          pointer-events: none;
-          z-index: 1;
-        }
-
-        .text-orange { 
-          color: #ff5722; 
-        }
-        .text-cyan { color: #38bdf8; }
-
-        .hero-main-title {
-          font-size: 2.75rem;
-          font-weight: 800;
-          color: #ffffff;
-          line-height: 1.2;
-          letter-spacing: -0.8px;
-          margin-bottom: 18px;
-          text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-lead-text {
-          font-size: 1.05rem;
-          color: #cbd5e1;
-          line-height: 1.6;
+        /* Sub-headline */
+        .v2-hero-sub {
+          font-size: 1rem;
+          color: #475569;
+          line-height: 1.7;
+          max-width: 540px;
           margin-bottom: 24px;
         }
 
-        .hero-actions-row {
+        /* Highlight chips */
+        .v2-chip-strip {
           display: flex;
-          align-items: center;
-          gap: 16px;
-          margin-top: 24px;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin-bottom: 28px;
         }
-        .btn-orange-primary {
-          background: linear-gradient(135deg, #ff5722 0%, #f97316 100%);
-          color: #ffffff;
-          box-shadow: 0 4px 20px rgba(255, 87, 34, 0.4);
-          border: none;
-        }
-        .btn-orange-primary:hover {
-          background: linear-gradient(135deg, #e64a19 0%, #ea580c 100%);
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(255, 87, 34, 0.55);
-        }
-
-        /* Right Column Blue Video Card Container */
-        .v2-blue-video-card {
-          background: linear-gradient(145deg, rgba(7, 21, 46, 0.92) 0%, rgba(7, 65, 147, 0.85) 100%);
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(56, 189, 248, 0.35);
-          border-radius: 22px;
-          padding: 20px;
-          box-shadow: 0 25px 65px rgba(7, 65, 147, 0.45), inset 0 0 30px rgba(29, 107, 243, 0.15);
-          transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .v2-blue-video-card:hover {
-          border-color: rgba(56, 189, 248, 0.6);
-          box-shadow: 0 30px 80px rgba(7, 65, 147, 0.65), inset 0 0 40px rgba(56, 189, 248, 0.25);
-          transform: translateY(-4px);
-        }
-
-        .video-card-top-bar {
-          margin-bottom: 14px;
-        }
-        .live-blue-pulse {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 10px;
-          height: 10px;
-        }
-        .blue-pulse-dot {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background: #38bdf8;
-          box-shadow: 0 0 10px #38bdf8, 0 0 18px #1d6bf3;
-          animation: pulseGlow 1.8s infinite alternate;
-        }
-        @keyframes pulseGlow {
-          0% { transform: scale(0.85); opacity: 0.7; }
-          100% { transform: scale(1.2); opacity: 1; }
-        }
-
-        .video-title-tag {
-          font-size: 0.76rem;
-          font-weight: 800;
-          color: #e2e8f0;
-          letter-spacing: 0.6px;
-        }
-        .blue-badge-pill {
-          background: rgba(29, 107, 243, 0.25);
-          border: 1px solid rgba(56, 189, 248, 0.35);
-          color: #38bdf8;
-          padding: 3px 10px;
-          border-radius: 20px;
-          font-size: 0.68rem;
-          font-weight: 700;
-          display: flex;
+        .v2-chip {
+          display: inline-flex;
           align-items: center;
           gap: 5px;
+          background: #fff;
+          border: 1px solid #E2E8F0;
+          border-radius: 999px;
+          padding: 4px 12px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          color: #334155;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.05);
         }
+        .chip-icon { color: #0EA5E9; }
 
-        .blue-video-frame {
-          position: relative;
-          width: 100%;
-          height: 250px;
-          border-radius: 16px;
-          overflow: hidden;
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
-          background: #040d1a;
-        }
-        .showcase-video {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-        .blue-video-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(180deg, rgba(7, 65, 147, 0.2) 0%, rgba(7, 21, 46, 0.75) 100%);
-          pointer-events: none;
-        }
-
-        .video-floating-badge {
-          position: absolute;
-          background: rgba(7, 21, 46, 0.88);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(56, 189, 248, 0.4);
-          padding: 6px 12px;
-          border-radius: 20px;
-          font-size: 0.72rem;
-          font-weight: 700;
-          color: #ffffff;
+        /* CTAs */
+        .v2-hero-ctas {
           display: flex;
-          align-items: center;
-          gap: 6px;
-          z-index: 5;
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-        }
-        .video-floating-badge.top-right {
-          top: 12px;
-          right: 12px;
-        }
-        .video-floating-badge.bottom-left {
-          bottom: 48px;
-          left: 12px;
-        }
-        .blue-dot-small {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: #38bdf8;
-          box-shadow: 0 0 8px #38bdf8;
-        }
-
-        .center-play-overlay-btn {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 54px;
-          height: 54px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #1d6bf3 0%, #074193 100%);
-          border: 2px solid #38bdf8;
-          color: #ffffff;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          z-index: 6;
-          box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
-          transition: all 0.25s ease;
-          opacity: 0;
-        }
-        .blue-video-frame:hover .center-play-overlay-btn,
-        .center-play-overlay-btn.show {
-          opacity: 1;
-        }
-        .center-play-overlay-btn:hover {
-          transform: translate(-50%, -50%) scale(1.1);
-          background: linear-gradient(135deg, #ff5722 0%, #f97316 100%);
-          border-color: #ffffff;
-        }
-
-        .video-bottom-controls-bar {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          padding: 8px 14px;
-          background: linear-gradient(360deg, rgba(7, 21, 46, 0.95) 0%, rgba(7, 21, 46, 0) 100%);
-          display: flex;
-          align-items: center;
+          flex-wrap: wrap;
           gap: 12px;
-          z-index: 6;
-        }
-        .control-icon-btn {
-          background: transparent;
-          border: none;
-          color: #cbd5e1;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          padding: 4px;
-          transition: color 0.2s ease;
-        }
-        .control-icon-btn:hover {
-          color: #38bdf8;
-        }
-        .video-progress-track {
-          flex: 1;
-          height: 4px;
-          background: rgba(255, 255, 255, 0.2);
-          border-radius: 4px;
-          overflow: hidden;
-          position: relative;
-        }
-        .video-progress-fill {
-          height: 100%;
-          width: 65%;
-          background: linear-gradient(90deg, #1d6bf3 0%, #38bdf8 100%);
-          box-shadow: 0 0 8px #38bdf8;
-          animation: progressAnim 8s linear infinite;
-        }
-        @keyframes progressAnim {
-          0% { width: 10%; }
-          100% { width: 100%; }
+          margin-bottom: 32px;
         }
 
-        .video-card-footer-metrics {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 8px;
-          margin-top: 14px;
-          background: rgba(7, 21, 46, 0.6);
-          border: 1px solid rgba(56, 189, 248, 0.2);
-          border-radius: 12px;
-          padding: 10px 8px;
-          text-align: center;
-        }
-        .blue-metric-item {
+        /* Stats bar */
+        .v2-stats-bar {
           display: flex;
-          flex-direction: column;
           align-items: center;
-          justify-content: center;
+          gap: 0;
+          background: #ffffff;
+          border: 1px solid #E2E8F0;
+          border-radius: 12px;
+          padding: 16px 24px;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+          width: fit-content;
+          max-width: 100%;
         }
-        .b-label {
-          font-size: 0.62rem;
-          font-weight: 700;
-          color: #94a3b8;
-          letter-spacing: 0.4px;
+        .v2-stat {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 0 20px;
         }
-        .b-val {
-          font-size: 0.85rem;
+        .v2-stat:first-of-type { padding-left: 0; }
+        .v2-stat-icon { color: #0EA5E9; }
+        .v2-stat-val {
+          display: block;
+          font-size: 1.35rem;
           font-weight: 800;
+          color: #0C4A6E;
+          line-height: 1;
+        }
+        .v2-stat-label {
+          display: block;
+          font-size: 0.72rem;
+          font-weight: 600;
+          color: #64748B;
+          text-transform: uppercase;
+          letter-spacing: 0.4px;
           margin-top: 2px;
         }
+        .v2-stat-divider {
+          width: 1px; height: 36px;
+          background: #E2E8F0;
+          flex-shrink: 0;
+        }
 
-        @media (max-width: 992px) {
-          .hero-split-grid {
+        /* RIGHT: Dashboard card */
+        .v2-hero-right {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+        }
+
+        .v2-dashboard-card {
+          background: #ffffff;
+          border: 1px solid #E2E8F0;
+          border-radius: 24px;
+          box-shadow: 0 20px 50px rgba(12,74,110,0.12);
+          overflow: hidden;
+          width: 100%;
+          max-width: 480px;
+        }
+
+        .v2-dash-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 16px 20px;
+          border-bottom: 1px solid #F1F5F9;
+          background: #F8FAFC;
+        }
+        .v2-dash-title-row {
+          display: flex; align-items: center; gap: 8px;
+        }
+        .v2-dash-dot {
+          width: 9px; height: 9px; border-radius: 50%;
+        }
+        .v2-dash-dot.green { background: #10B981; box-shadow: 0 0 6px #10B981; }
+        .v2-dash-title {
+          font-size: 0.82rem; font-weight: 700; color: #0C4A6E;
+        }
+        .v2-dash-live-badge {
+          display: flex; align-items: center; gap: 5px;
+          background: rgba(16,185,129,0.12);
+          color: #059669;
+          font-size: 0.7rem; font-weight: 800;
+          padding: 3px 10px; border-radius: 999px;
+          border: 1px solid rgba(16,185,129,0.3);
+          letter-spacing: 0.5px;
+        }
+        .blink-dot {
+          width: 6px; height: 6px; border-radius: 50%;
+          background: #10B981;
+          animation: blink 1.4s infinite alternate;
+        }
+        @keyframes blink {
+          0%  { opacity: 0.3; }
+          100%{ opacity: 1; }
+        }
+
+        .v2-dash-summary {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0;
+          padding: 16px 20px;
+          border-bottom: 1px solid #F1F5F9;
+        }
+        .v2-dash-summary-item {
+          display: flex; flex-direction: column; align-items: center; gap: 3px;
+          text-align: center;
+          padding: 0 8px;
+          border-right: 1px solid #F1F5F9;
+        }
+        .v2-dash-summary-item:last-child { border-right: none; }
+        .ds-icon { margin-bottom: 2px; }
+        .ds-icon.orange { color: #F97316; }
+        .ds-icon.blue   { color: #0EA5E9; }
+        .ds-icon.green  { color: #10B981; }
+        .ds-label { font-size: 0.68rem; color: #64748B; font-weight: 500; }
+        .ds-val { font-size: 1.05rem; font-weight: 800; }
+        .ds-val.orange { color: #F97316; }
+        .ds-val.blue   { color: #0EA5E9; }
+        .ds-val.green  { color: #10B981; }
+
+        .v2-dash-table-head {
+          display: grid;
+          grid-template-columns: 1fr auto auto;
+          gap: 12px;
+          padding: 10px 20px;
+          font-size: 0.68rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          color: #94A3B8;
+          border-bottom: 1px solid #F1F5F9;
+          background: #FAFBFC;
+        }
+
+        .v2-dash-rows { padding: 8px 0; }
+        .v2-dash-row {
+          display: grid;
+          grid-template-columns: 1fr auto auto;
+          gap: 12px;
+          align-items: center;
+          padding: 10px 20px;
+          animation: fadeUp 0.42s ease both;
+          transition: background 0.2s;
+        }
+        .v2-dash-row:hover { background: #F8FAFC; }
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(8px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .v2-dept-col { display: flex; align-items: center; gap: 9px; }
+        .v2-dept-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .v2-dept-name { font-size: 0.8rem; font-weight: 600; color: #0C4A6E; }
+        .v2-rfq-count { font-size: 0.82rem; font-weight: 700; color: #334155; text-align: center; }
+        .v2-savings-tag {
+          font-size: 0.72rem; font-weight: 700;
+          background: rgba(16,185,129,0.1);
+          color: #059669;
+          border: 1px solid rgba(16,185,129,0.25);
+          padding: 2px 8px; border-radius: 6px;
+        }
+
+        .v2-dash-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 14px 20px;
+          border-top: 1px solid #F1F5F9;
+          background: #F8FAFC;
+          gap: 12px;
+        }
+        .v2-dash-footer-text { font-size: 0.72rem; color: #64748B; font-weight: 500; }
+        .v2-dash-action { font-size: 0.75rem; padding: 6px 14px; }
+
+        /* Floating accent card */
+        .v2-float-card {
+          position: absolute;
+          bottom: -20px;
+          left: -20px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          background: #0C4A6E;
+          color: #fff;
+          padding: 14px 18px;
+          border-radius: 16px;
+          box-shadow: 0 12px 30px rgba(12,74,110,0.28);
+          animation: floatY 3.5s ease-in-out infinite alternate;
+        }
+        @keyframes floatY {
+          0%   { transform: translateY(0px); }
+          100% { transform: translateY(-8px); }
+        }
+        .fc-icon { color: #F97316; flex-shrink: 0; }
+        .fc-val { font-size: 1.05rem; font-weight: 800; color: #fff; line-height: 1.1; }
+        .fc-label { font-size: 0.7rem; color: rgba(255,255,255,0.7); font-weight: 500; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+          .v2-hero-grid {
             grid-template-columns: 1fr;
           }
-          .v2-statement-stage { min-height: 220px; }
-          .hero-main-title { font-size: 2.2rem; }
-          .hero-five-statements-row { flex-direction: column; align-items: flex-start; }
-          .s-arrow { display: none; }
+          .v2-hero-right {
+            align-items: center;
+            margin-top: 32px;
+          }
+          .v2-float-card {
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -28px;
+          }
+          .v2-headline-stage { min-height: 160px; }
+          .v2-stats-bar { width: 100%; justify-content: space-around; }
+          .v2-stat { padding: 0 12px; }
+        }
+
+        @media (max-width: 540px) {
+          .v2-stats-bar { flex-direction: column; gap: 12px; }
+          .v2-stat-divider { display: none; }
+          .v2-stat { padding: 0; }
         }
       `}</style>
     </section>
   );
 }
-

@@ -54,16 +54,16 @@ export default function TrustLogoStrip() {
         .logo-item-box:hover {
           opacity: 1;
           transform: translateY(-2px);
-          border-color: #ff5722;
+          border-color: #0EA5E9;
           background: #ffffff;
-          box-shadow: 0 4px 14px rgba(255, 87, 34, 0.12);
+          box-shadow: 0 4px 14px rgba(14, 165, 233, 0.15);
         }
         .logo-brand-name {
-          font-family: var(--font-display);
-          font-weight: 800;
-          font-size: 0.92rem;
-          letter-spacing: 0.8px;
-          color: #0f172a;
+          font-family: 'Poppins', sans-serif;
+          font-weight: 700;
+          font-size: 0.88rem;
+          letter-spacing: 0.5px;
+          color: #0C4A6E;
           white-space: nowrap;
         }
         @media (max-width: 768px) {

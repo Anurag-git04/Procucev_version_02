@@ -175,11 +175,11 @@ export default function QuaAiWidget({ onOpenDemo }) {
 
         .v2-chat-popup {
           pointer-events: auto;
-          background: #07152e;
-          color: #ffffff;
-          border: 1px solid rgba(255, 255, 255, 0.15);
+          background: #ffffff;
+          color: #334155;
+          border: 1px solid #E2E8F0;
           border-radius: 20px;
-          box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 24px 60px rgba(12, 74, 110, 0.20);
           width: 360px;
           overflow: hidden;
           margin-bottom: 12px;
@@ -193,8 +193,8 @@ export default function QuaAiWidget({ onOpenDemo }) {
 
         .v2-popup-header {
           padding: 14px 16px;
-          background: linear-gradient(135deg, #074193 0%, #04285c 100%);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          background: linear-gradient(135deg, #0C4A6E 0%, #0EA5E9 100%);
+          border-bottom: 1px solid rgba(255,255,255,0.15);
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -209,7 +209,7 @@ export default function QuaAiWidget({ onOpenDemo }) {
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: #1d6bf3;
+          background: rgba(255,255,255,0.20);
           color: #ffffff;
           display: flex;
           align-items: center;
@@ -240,7 +240,7 @@ export default function QuaAiWidget({ onOpenDemo }) {
         .v2-close-btn {
           background: transparent;
           border: none;
-          color: #94a3b8;
+          color: rgba(255,255,255,0.70);
           cursor: pointer;
           padding: 4px;
           border-radius: 6px;
@@ -248,15 +248,15 @@ export default function QuaAiWidget({ onOpenDemo }) {
         }
         .v2-close-btn:hover {
           color: #ffffff;
-          background: rgba(255, 255, 255, 0.1);
+          background: rgba(255,255,255,0.15);
         }
 
         .v2-chat-strip {
-          background: #040e21;
+          background: #F1F5F9;
           padding: 8px 16px;
           font-size: 0.72rem;
-          color: #94a3b8;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          color: #64748B;
+          border-bottom: 1px solid #E2E8F0;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -265,10 +265,10 @@ export default function QuaAiWidget({ onOpenDemo }) {
           display: flex;
           align-items: center;
           gap: 6px;
-          color: #cbd5e1;
+          color: #334155;
         }
-        .text-cyan { color: #38bdf8; }
-        .v2-coverage-text { color: #64748b; }
+        .text-cyan { color: #0EA5E9; }
+        .v2-coverage-text { color: #94A3B8; }
 
         .v2-messages-area {
           padding: 16px;
@@ -277,7 +277,7 @@ export default function QuaAiWidget({ onOpenDemo }) {
           display: flex;
           flex-direction: column;
           gap: 12px;
-          background: #07152e;
+          background: #F8FAFC;
         }
 
         .v2-msg-row {
@@ -294,14 +294,14 @@ export default function QuaAiWidget({ onOpenDemo }) {
           line-height: 1.5;
         }
         .msg-user .v2-msg-bubble {
-          background: #1d6bf3;
+          background: #0EA5E9;
           color: #ffffff;
           border-bottom-right-radius: 2px;
         }
         .msg-qua .v2-msg-bubble {
-          background: rgba(255, 255, 255, 0.08);
-          color: #cbd5e1;
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: #ffffff;
+          color: #334155;
+          border: 1px solid #E2E8F0;
           border-bottom-left-radius: 2px;
         }
         .v2-msg-time {
@@ -314,50 +314,53 @@ export default function QuaAiWidget({ onOpenDemo }) {
 
         .v2-prompts-wrap {
           padding: 10px;
-          background: #040e21;
-          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          background: #ffffff;
+          border-top: 1px solid #E2E8F0;
           display: flex;
           flex-wrap: wrap;
           gap: 6px;
         }
         .v2-prompt-btn {
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          color: #cbd5e1;
+          background: #F1F5F9;
+          border: 1px solid #E2E8F0;
+          color: #334155;
           font-size: 0.72rem;
           padding: 4px 10px;
           border-radius: 20px;
           cursor: pointer;
           transition: all 0.2s ease;
+          font-family: 'Poppins', sans-serif;
         }
         .v2-prompt-btn:hover {
-          background: rgba(255, 255, 255, 0.18);
-          color: #ffffff;
+          background: rgba(14,165,233,0.10);
+          border-color: #0EA5E9;
+          color: #0284C7;
         }
 
         .v2-chat-input-bar {
           padding: 10px 12px;
-          background: #040e21;
-          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          background: #ffffff;
+          border-top: 1px solid #E2E8F0;
           display: flex;
           align-items: center;
           gap: 8px;
         }
         .v2-text-input {
           flex: 1;
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          color: #ffffff;
+          background: #F8FAFC;
+          border: 1px solid #E2E8F0;
+          color: #334155;
           font-size: 0.8rem;
           padding: 8px 12px;
           border-radius: 10px;
           outline: none;
+          font-family: 'Poppins', sans-serif;
         }
         .v2-text-input:focus {
-          border-color: #1d6bf3;
+          border-color: #0EA5E9;
         }
         .v2-send-btn {
-          background: #1d6bf3;
+          background: #F97316;
           border: none;
           color: #ffffff;
           padding: 8px;
@@ -366,7 +369,7 @@ export default function QuaAiWidget({ onOpenDemo }) {
           transition: background 0.2s ease;
         }
         .v2-send-btn:hover {
-          background: #1255cc;
+          background: #EA6C00;
         }
 
         /* Fixed Floating Launcher Button */
@@ -378,27 +381,27 @@ export default function QuaAiWidget({ onOpenDemo }) {
         }
 
         .v2-speech-bubble {
-          background: #07152e;
-          color: #ffffff;
-          border: 1px solid rgba(255, 255, 255, 0.18);
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+          background: #ffffff;
+          color: #334155;
+          border: 1px solid #E2E8F0;
+          box-shadow: 0 8px 24px rgba(12,74,110,0.15);
           padding: 8px 16px;
           border-radius: 20px;
           font-size: 0.8rem;
           white-space: nowrap;
         }
         .v2-speech-bubble strong {
-          color: #38bdf8;
+          color: #0EA5E9;
         }
 
         .v2-trigger-btn {
           width: 52px;
           height: 52px;
           border-radius: 50%;
-          background: linear-gradient(135deg, #074193 0%, #1d6bf3 100%);
+          background: linear-gradient(135deg, #0C4A6E 0%, #0EA5E9 100%);
           color: #ffffff;
-          border: 2px solid rgba(255, 255, 255, 0.3);
-          box-shadow: 0 10px 25px rgba(7, 65, 147, 0.4);
+          border: 2px solid rgba(255,255,255,0.25);
+          box-shadow: 0 10px 25px rgba(12, 74, 110, 0.35);
           display: flex;
           align-items: center;
           justify-content: center;

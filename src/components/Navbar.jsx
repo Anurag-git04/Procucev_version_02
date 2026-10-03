@@ -1,358 +1,240 @@
-import React, { useState } from 'react';
-import { ChevronDown, Menu, X, Sparkles, Phone, Mail } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
 
 export default function Navbar({ onOpenDemo }) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const navLinks = [
+    { label: 'Home',        href: '#home' },
+    { label: 'About us',    href: '#about' },
+    { label: 'Qua AI',      href: '#qua-ai' },
+    { label: 'eQua AI',     href: '#equa-ai' },
+    { label: 'Consulting',  href: '#consulting' },
+    { label: 'Our Clients', href: '#clients' },
+    { label: 'Team',        href: '#team' },
+    { label: 'Contact us',  href: '#contact' },
+  ];
 
   return (
-    <header className="level-navbar-header">
-      {/* Main Header Bar */}
-      <div className="main-header-bar">
-        <div className="container header-wrapper">
-          
-          {/* Brand Logo Container */}
-          <a href="#" className="brand-logo-link">
-            <img 
-              src="/procucev-logo.png" 
-              alt="Procucev Logo" 
-              className="brand-img"
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextSibling.style.display = 'flex';
-              }}
-            />
-            <div className="brand-fallback-dark" style={{ display: 'none' }}>
-              <span className="p-badge-icon">P</span>
-              <span className="p-brand-text">PROCUCEV</span>
-            </div>
-          </a>
+    <header className={`v2-nav-header${scrolled ? ' scrolled' : ''}`}>
+      <div className="container v2-nav-inner">
 
-          {/* Desktop Nav Taxonomy */}
-          <nav className="desktop-menu">
-            <a href="#" className="menu-link active">HOME</a>
-            <a href="#about" className="menu-link">ABOUT US</a>
+        {/* Brand */}
+        <a href="#home" className="v2-brand" aria-label="Procucev Home">
+          <img
+            src="/procucev-logo.png"
+            alt="Procucev"
+            className="v2-brand-logo"
+            onError={(e) => {
+              e.target.style.display = 'none';
+              e.target.nextSibling.style.display = 'flex';
+            }}
+          />
+          <div className="v2-brand-fallback" style={{ display: 'none' }}>
+            <span className="v2-brand-icon">P</span>
+            <span className="v2-brand-text">PROCUCEV</span>
+          </div>
+        </a>
 
-            {/* CONSULTING Dropdown */}
-            <div 
-              className="menu-dd-container"
-              onMouseEnter={() => setActiveDropdown('consulting')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button className="menu-dd-btn">
-                <span>CONSULTING</span> <ChevronDown size={12} />
-              </button>
-              {activeDropdown === 'consulting' && (
-                <div className="dd-card-popup">
-                  <a href="#capabilities" className="dd-item">
-                    <span className="dot-bullet blue"></span>
-                    <div>
-                      <strong>Price Benchmark Analysis</strong>
-                      <small>360° Spend & Spec Analytics</small>
-                    </div>
-                  </a>
-                  <a href="#capabilities" className="dd-item">
-                    <span className="dot-bullet orange"></span>
-                    <div>
-                      <strong>Strategic Sourcing</strong>
-                      <small>Vendor Capacity & SLA Audits</small>
-                    </div>
-                  </a>
-                  <a href="#capabilities" className="dd-item">
-                    <span className="dot-bullet blue"></span>
-                    <div>
-                      <strong>Category Management</strong>
-                      <small>Tail Spend & PO Orchestration</small>
-                    </div>
-                  </a>
-                </div>
-              )}
-            </div>
+        {/* Desktop Nav */}
+        <nav className="v2-desktop-nav" aria-label="Main navigation">
+          {navLinks.map(link => (
+            <a key={link.href} href={link.href} className="v2-nav-link">
+              {link.label}
+            </a>
+          ))}
+        </nav>
 
-            {/* TECHNOLOGY SOLUTIONS Dropdown */}
-            <div 
-              className="menu-dd-container"
-              onMouseEnter={() => setActiveDropdown('tech')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button className="menu-dd-btn">
-                <span>TECHNOLOGY SOLUTIONS</span> <ChevronDown size={12} />
-              </button>
-              {activeDropdown === 'tech' && (
-                <div className="dd-card-popup">
-                  <a href="#capabilities" className="dd-item">
-                    <span className="dot-bullet orange"></span>
-                    <div>
-                      <strong>proCPX Platform</strong>
-                      <small>Enterprise Source-to-Pay Suite</small>
-                    </div>
-                  </a>
-                  <a href="#capabilities" className="dd-item">
-                    <span className="dot-bullet blue"></span>
-                    <div>
-                      <strong>E-Auction Suite</strong>
-                      <small>Reverse & Forward Dynamic Bidding</small>
-                    </div>
-                  </a>
-                </div>
-              )}
-            </div>
-
-            {/* QUA AI (GMT & BFS) Dropdown */}
-            <div 
-              className="menu-dd-container"
-              onMouseEnter={() => setActiveDropdown('qua')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button className="menu-dd-btn qua-btn">
-                <span>QUA AI (GMT & BFS)</span> <ChevronDown size={12} />
-              </button>
-              {activeDropdown === 'qua' && (
-                <div className="dd-card-popup">
-                  <a href="#autonomous" className="dd-item">
-                    <span className="dot-bullet orange"></span>
-                    <div>
-                      <strong>QUA AI Engine</strong>
-                      <small>50,000+ Verified Supplier Matching</small>
-                    </div>
-                  </a>
-                  <a href="#autonomous" className="dd-item">
-                    <span className="dot-bullet blue"></span>
-                    <div>
-                      <strong>GMT - Get My QuoTe</strong>
-                      <small>Instant Part RFQ & Automated Quoting</small>
-                    </div>
-                  </a>
-                  <a href="#autonomous" className="dd-item">
-                    <span className="dot-bullet orange"></span>
-                    <div>
-                      <strong>BFS - Buy From Stock</strong>
-                      <small>Surplus Raw Material Marketplace</small>
-                    </div>
-                  </a>
-                </div>
-              )}
-            </div>
-
-            <a href="#industries" className="menu-link">INDUSTRIES</a>
-            <a href="#contact" className="menu-link">CONTACT US</a>
-          </nav>
-
-          {/* Mobile Hamburger Button */}
-          <button className="mobile-menu-trigger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        {/* CTA + Hamburger */}
+        <div className="v2-nav-actions">
+          <button className="btn btn-primary v2-nav-cta" onClick={onOpenDemo} id="nav-rfq-btn">
+            Raise an RFQ <ArrowUpRight size={16} />
           </button>
-
+          <button
+            className="v2-hamburger"
+            onClick={() => setMobileOpen(o => !o)}
+            aria-label="Toggle mobile menu"
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu Panel */}
-      {mobileMenuOpen && (
-        <div className="mobile-nav-panel">
-          <a href="#" onClick={() => setMobileMenuOpen(false)}>HOME</a>
-          <a href="#about" onClick={() => setMobileMenuOpen(false)}>ABOUT US</a>
-          <a href="#capabilities" onClick={() => setMobileMenuOpen(false)}>CONSULTING</a>
-          <a href="#capabilities" onClick={() => setMobileMenuOpen(false)}>TECHNOLOGY SOLUTIONS</a>
-          <a href="#autonomous" onClick={() => setMobileMenuOpen(false)}>QUA AI (GMT & BFS)</a>
-          <a href="#industries" onClick={() => setMobileMenuOpen(false)}>INDUSTRIES</a>
-          <a href="#contact" onClick={() => setMobileMenuOpen(false)}>CONTACT US</a>
+      {/* Mobile Drawer */}
+      {mobileOpen && (
+        <div className="v2-mobile-drawer">
+          {navLinks.map(link => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="v2-mobile-link"
+              onClick={() => setMobileOpen(false)}
+            >
+              {link.label}
+            </a>
+          ))}
+          <button
+            className="btn btn-primary"
+            style={{ marginTop: '8px' }}
+            onClick={() => { setMobileOpen(false); onOpenDemo(); }}
+          >
+            Raise an RFQ, it's free <ArrowUpRight size={15} />
+          </button>
         </div>
       )}
 
       <style>{`
-        .level-navbar-header {
+        /* ── V2 Navbar ── */
+        .v2-nav-header {
           position: sticky;
           top: 0;
-          z-index: 1000;
-          background: rgba(255, 255, 255, 0.94);
+          z-index: 100;
+          width: 100%;
+          background: rgba(248, 250, 252, 0.90);
           backdrop-filter: blur(14px);
-          -webkit-backdrop-filter: blur(14px);
-          border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-          box-shadow: 0 4px 20px rgba(7, 21, 46, 0.06);
-          transition: var(--transition);
+          border-bottom: 1px solid transparent;
+          transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+        .v2-nav-header.scrolled {
+          background: rgba(255, 255, 255, 0.96);
+          border-bottom-color: #E2E8F0;
+          box-shadow: 0 4px 20px rgba(12, 74, 110, 0.07);
         }
 
-        .main-header-bar {
-          padding: 12px 0;
-        }
-        .header-wrapper {
+        .v2-nav-inner {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 20px;
+          gap: 16px;
+          padding-top: 14px;
+          padding-bottom: 14px;
         }
-        .brand-logo-link {
+
+        /* Brand */
+        .v2-brand {
           display: flex;
           align-items: center;
-          margin-right: 16px;
           flex-shrink: 0;
+          text-decoration: none;
         }
-        .brand-img {
-          height: 44px;
+        .v2-brand-logo {
+          height: 40px;
           width: auto;
           object-fit: contain;
-          background: transparent;
-          padding: 0;
         }
-        .brand-fallback-dark {
+        .v2-brand-fallback {
           display: flex;
           align-items: center;
           gap: 8px;
         }
-        .p-badge-icon {
-          width: 34px;
-          height: 34px;
-          background: linear-gradient(135deg, #ff5722 0%, #1d6bf3 100%);
+        .v2-brand-icon {
+          width: 36px;
+          height: 36px;
+          background: #0EA5E9;
           color: #fff;
           font-weight: 800;
-          border-radius: 8px;
+          border-radius: 10px;
           display: flex;
           align-items: center;
           justify-content: center;
+          font-size: 1.1rem;
         }
-        .p-brand-text {
-          font-family: var(--font-display);
+        .v2-brand-text {
           font-weight: 800;
-          color: #07152e;
-          font-size: 1.3rem;
-          letter-spacing: -0.5px;
+          font-size: 1.15rem;
+          color: #0C4A6E;
+          letter-spacing: 0.5px;
         }
 
-        /* Desktop Nav Taxonomy */
-        .desktop-menu {
-          display: flex;
-          align-items: center;
-          gap: 20px;
-          white-space: nowrap;
-          flex-wrap: nowrap;
-        }
-        .menu-link {
-          color: #1e293b;
-          font-weight: 700;
-          font-size: 0.82rem;
-          text-decoration: none;
-          letter-spacing: 0.5px;
-          padding: 6px 8px;
-          border-radius: 6px;
-          transition: var(--transition);
-          white-space: nowrap;
-        }
-        .menu-link:hover {
-          color: #ff5722;
-          background: rgba(255, 87, 34, 0.06);
-        }
-        .menu-link.active {
-          color: #1d6bf3;
-          background: rgba(29, 107, 243, 0.08);
-        }
-
-        .menu-dd-container {
-          position: relative;
-        }
-        .menu-dd-btn {
-          background: transparent;
-          border: none;
-          color: #1e293b;
-          font-weight: 700;
-          font-size: 0.82rem;
-          letter-spacing: 0.5px;
-          cursor: pointer;
+        /* Desktop links */
+        .v2-desktop-nav {
           display: flex;
           align-items: center;
           gap: 4px;
-          padding: 6px 8px;
-          border-radius: 6px;
-          transition: var(--transition);
-          white-space: nowrap;
+          flex: 1;
+          justify-content: center;
         }
-        .menu-dd-btn:hover {
-          color: #1d6bf3;
-          background: rgba(29, 107, 243, 0.06);
-        }
-        .qua-btn:hover {
-          color: #ff5722;
-          background: rgba(255, 87, 34, 0.06);
-        }
-
-        .dd-card-popup {
-          position: absolute;
-          top: calc(100% + 8px);
-          left: 0;
-          width: 280px;
-          background: #ffffff;
-          border: 1px solid rgba(226, 232, 240, 0.9);
-          border-radius: 12px;
-          padding: 10px;
-          box-shadow: 0 16px 36px rgba(7, 21, 46, 0.12);
-          z-index: 100;
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-        }
-        .dd-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 10px;
-          padding: 10px 12px;
-          border-radius: 8px;
-          text-decoration: none;
+        .v2-nav-link {
           color: #334155;
-          transition: var(--transition);
+          font-weight: 500;
+          font-size: 0.88rem;
+          text-decoration: none;
+          padding: 6px 12px;
+          border-radius: 8px;
+          transition: color 0.2s ease, background 0.2s ease;
+          white-space: nowrap;
         }
-        .dd-item:hover {
-          background: #f8fafc;
-          color: #1d6bf3;
-        }
-        .dd-item strong {
-          display: block;
-          font-size: 0.84rem;
-          color: #0f172a;
-        }
-        .dd-item small {
-          display: block;
-          font-size: 0.74rem;
-          color: #64748b;
+        .v2-nav-link:hover {
+          color: #0EA5E9;
+          background: rgba(14, 165, 233, 0.08);
         }
 
-        .dot-bullet {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          margin-top: 5px;
+        /* Nav CTA */
+        .v2-nav-actions {
+          display: flex;
+          align-items: center;
+          gap: 10px;
           flex-shrink: 0;
         }
-        .dot-bullet.blue { background: #1d6bf3; }
-        .dot-bullet.orange { background: #ff5722; }
+        .v2-nav-cta {
+          font-size: 0.84rem;
+          padding: 9px 18px;
+        }
 
-        .mobile-menu-trigger {
+        /* Hamburger */
+        .v2-hamburger {
           display: none;
           background: transparent;
-          border: none;
-          color: #0f172a;
+          border: 1px solid #E2E8F0;
+          border-radius: 8px;
+          padding: 6px;
           cursor: pointer;
+          color: #0C4A6E;
+          transition: border-color 0.2s;
         }
+        .v2-hamburger:hover { border-color: #0EA5E9; }
 
-        .mobile-nav-panel {
+        /* Mobile drawer */
+        .v2-mobile-drawer {
           background: #ffffff;
-          padding: 16px 24px 24px;
-          border-top: 1px solid rgba(226, 232, 240, 0.8);
+          border-top: 1px solid #E2E8F0;
+          padding: 16px 24px 20px;
           display: flex;
           flex-direction: column;
-          gap: 14px;
+          gap: 4px;
+          box-shadow: 0 8px 24px rgba(12,74,110,0.08);
+          animation: slideDown 0.22s ease;
         }
-        .mobile-nav-panel a {
-          color: #1e293b;
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateY(-6px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .v2-mobile-link {
+          color: #334155;
+          font-weight: 500;
+          font-size: 0.95rem;
           text-decoration: none;
-          font-weight: 700;
-          font-size: 0.9rem;
+          padding: 10px 12px;
+          border-radius: 8px;
+          transition: color 0.2s, background 0.2s;
         }
-        .mobile-nav-panel a:hover {
-          color: #ff5722;
+        .v2-mobile-link:hover {
+          color: #0EA5E9;
+          background: rgba(14, 165, 233, 0.07);
         }
 
-        @media (max-width: 1080px) {
-          .desktop-menu { display: none; }
-          .mobile-menu-trigger { display: block; }
+        @media (max-width: 1100px) {
+          .v2-desktop-nav { display: none; }
+          .v2-hamburger { display: flex; }
+          .v2-nav-cta { display: none; }
         }
       `}</style>
     </header>
