@@ -1,60 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, Heart, TrendingUp, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ArrowUpRight, Heart, TrendingUp, ShieldCheck, CheckCircle2, Play, Pause, Volume2, VolumeX, Sparkles } from 'lucide-react';
 
 export default function VideoHero({ onOpenDemo }) {
-  // 4 Core Client Statements for Version 2 High-Tech Dark/Cyan Rotation
+  // 4 Core Rotating Slides (3 original headlines + 1 grouped 5-statement value chain slide)
   const heroStatements = [
     {
       id: 0,
-      badge: "Love of Procurement",
       titlePrefix: "Made with the ",
-      titleCyan: "Love of Procurement",
-      titleSuffix: "",
-      lead: "Building the future of autonomous enterprise purchasing with zero human friction.",
-      icon: Heart,
-      iconColor: "text-cyan fill-cyan"
+      titleHighlight: "Love of Procurement",
+      titleSuffix: ""
     },
     {
       id: 1,
-      badge: "Direct Profit Impact",
       titlePrefix: "Saving at procurement is the ",
-      titleCyan: "direct profit for company",
-      titleSuffix: "",
-      lead: "Every rupee saved in procurement flows directly to your company's net EBITDA profit.",
-      icon: TrendingUp,
-      iconColor: "text-emerald-400"
+      titleHighlight: "direct profit for company",
+      titleSuffix: ""
     },
     {
       id: 2,
-      badge: "500+ Cr Finance Hero",
-      titlePrefix: "Procurement is the ",
-      titleCyan: "finance hero behind 500+ crores",
-      titleSuffix: " Retail, E-Commerce, Consumer brands",
-      lead: "Empowering CFOs and enterprise purchasing teams with automated proCPX S2P engines.",
-      icon: ShieldCheck,
-      iconColor: "text-blue-400"
+      titlePrefix: "",
+      titleHighlight: "Zero Human intervention",
+      titleSuffix: " from PR to Comparison"
     },
     {
       id: 3,
-      badge: "Zero Human Delay",
-      titlePrefix: "",
-      titleCyan: "Zero Human intervention",
-      titleSuffix: " from PR to Comparison",
-      lead: "Eliminating manual delays across requisition matching, vendor outreach, and quote comparison.",
-      icon: CheckCircle2,
-      iconColor: "text-amber-400"
+      isGrouped: true,
+      items: [
+        "Raise RFQ easier",
+        "Reach Vendors faster",
+        "Get Quotations quicker",
+        "Compare Quotations better",
+        "Spend Time & Money lesser"
+      ]
     }
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const rightVideoRef = useRef(null);
 
-  // Auto-rotate every 3.8s
+  // Auto-rotate every 4.0s
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % heroStatements.length);
-    }, 3800);
+    }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [heroStatements.length]);
+
+  const togglePlay = () => {
+    if (!rightVideoRef.current) return;
+    if (isPlaying) {
+      rightVideoRef.current.pause();
+    } else {
+      rightVideoRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const toggleMute = () => {
+    if (!rightVideoRef.current) return;
+    rightVideoRef.current.muted = !isMuted;
+    setIsMuted(!isMuted);
+  };
 
   return (
     <section className="video-hero-section">
@@ -77,64 +85,57 @@ export default function VideoHero({ onOpenDemo }) {
             type="video/mp4" 
           />
         </video>
-        {/* Dark Video Overlay Layer */}
+        {/* Dark Overlay Layer for Video */}
         <div className="video-overlay"></div>
       </div>
 
       <div className="container hero-content-relative">
         <div className="hero-split-grid">
           
-          {/* Left Column: Rotating Cyber-Cyan Headline Stage */}
+          {/* Left Column: Rotating Headline Statements */}
           <div className="hero-left-column">
             
             {/* Rotating Statement Stage */}
             <div className="v2-statement-stage">
               {heroStatements.map((item, idx) => {
                 const isActive = idx === activeIndex;
-                const ItemIcon = item.icon;
+
+                if (item.isGrouped) {
+                  return (
+                    <div 
+                      key={item.id} 
+                      className={`v2-headline-slide ${isActive ? 'active' : 'inactive'}`}
+                    >
+                      <div className="grouped-statements-grid">
+                        {item.items.map((stmt, sIdx) => (
+                          <div key={sIdx} className="grouped-statement-pill">
+                            <span className="bullet-dot-orange"></span>
+                            <span className="serif-title text-orange">{stmt}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
 
                 return (
                   <div 
                     key={item.id} 
                     className={`v2-headline-slide ${isActive ? 'active' : 'inactive'}`}
                   >
-                    <div className="hero-badge-pill">
-                      <ItemIcon size={14} className={item.iconColor} />
-                      <span>{item.badge}</span>
-                    </div>
-
                     <h1 className="hero-main-title">
                       {item.titlePrefix}
-                      <span className="serif-title text-cyan">{item.titleCyan}</span>
+                      <span className="serif-title text-orange">{item.titleHighlight}</span>
                       {item.titleSuffix}
                     </h1>
-
-                    <p className="hero-lead-text">
-                      {item.lead}
-                    </p>
                   </div>
                 );
               })}
             </div>
 
-            {/* High-Tech Step Selectors */}
-            <div className="v2-step-selectors">
-              {heroStatements.map((item, idx) => (
-                <button 
-                  key={idx} 
-                  className={`v2-step-btn ${idx === activeIndex ? 'active' : ''}`}
-                  onClick={() => setActiveIndex(idx)}
-                  aria-label={`Select Statement ${idx + 1}`}
-                >
-                  <span className="v2-step-dot"></span>
-                  <span className="v2-step-num">0{idx + 1}</span>
-                </button>
-              ))}
-            </div>
-
             {/* Hero CTAs */}
             <div className="hero-actions-row">
-              <button className="btn btn-blue btn-lg" onClick={onOpenDemo}>
+              <button className="btn btn-orange-primary btn-lg" onClick={onOpenDemo}>
                 Request a Demo <ArrowUpRight size={18} />
               </button>
               <a href="#capabilities" className="btn btn-outline-white btn-lg">
@@ -144,65 +145,97 @@ export default function VideoHero({ onOpenDemo }) {
 
           </div>
 
-          {/* Right Column: Sleek Frosted Spend UI Card (Levelpath Reference) */}
+          {/* Right Column: Premium Blue Video Demo Box */}
           <div className="hero-right-column">
-            <div className="spend-card-glass">
+            <div className="v2-blue-video-card">
               
-              <div className="card-top-tag flex items-center justify-between">
-                <span className="text-tag">Here's your YoY Q1 contract spend data:</span>
-                <span className="live-pill"><span className="live-dot"></span> LIVE S2P</span>
+              {/* Card Header Bar with Blue & Cyan Badges */}
+              <div className="video-card-top-bar flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="live-blue-pulse">
+                    <span className="blue-pulse-dot"></span>
+                  </span>
+                  <span className="video-title-tag">AI S2P PLATFORM DEMO</span>
+                </div>
+                <span className="blue-badge-pill">
+                  <Sparkles size={12} className="text-cyan" /> LIVE SYSTEM
+                </span>
               </div>
 
-              <div className="card-header-block">
-                <h3 className="card-main-heading">YoY Q1 Contract Spend Data</h3>
-                <p className="card-sub-heading">FY 2025 - FY 2026 • Prepared for CFO Review</p>
+              {/* Embedded Video Showcase Container */}
+              <div className="blue-video-frame">
+                <video 
+                  ref={rightVideoRef}
+                  autoPlay 
+                  loop 
+                  muted={isMuted} 
+                  playsInline 
+                  className="showcase-video"
+                  poster="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1000&q=80"
+                >
+                  <source 
+                    src="https://assets.mixkit.co/videos/preview/mixkit-logistics-center-with-automated-machines-42043-large.mp4" 
+                    type="video/mp4" 
+                  />
+                  <source 
+                    src="https://assets.mixkit.co/videos/preview/mixkit-workers-in-a-large-logistics-warehouse-42995-large.mp4" 
+                    type="video/mp4" 
+                  />
+                </video>
+
+                {/* Gradient Blue Overlay matching site shades */}
+                <div className="blue-video-overlay"></div>
+
+                {/* Floating Live Feature Badges Overlaid on Video */}
+                <div className="video-floating-badge top-right">
+                  <ShieldCheck size={14} className="text-cyan" />
+                  <span>50,000+ Verified Suppliers</span>
+                </div>
+
+                <div className="video-floating-badge bottom-left">
+                  <span className="blue-dot-small"></span>
+                  <span>Automated L1/L2 Comparison</span>
+                </div>
+
+                {/* Center Play Button Overlay */}
+                <button 
+                  className={`center-play-overlay-btn ${!isPlaying ? 'show' : ''}`}
+                  onClick={togglePlay}
+                  aria-label={isPlaying ? "Pause video" : "Play video"}
+                >
+                  {isPlaying ? <Pause size={22} /> : <Play size={22} className="ml-1" />}
+                </button>
+
+                {/* Bottom Video Controls Bar */}
+                <div className="video-bottom-controls-bar">
+                  <button className="control-icon-btn" onClick={togglePlay}>
+                    {isPlaying ? <Pause size={15} /> : <Play size={15} />}
+                  </button>
+                  
+                  <div className="video-progress-track">
+                    <div className="video-progress-fill"></div>
+                  </div>
+
+                  <button className="control-icon-btn" onClick={toggleMute}>
+                    {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+                  </button>
+                </div>
               </div>
 
-              {/* 3 Metric Columns */}
-              <div className="metrics-grid">
-                <div className="metric-box">
-                  <span className="m-label">TOT. CONTRACT SPEND</span>
-                  <span className="m-value">₹53.2 Cr</span>
-                  <span className="m-sub">71 Active Contracts</span>
+              {/* Bottom Metrics Bar matching shades of blue */}
+              <div className="video-card-footer-metrics">
+                <div className="blue-metric-item">
+                  <span className="b-label">CYCLE TIME</span>
+                  <span className="b-val text-cyan">Instant (BFS)</span>
                 </div>
-                <div className="metric-box">
-                  <span className="m-label">ANNUAL BUDGET</span>
-                  <span className="m-value">₹53.0 Cr</span>
-                  <span className="m-sub">Target Target</span>
+                <div className="blue-metric-item border-l border-r border-cyan-800/40">
+                  <span className="b-label">HUMAN INTERVENTION</span>
+                  <span className="b-val text-white">0% (PR to PO)</span>
                 </div>
-                <div className="metric-box highlight">
-                  <span className="m-label">DIRECT PROFIT SAVED</span>
-                  <span className="m-value text-cyan">+₹4.2 Cr</span>
-                  <span className="m-sub text-cyan">18% YoY Savings</span>
+                <div className="blue-metric-item">
+                  <span className="b-label">DIRECT EBITDA SAVED</span>
+                  <span className="b-val text-orange">+18% Direct</span>
                 </div>
-              </div>
-
-              {/* Data Table Preview */}
-              <div className="card-table-preview">
-                <div className="table-row head">
-                  <span>CATEGORY</span>
-                  <span>SUPPLIER</span>
-                  <span>CYCLE TIME</span>
-                  <span>SAVINGS</span>
-                </div>
-                <div className="table-row">
-                  <span>Raw Packaging</span>
-                  <span>Kalpana Packaging Ltd</span>
-                  <span className="text-cyan">24 Hours (GMT)</span>
-                  <span className="font-bold">14.2%</span>
-                </div>
-                <div className="table-row">
-                  <span>MRO Consumables</span>
-                  <span>Pan-India Logistics</span>
-                  <span className="text-cyan">Instant (BFS)</span>
-                  <span className="font-bold">18.0%</span>
-                </div>
-              </div>
-
-              {/* Footer status pill inside card */}
-              <div className="card-footer-status">
-                <ShieldCheck size={14} className="text-cyan" />
-                <span>Zero Human Intervention • Automated PR-to-Comparison</span>
               </div>
 
             </div>
@@ -210,43 +243,15 @@ export default function VideoHero({ onOpenDemo }) {
 
         </div>
 
-        {/* 5-Step Value Chain Strip */}
-        <div className="hero-value-chain-strip">
-          <div className="v-step">
-            <div className="v-num">1</div>
-            <span>Raise RFQ easier</span>
-          </div>
-          <div className="v-arrow">→</div>
-          <div className="v-step">
-            <div className="v-num">2</div>
-            <span>Reach Vendors faster</span>
-          </div>
-          <div className="v-arrow">→</div>
-          <div className="v-step">
-            <div className="v-num">3</div>
-            <span>Get Quotations quicker</span>
-          </div>
-          <div className="v-arrow">→</div>
-          <div className="v-step">
-            <div className="v-num">4</div>
-            <span>Compare Quotations better</span>
-          </div>
-          <div className="v-arrow">→</div>
-          <div className="v-step highlight">
-            <div className="v-num highlight-num">5</div>
-            <span>Spend Time & Money lesser</span>
-          </div>
-        </div>
-
       </div>
 
       <style>{`
         .video-hero-section {
           position: relative;
-          min-height: 88vh;
+          min-height: 84vh;
           display: flex;
           align-items: center;
-          padding: 60px 0 50px;
+          padding: 50px 0 40px;
           color: #ffffff;
           overflow: hidden;
           background: #07152e;
@@ -273,7 +278,7 @@ export default function VideoHero({ onOpenDemo }) {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(180deg, rgba(7, 21, 46, 0.84) 0%, rgba(7, 21, 46, 0.94) 100%);
+          background: linear-gradient(180deg, rgba(7, 21, 46, 0.86) 0%, rgba(7, 21, 46, 0.94) 100%);
         }
 
         .hero-content-relative {
@@ -292,9 +297,31 @@ export default function VideoHero({ onOpenDemo }) {
         /* Left Column Text Stage */
         .v2-statement-stage {
           position: relative;
-          min-height: 350px;
+          min-height: 120px;
           display: flex;
           align-items: flex-start;
+        }
+
+        .grouped-statements-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px 18px;
+          padding: 2px 0;
+        }
+        .grouped-statement-pill {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 1.22rem;
+          font-weight: 700;
+        }
+        .bullet-dot-orange {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: #ff5722;
+          box-shadow: 0 0 8px #ff5722;
+          flex-shrink: 0;
         }
 
         .v2-headline-slide {
@@ -321,21 +348,10 @@ export default function VideoHero({ onOpenDemo }) {
           z-index: 1;
         }
 
-        .hero-badge-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 6px 16px;
-          border-radius: 20px;
-          background: rgba(56, 189, 248, 0.12);
-          border: 1px solid rgba(56, 189, 248, 0.3);
-          color: #ffffff;
-          font-size: 0.82rem;
-          font-weight: 700;
-          margin-bottom: 18px;
+        .text-orange { 
+          color: #ff5722; 
         }
         .text-cyan { color: #38bdf8; }
-        .fill-cyan { fill: #38bdf8; }
 
         .hero-main-title {
           font-size: 2.75rem;
@@ -343,7 +359,7 @@ export default function VideoHero({ onOpenDemo }) {
           color: #ffffff;
           line-height: 1.2;
           letter-spacing: -0.8px;
-          margin-bottom: 16px;
+          margin-bottom: 18px;
           text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
@@ -354,230 +370,252 @@ export default function VideoHero({ onOpenDemo }) {
           margin-bottom: 24px;
         }
 
-        /* High-Tech Step Selectors */
-        .v2-step-selectors {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin: 24px 0 28px;
-        }
-        .v2-step-btn {
-          background: rgba(255, 255, 255, 0.06);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          padding: 4px 14px;
-          border-radius: 20px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          transition: all 0.25s ease;
-        }
-        .v2-step-btn:hover {
-          border-color: #38bdf8;
-          background: rgba(56, 189, 248, 0.12);
-        }
-        .v2-step-btn.active {
-          background: #1d6bf3;
-          border-color: #38bdf8;
-          box-shadow: 0 0 12px rgba(29, 107, 243, 0.5);
-        }
-        .v2-step-dot {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background: #64748b;
-        }
-        .v2-step-btn.active .v2-step-dot {
-          background: #38bdf8;
-          box-shadow: 0 0 8px #38bdf8;
-        }
-        .v2-step-num {
-          font-size: 0.78rem;
-          font-weight: 700;
-          color: #94a3b8;
-        }
-        .v2-step-btn.active .v2-step-num {
-          color: #ffffff;
-        }
-
         .hero-actions-row {
           display: flex;
           align-items: center;
           gap: 16px;
+          margin-top: 24px;
+        }
+        .btn-orange-primary {
+          background: linear-gradient(135deg, #ff5722 0%, #f97316 100%);
+          color: #ffffff;
+          box-shadow: 0 4px 20px rgba(255, 87, 34, 0.4);
+          border: none;
+        }
+        .btn-orange-primary:hover {
+          background: linear-gradient(135deg, #e64a19 0%, #ea580c 100%);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(255, 87, 34, 0.55);
         }
 
-        /* Right Column Glassmorphism Spend Card (Picture 2 Reference) */
-        .spend-card-glass {
-          background: rgba(15, 34, 64, 0.78);
-          backdrop-filter: blur(18px);
-          border: 1px solid rgba(255, 255, 255, 0.18);
-          border-radius: 20px;
-          padding: 24px;
-          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+        /* Right Column Blue Video Card Container */
+        .v2-blue-video-card {
+          background: linear-gradient(145deg, rgba(7, 21, 46, 0.92) 0%, rgba(7, 65, 147, 0.85) 100%);
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(56, 189, 248, 0.35);
+          border-radius: 22px;
+          padding: 20px;
+          box-shadow: 0 25px 65px rgba(7, 65, 147, 0.45), inset 0 0 30px rgba(29, 107, 243, 0.15);
+          transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .v2-blue-video-card:hover {
+          border-color: rgba(56, 189, 248, 0.6);
+          box-shadow: 0 30px 80px rgba(7, 65, 147, 0.65), inset 0 0 40px rgba(56, 189, 248, 0.25);
+          transform: translateY(-4px);
         }
 
-        .card-top-tag {
+        .video-card-top-bar {
+          margin-bottom: 14px;
+        }
+        .live-blue-pulse {
+          position: relative;
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          font-size: 0.78rem;
-          color: #94a3b8;
-          margin-bottom: 12px;
+          justify-content: center;
+          width: 10px;
+          height: 10px;
         }
-        .live-pill {
-          background: rgba(56, 189, 248, 0.15);
+        .blue-pulse-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #38bdf8;
+          box-shadow: 0 0 10px #38bdf8, 0 0 18px #1d6bf3;
+          animation: pulseGlow 1.8s infinite alternate;
+        }
+        @keyframes pulseGlow {
+          0% { transform: scale(0.85); opacity: 0.7; }
+          100% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .video-title-tag {
+          font-size: 0.76rem;
+          font-weight: 800;
+          color: #e2e8f0;
+          letter-spacing: 0.6px;
+        }
+        .blue-badge-pill {
+          background: rgba(29, 107, 243, 0.25);
+          border: 1px solid rgba(56, 189, 248, 0.35);
           color: #38bdf8;
-          padding: 2px 8px;
-          border-radius: 12px;
-          font-size: 0.7rem;
+          padding: 3px 10px;
+          border-radius: 20px;
+          font-size: 0.68rem;
           font-weight: 700;
           display: flex;
           align-items: center;
-          gap: 4px;
+          gap: 5px;
         }
-        .live-dot {
+
+        .blue-video-frame {
+          position: relative;
+          width: 100%;
+          height: 250px;
+          border-radius: 16px;
+          overflow: hidden;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+          background: #040d1a;
+        }
+        .showcase-video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .blue-video-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(180deg, rgba(7, 65, 147, 0.2) 0%, rgba(7, 21, 46, 0.75) 100%);
+          pointer-events: none;
+        }
+
+        .video-floating-badge {
+          position: absolute;
+          background: rgba(7, 21, 46, 0.88);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(56, 189, 248, 0.4);
+          padding: 6px 12px;
+          border-radius: 20px;
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          z-index: 5;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+        }
+        .video-floating-badge.top-right {
+          top: 12px;
+          right: 12px;
+        }
+        .video-floating-badge.bottom-left {
+          bottom: 48px;
+          left: 12px;
+        }
+        .blue-dot-small {
           width: 6px;
           height: 6px;
-          background: #38bdf8;
           border-radius: 50%;
+          background: #38bdf8;
           box-shadow: 0 0 8px #38bdf8;
         }
 
-        .card-header-block {
-          margin-bottom: 20px;
-        }
-        .card-main-heading {
-          font-size: 1.35rem;
-          font-weight: 800;
-          color: #ffffff;
-        }
-        .card-sub-heading {
-          font-size: 0.8rem;
-          color: #94a3b8;
-        }
-
-        .metrics-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 12px;
-          margin-bottom: 20px;
-        }
-        .metric-box {
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          padding: 12px;
-          border-radius: 12px;
-        }
-        .metric-box.highlight {
-          background: rgba(56, 189, 248, 0.12);
-          border-color: rgba(56, 189, 248, 0.3);
-        }
-        .m-label {
-          display: block;
-          font-size: 0.65rem;
-          font-weight: 700;
-          color: #94a3b8;
-          letter-spacing: 0.5px;
-        }
-        .m-value {
-          display: block;
-          font-size: 1.3rem;
-          font-weight: 800;
-          color: #ffffff;
-          margin: 2px 0;
-        }
-        .m-sub {
-          display: block;
-          font-size: 0.7rem;
-          color: #64748b;
-        }
-
-        .card-table-preview {
-          background: rgba(0, 0, 0, 0.2);
-          border-radius: 12px;
-          padding: 10px;
-          margin-bottom: 16px;
-          font-size: 0.78rem;
-        }
-        .table-row {
-          display: grid;
-          grid-template-columns: 1.2fr 1.2fr 1fr 0.8fr;
-          padding: 6px 8px;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-          color: #cbd5e1;
-        }
-        .table-row.head {
-          font-size: 0.68rem;
-          font-weight: 700;
-          color: #64748b;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-        }
-
-        .card-footer-status {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 0.76rem;
-          color: #cbd5e1;
-          padding-top: 6px;
-        }
-
-        /* 5-Step Value Chain Strip */
-        .hero-value-chain-strip {
-          margin-top: 45px;
-          padding-top: 20px;
-          border-top: 1px solid rgba(255, 255, 255, 0.12);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          flex-wrap: wrap;
-        }
-        .v-step {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          background: rgba(255, 255, 255, 0.06);
-          padding: 6px 14px;
-          border-radius: 30px;
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          font-size: 0.82rem;
-          font-weight: 700;
-          color: #ffffff;
-        }
-        .v-num {
-          width: 20px;
-          height: 20px;
+        .center-play-overlay-btn {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 54px;
+          height: 54px;
           border-radius: 50%;
-          background: #1d6bf3;
+          background: linear-gradient(135deg, #1d6bf3 0%, #074193 100%);
+          border: 2px solid #38bdf8;
           color: #ffffff;
-          font-size: 0.7rem;
           display: flex;
           align-items: center;
           justify-content: center;
+          cursor: pointer;
+          z-index: 6;
+          box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+          transition: all 0.25s ease;
+          opacity: 0;
         }
-        .v-arrow {
-          color: rgba(255, 255, 255, 0.3);
-          font-weight: 700;
+        .blue-video-frame:hover .center-play-overlay-btn,
+        .center-play-overlay-btn.show {
+          opacity: 1;
         }
-        .v-step.highlight {
-          background: rgba(56, 189, 248, 0.15);
-          border-color: #38bdf8;
+        .center-play-overlay-btn:hover {
+          transform: translate(-50%, -50%) scale(1.1);
+          background: linear-gradient(135deg, #ff5722 0%, #f97316 100%);
+          border-color: #ffffff;
+        }
+
+        .video-bottom-controls-bar {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          padding: 8px 14px;
+          background: linear-gradient(360deg, rgba(7, 21, 46, 0.95) 0%, rgba(7, 21, 46, 0) 100%);
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          z-index: 6;
+        }
+        .control-icon-btn {
+          background: transparent;
+          border: none;
+          color: #cbd5e1;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          padding: 4px;
+          transition: color 0.2s ease;
+        }
+        .control-icon-btn:hover {
           color: #38bdf8;
         }
-        .v-num.highlight-num {
-          background: #38bdf8;
-          color: #07152e;
+        .video-progress-track {
+          flex: 1;
+          height: 4px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 4px;
+          overflow: hidden;
+          position: relative;
+        }
+        .video-progress-fill {
+          height: 100%;
+          width: 65%;
+          background: linear-gradient(90deg, #1d6bf3 0%, #38bdf8 100%);
+          box-shadow: 0 0 8px #38bdf8;
+          animation: progressAnim 8s linear infinite;
+        }
+        @keyframes progressAnim {
+          0% { width: 10%; }
+          100% { width: 100%; }
+        }
+
+        .video-card-footer-metrics {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 8px;
+          margin-top: 14px;
+          background: rgba(7, 21, 46, 0.6);
+          border: 1px solid rgba(56, 189, 248, 0.2);
+          border-radius: 12px;
+          padding: 10px 8px;
+          text-align: center;
+        }
+        .blue-metric-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        .b-label {
+          font-size: 0.62rem;
+          font-weight: 700;
+          color: #94a3b8;
+          letter-spacing: 0.4px;
+        }
+        .b-val {
+          font-size: 0.85rem;
+          font-weight: 800;
+          margin-top: 2px;
         }
 
         @media (max-width: 992px) {
           .hero-split-grid {
             grid-template-columns: 1fr;
           }
-          .v2-statement-stage { min-height: 250px; }
-          .hero-main-title { font-size: 2.4rem; }
-          .hero-value-chain-strip { flex-direction: column; align-items: flex-start; }
-          .v-arrow { display: none; }
+          .v2-statement-stage { min-height: 220px; }
+          .hero-main-title { font-size: 2.2rem; }
+          .hero-five-statements-row { flex-direction: column; align-items: flex-start; }
+          .s-arrow { display: none; }
         }
       `}</style>
     </section>

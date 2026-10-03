@@ -7,26 +7,7 @@ export default function Navbar({ onOpenDemo }) {
 
   return (
     <header className="level-navbar-header">
-      {/* Top Sub Announcement Strip */}
-      <div className="top-sub-banner">
-        <div className="container sub-banner-flex">
-          <div className="sub-banner-left">
-            <Sparkles size={14} className="text-cyan" />
-            <span>Register with QUA AI For Free Today — India's Premier Autonomous Procurement Ecosystem</span>
-          </div>
-          <div className="sub-banner-right">
-            <a href="tel:+919876543210" className="sub-contact-link">
-              <Phone size={12} /> +91 98765 43210
-            </a>
-            <span className="sub-sep">|</span>
-            <a href="mailto:info@procucev.com" className="sub-contact-link">
-              <Mail size={12} /> info@procucev.com
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Dark Header Bar */}
+      {/* Main Header Bar */}
       <div className="main-header-bar">
         <div className="container header-wrapper">
           
@@ -47,7 +28,7 @@ export default function Navbar({ onOpenDemo }) {
             </div>
           </a>
 
-          {/* Desktop Nav Taxonomy - Strict Single Line */}
+          {/* Desktop Nav Taxonomy */}
           <nav className="desktop-menu">
             <a href="#" className="menu-link active">HOME</a>
             <a href="#about" className="menu-link">ABOUT US</a>
@@ -71,7 +52,7 @@ export default function Navbar({ onOpenDemo }) {
                     </div>
                   </a>
                   <a href="#capabilities" className="dd-item">
-                    <span className="dot-bullet blue"></span>
+                    <span className="dot-bullet orange"></span>
                     <div>
                       <strong>Strategic Sourcing</strong>
                       <small>Vendor Capacity & SLA Audits</small>
@@ -100,14 +81,14 @@ export default function Navbar({ onOpenDemo }) {
               {activeDropdown === 'tech' && (
                 <div className="dd-card-popup">
                   <a href="#capabilities" className="dd-item">
-                    <span className="dot-bullet cyan"></span>
+                    <span className="dot-bullet orange"></span>
                     <div>
                       <strong>proCPX Platform</strong>
                       <small>Enterprise Source-to-Pay Suite</small>
                     </div>
                   </a>
                   <a href="#capabilities" className="dd-item">
-                    <span className="dot-bullet cyan"></span>
+                    <span className="dot-bullet blue"></span>
                     <div>
                       <strong>E-Auction Suite</strong>
                       <small>Reverse & Forward Dynamic Bidding</small>
@@ -117,7 +98,7 @@ export default function Navbar({ onOpenDemo }) {
               )}
             </div>
 
-            {/* QUA AI (GMT & BFS) Dropdown - Clean Single Line */}
+            {/* QUA AI (GMT & BFS) Dropdown */}
             <div 
               className="menu-dd-container"
               onMouseEnter={() => setActiveDropdown('qua')}
@@ -129,21 +110,21 @@ export default function Navbar({ onOpenDemo }) {
               {activeDropdown === 'qua' && (
                 <div className="dd-card-popup">
                   <a href="#autonomous" className="dd-item">
-                    <span className="dot-bullet cyan"></span>
+                    <span className="dot-bullet orange"></span>
                     <div>
                       <strong>QUA AI Engine</strong>
                       <small>50,000+ Verified Supplier Matching</small>
                     </div>
                   </a>
                   <a href="#autonomous" className="dd-item">
-                    <span className="dot-bullet cyan"></span>
+                    <span className="dot-bullet blue"></span>
                     <div>
                       <strong>GMT - Get My QuoTe</strong>
                       <small>Instant Part RFQ & Automated Quoting</small>
                     </div>
                   </a>
                   <a href="#autonomous" className="dd-item">
-                    <span className="dot-bullet cyan"></span>
+                    <span className="dot-bullet orange"></span>
                     <div>
                       <strong>BFS - Buy From Stock</strong>
                       <small>Surplus Raw Material Marketplace</small>
@@ -183,49 +164,16 @@ export default function Navbar({ onOpenDemo }) {
           position: sticky;
           top: 0;
           z-index: 1000;
-          background: #07152e;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-        }
-        .top-sub-banner {
-          background: #040e21;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-          padding: 6px 0;
-          font-size: 0.8rem;
-          color: #94a3b8;
-        }
-        .sub-banner-flex {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-        .sub-banner-left {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          color: #cbd5e1;
-        }
-        .text-cyan { color: #38bdf8; }
-        .sub-banner-right {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-        .sub-contact-link {
-          color: #94a3b8;
-          text-decoration: none;
-          display: flex;
-          align-items: center;
-          gap: 4px;
+          background: rgba(255, 255, 255, 0.94);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
+          border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+          box-shadow: 0 4px 20px rgba(7, 21, 46, 0.06);
           transition: var(--transition);
         }
-        .sub-contact-link:hover {
-          color: #ffffff;
-        }
-        .sub-sep { color: #334155; }
 
         .main-header-bar {
-          padding: 10px 0;
+          padding: 12px 0;
         }
         .header-wrapper {
           display: flex;
@@ -240,13 +188,11 @@ export default function Navbar({ onOpenDemo }) {
           flex-shrink: 0;
         }
         .brand-img {
-          height: 42px;
+          height: 44px;
           width: auto;
           object-fit: contain;
-          background: #ffffff;
-          padding: 4px 12px;
-          border-radius: 8px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+          background: transparent;
+          padding: 0;
         }
         .brand-fallback-dark {
           display: flex;
@@ -256,7 +202,7 @@ export default function Navbar({ onOpenDemo }) {
         .p-badge-icon {
           width: 34px;
           height: 34px;
-          background: #1d6bf3;
+          background: linear-gradient(135deg, #ff5722 0%, #1d6bf3 100%);
           color: #fff;
           font-weight: 800;
           border-radius: 8px;
@@ -267,30 +213,37 @@ export default function Navbar({ onOpenDemo }) {
         .p-brand-text {
           font-family: var(--font-display);
           font-weight: 800;
-          color: #ffffff;
+          color: #07152e;
           font-size: 1.3rem;
+          letter-spacing: -0.5px;
         }
 
-        /* Single Line Nav Taxonomy */
+        /* Desktop Nav Taxonomy */
         .desktop-menu {
           display: flex;
           align-items: center;
-          gap: 18px;
+          gap: 20px;
           white-space: nowrap;
           flex-wrap: nowrap;
         }
         .menu-link {
-          color: #cbd5e1;
+          color: #1e293b;
           font-weight: 700;
-          font-size: 0.81rem;
+          font-size: 0.82rem;
           text-decoration: none;
           letter-spacing: 0.5px;
-          padding: 6px 4px;
+          padding: 6px 8px;
+          border-radius: 6px;
           transition: var(--transition);
           white-space: nowrap;
         }
-        .menu-link:hover, .menu-link.active {
-          color: #ffffff;
+        .menu-link:hover {
+          color: #ff5722;
+          background: rgba(255, 87, 34, 0.06);
+        }
+        .menu-link.active {
+          color: #1d6bf3;
+          background: rgba(29, 107, 243, 0.08);
         }
 
         .menu-dd-container {
@@ -299,60 +252,66 @@ export default function Navbar({ onOpenDemo }) {
         .menu-dd-btn {
           background: transparent;
           border: none;
-          color: #cbd5e1;
+          color: #1e293b;
           font-weight: 700;
-          font-size: 0.81rem;
+          font-size: 0.82rem;
           letter-spacing: 0.5px;
           cursor: pointer;
           display: flex;
           align-items: center;
           gap: 4px;
-          padding: 6px 4px;
+          padding: 6px 8px;
+          border-radius: 6px;
           transition: var(--transition);
           white-space: nowrap;
         }
         .menu-dd-btn:hover {
-          color: #ffffff;
+          color: #1d6bf3;
+          background: rgba(29, 107, 243, 0.06);
+        }
+        .qua-btn:hover {
+          color: #ff5722;
+          background: rgba(255, 87, 34, 0.06);
         }
 
         .dd-card-popup {
           position: absolute;
-          top: 100%;
+          top: calc(100% + 8px);
           left: 0;
-          width: 270px;
-          background: #091e42;
-          border: 1px solid rgba(255, 255, 255, 0.15);
+          width: 280px;
+          background: #ffffff;
+          border: 1px solid rgba(226, 232, 240, 0.9);
           border-radius: 12px;
           padding: 10px;
-          box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 16px 36px rgba(7, 21, 46, 0.12);
           z-index: 100;
           display: flex;
           flex-direction: column;
-          gap: 6px;
+          gap: 4px;
         }
         .dd-item {
           display: flex;
           align-items: flex-start;
           gap: 10px;
-          padding: 8px 10px;
+          padding: 10px 12px;
           border-radius: 8px;
           text-decoration: none;
-          color: #cbd5e1;
+          color: #334155;
           transition: var(--transition);
         }
         .dd-item:hover {
-          background: rgba(255, 255, 255, 0.08);
-          color: #ffffff;
+          background: #f8fafc;
+          color: #1d6bf3;
         }
         .dd-item strong {
           display: block;
-          font-size: 0.82rem;
-          color: #ffffff;
+          font-size: 0.84rem;
+          color: #0f172a;
         }
         .dd-item small {
           display: block;
-          font-size: 0.72rem;
-          color: #94a3b8;
+          font-size: 0.74rem;
+          color: #64748b;
         }
 
         .dot-bullet {
@@ -363,29 +322,32 @@ export default function Navbar({ onOpenDemo }) {
           flex-shrink: 0;
         }
         .dot-bullet.blue { background: #1d6bf3; }
-        .dot-bullet.cyan { background: #38bdf8; }
+        .dot-bullet.orange { background: #ff5722; }
 
         .mobile-menu-trigger {
           display: none;
           background: transparent;
           border: none;
-          color: #ffffff;
+          color: #0f172a;
           cursor: pointer;
         }
 
         .mobile-nav-panel {
-          background: #07152e;
+          background: #ffffff;
           padding: 16px 24px 24px;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          border-top: 1px solid rgba(226, 232, 240, 0.8);
           display: flex;
           flex-direction: column;
           gap: 14px;
         }
         .mobile-nav-panel a {
-          color: #cbd5e1;
+          color: #1e293b;
           text-decoration: none;
           font-weight: 700;
           font-size: 0.9rem;
+        }
+        .mobile-nav-panel a:hover {
+          color: #ff5722;
         }
 
         @media (max-width: 1080px) {
