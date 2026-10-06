@@ -260,22 +260,49 @@ export default function VideoHero({ onOpenDemo }) {
                 </div>
                 <div style={{ fontWeight: 700, color: '#0C4A6E', fontSize: '0.9rem' }}>Enterprise Overview</div>
               </div>
-              <div style={{ padding: '24px' }}>
-                <div style={{ height: '160px', background: 'linear-gradient(135deg, rgba(14,165,233,0.1), rgba(16,185,129,0.1))', borderRadius: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '1px dashed #cbd5e1', marginBottom: '24px' }}>
+              <div style={{ padding: '20px 24px' }}>
+                <div style={{ height: '110px', background: 'linear-gradient(135deg, rgba(14,165,233,0.1), rgba(16,185,129,0.1))', borderRadius: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '1px dashed #cbd5e1', marginBottom: '16px' }}>
                   <div style={{ textAlign: 'center' }}>
-                    <BarChart3 size={32} color="#0EA5E9" style={{ margin: '0 auto 8px' }} />
-                    <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0C4A6E' }}>₹ 14.5 Cr Saved</div>
-                    <div style={{ fontSize: '0.8rem', color: '#64748B' }}>This Quarter</div>
+                    <BarChart3 size={24} color="#0EA5E9" style={{ margin: '0 auto 6px' }} />
+                    <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#0C4A6E' }}>₹ 14.5 Cr Saved</div>
+                    <div style={{ fontSize: '0.75rem', color: '#64748B' }}>This Quarter</div>
                   </div>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                  <div style={{ background: '#F8FAFC', padding: '16px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
-                     <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 600, textTransform: 'uppercase' }}>Total RFQs</div>
-                     <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0C4A6E', marginTop: '4px' }}>1,248</div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                  <div style={{ background: '#F8FAFC', padding: '12px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
+                     <div style={{ fontSize: '0.65rem', color: '#64748B', fontWeight: 600, textTransform: 'uppercase' }}>Total RFQs</div>
+                     <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0C4A6E', marginTop: '2px' }}>1,248</div>
                   </div>
-                  <div style={{ background: '#F8FAFC', padding: '16px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
-                     <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 600, textTransform: 'uppercase' }}>Suppliers</div>
-                     <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0C4A6E', marginTop: '4px' }}>350+</div>
+                  <div style={{ background: '#F8FAFC', padding: '12px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
+                     <div style={{ fontSize: '0.65rem', color: '#64748B', fontWeight: 600, textTransform: 'uppercase' }}>Suppliers</div>
+                     <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0C4A6E', marginTop: '2px' }}>350+</div>
+                  </div>
+                </div>
+
+                {/* New Activity Section */}
+                <div style={{ marginTop: '20px' }}>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#0C4A6E', marginBottom: '10px' }}>Recent AI Activity</div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 12px', background: '#F8FAFC', borderRadius: '10px', border: '1px solid #E2E8F0' }}>
+                      <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: '#DEF7EC', color: '#10B981', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <CheckCircle2 size={16} />
+                      </div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#0F172A', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>L1 Auto-Awarded</div>
+                        <div style={{ fontSize: '0.7rem', color: '#64748B', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>IT Consumables · ₹ 1.2L Saved</div>
+                      </div>
+                      <div style={{ fontSize: '0.7rem', color: '#94A3B8', flexShrink: 0 }}>2m ago</div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 12px', background: '#F8FAFC', borderRadius: '10px', border: '1px solid #E2E8F0' }}>
+                      <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: '#E0F2FE', color: '#0EA5E9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <TrendingUp size={16} />
+                      </div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#0F172A', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>New RFQ Created</div>
+                        <div style={{ fontSize: '0.7rem', color: '#64748B', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Packaging · 14 Vendors</div>
+                      </div>
+                      <div style={{ fontSize: '0.7rem', color: '#94A3B8', flexShrink: 0 }}>15m ago</div>
+                    </div>
                   </div>
                 </div>
               </div>
