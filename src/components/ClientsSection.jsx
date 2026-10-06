@@ -66,14 +66,26 @@ export default function ClientsSection() {
           </p>
         </div>
 
-        {/* Brand chips */}
-        <div className="cl-brands-grid">
-          {clients.map((brand, i) => (
-            <div key={i} className="cl-brand-chip">
-              <span className="cl-brand-dot" />
-              <span>{brand}</span>
+        {/* Brand chips Marquee */}
+        <div className="cl-marquee-container">
+          <div className="cl-marquee-track">
+            <div className="cl-marquee-set">
+              {clients.map((brand, i) => (
+                <div key={`a-${i}`} className="cl-brand-chip">
+                  <span className="cl-brand-dot" />
+                  <span>{brand}</span>
+                </div>
+              ))}
             </div>
-          ))}
+            <div className="cl-marquee-set" aria-hidden="true">
+              {clients.map((brand, i) => (
+                <div key={`b-${i}`} className="cl-brand-chip">
+                  <span className="cl-brand-dot" />
+                  <span>{brand}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Industries */}
@@ -112,14 +124,38 @@ export default function ClientsSection() {
           border-top: 1px solid #E2E8F0;
         }
 
-        /* Brands */
-        .cl-brands-grid {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-          justify-content: center;
+        /* Brands Marquee */
+        .cl-marquee-container {
+          overflow: hidden;
+          width: 100%;
           margin-bottom: 40px;
+          display: flex;
+          position: relative;
+          mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
+        
+        .cl-marquee-track {
+          display: flex;
+          gap: 12px;
+        }
+
+        .cl-marquee-set {
+          display: flex;
+          gap: 12px;
+          flex-shrink: 0;
+          animation: marquee 20s linear infinite;
+        }
+
+        .cl-marquee-track:hover .cl-marquee-set {
+          animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(-100% - 12px)); }
+        }
+
         .cl-brand-chip {
           display: flex; align-items: center; gap: 8px;
           background: #F8FAFC;
@@ -129,6 +165,7 @@ export default function ClientsSection() {
           font-size: 0.88rem; font-weight: 700;
           color: #0C4A6E;
           transition: all 0.2s ease;
+          white-space: nowrap;
         }
         .cl-brand-chip:hover {
           border-color: #0EA5E9;
