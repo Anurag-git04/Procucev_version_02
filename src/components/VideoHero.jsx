@@ -21,11 +21,19 @@ export default function VideoHero({ onOpenDemo }) {
       highlight: 'Zero human intervention',
       suffix: ' from PR to Comparison',
     },
+    {
+      id: 3,
+      prefix: 'Procurement is the finance hero behind 500+ crores for ',
+      isDynamic: true,
+      words: ['Retail', 'E-commerce', 'Consumer brands'],
+      suffix: '',
+    },
   ];
 
   const [activeIdx, setActiveIdx] = useState(0);
   const [activeHighlightIdx, setActiveHighlightIdx] = useState(0);
   const [dashStep, setDashStep] = useState(0);
+  const [subWordIdx, setSubWordIdx] = useState(0);
 
   const highlights = [
     'Raise RFQs easier',
@@ -36,9 +44,21 @@ export default function VideoHero({ onOpenDemo }) {
   ];
 
   useEffect(() => {
-    const t = setInterval(() => setActiveIdx(i => (i + 1) % headlines.length), 4200);
-    return () => clearInterval(t);
-  }, [headlines.length]);
+    const delay = activeIdx === 3 ? 5500 : 4200;
+    const t = setTimeout(() => setActiveIdx(i => (i + 1) % headlines.length), delay);
+    return () => clearTimeout(t);
+  }, [activeIdx, headlines.length]);
+
+  useEffect(() => {
+    let t;
+    if (activeIdx === 3) {
+      setSubWordIdx(0);
+      t = setInterval(() => setSubWordIdx(i => (i + 1) % 3), 1700);
+    }
+    return () => {
+      if (t) clearInterval(t);
+    };
+  }, [activeIdx]);
 
   useEffect(() => {
     const t2 = setInterval(() => setActiveHighlightIdx(i => (i + 1) % highlights.length), 2500);
@@ -74,8 +94,8 @@ export default function VideoHero({ onOpenDemo }) {
   }, []);
 
   const stats = [
-    { label: 'Verified Suppliers', value: '45,000+', icon: <Users size={16} /> },
-    { label: 'Registered Buyers', value: '1,800+', icon: <BarChart3 size={16} /> },
+    { label: 'Verified Suppliers', value: '6 Lakh+', icon: <Users size={16} /> },
+    { label: 'Registered Buyers', value: '2,000+', icon: <BarChart3 size={16} /> },
     { label: 'Quote Turnaround', value: '< 24 Hrs', icon: <Clock size={16} /> },
   ];
 
@@ -92,6 +112,16 @@ export default function VideoHero({ onOpenDemo }) {
     <section className="v2-hero" id="home">
       {/* ── Background decoration ── */}
       <div className="v2-hero-bg-deco" aria-hidden="true">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="v2-bg-video"
+        >
+          <source src="/hero_v2.mp4" type="video/mp4" />
+        </video>
+        <div className="v2-video-overlay" />
         <div className="deco-circle deco-1" />
         <div className="deco-circle deco-2" />
         <div className="deco-stripe" />
@@ -126,6 +156,35 @@ export default function VideoHero({ onOpenDemo }) {
                           <span className="v2-highlight">{s}</span>
                         </span>
                       ))}
+                    </h1>
+                  </div>
+                );
+              }
+              if (item.isDynamic) {
+                return (
+                  <div key={item.id} className={`v2-slide${isActive ? ' active' : ''}`}>
+                    <h1 className="v2-hero-h1">
+                      {item.prefix}
+                      <span className="v2-highlight" style={{ display: 'inline-flex', position: 'relative', verticalAlign: 'bottom' }}>
+                        {item.words.map((w, wIdx) => (
+                           <span 
+                             key={wIdx} 
+                             style={{ 
+                               position: wIdx === subWordIdx ? 'relative' : 'absolute', 
+                               opacity: wIdx === subWordIdx ? 1 : 0, 
+                               transform: wIdx === subWordIdx ? 'translateY(0)' : 'translateY(12px)',
+                               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                               left: 0,
+                               top: 0,
+                               visibility: wIdx === subWordIdx ? 'visible' : 'hidden',
+                               color: '#F97316'
+                             }}
+                           >
+                             {w}
+                           </span>
+                        ))}
+                      </span>
+                      {item.suffix}
                     </h1>
                   </div>
                 );
@@ -242,7 +301,7 @@ export default function VideoHero({ onOpenDemo }) {
 
             {/* Footer */}
             <div className="v2-dash-footer">
-              <span className="v2-dash-footer-text">45,000+ verified suppliers · Quotes within 24h</span>
+              <span className="v2-dash-footer-text">6 Lakh+ verified suppliers · Quotes within 24h</span>
               <button 
                 className={`v2-dash-action btn btn-primary ${(dashStep === 5 || dashStep === 6) ? 'simulated-btn-hover' : ''} ${dashStep === 6 ? 'simulated-btn-click' : ''}`} 
                 onClick={onOpenDemo}
@@ -330,7 +389,22 @@ export default function VideoHero({ onOpenDemo }) {
         }
 
         /* Background decorations */
-        .v2-hero-bg-deco { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+        .v2-hero-bg-deco { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .v2-bg-video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 0;
+        }
+        .v2-video-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(248, 250, 252, 0.88);
+          backdrop-filter: blur(4px);
+          z-index: 0;
+        }
         .deco-circle {
           position: absolute;
           border-radius: 50%;

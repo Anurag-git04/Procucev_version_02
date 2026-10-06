@@ -48,8 +48,7 @@ export default function AboutSection({ onOpenDemo }) {
           </h2>
           <p className="v2-section-desc">
             Procucev is a Bengaluru-based procurement company that brings together consulting,
-            digital platforms and an AI-driven supplier marketplace. We help retail, consumer,
-            manufacturing and services companies cut procurement cost and cycle time, from the
+            digital platforms and an AI-driven supplier marketplace. We help companies cut procurement cost and cycle time, from the
             first requirement to the final purchase order.
           </p>
         </div>
@@ -112,7 +111,7 @@ export default function AboutSection({ onOpenDemo }) {
         }
 
         .v2-section-header {
-          margin-bottom: 56px;
+          margin-bottom: 48px;
         }
         .v2-section-title {
           font-size: clamp(2rem, 4vw, 2.75rem);
@@ -135,7 +134,7 @@ export default function AboutSection({ onOpenDemo }) {
           font-size: 1.35rem;
           font-weight: 700;
           color: #0C4A6E;
-          margin-bottom: 32px;
+          margin-bottom: 48px;
         }
         .about-cards-grid {
           display: grid;

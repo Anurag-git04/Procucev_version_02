@@ -109,10 +109,6 @@ export default function DemoModal({ isOpen, onClose }) {
             <h3 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#0C4A6E', marginBottom: '6px' }}>
               Schedule a 15-Min Live Platform Demo
             </h3>
-            <p style={{ fontSize: '0.88rem', color: '#64748B', marginBottom: '24px', lineHeight: 1.65 }}>
-              Experience zero human intervention from PR to supplier quotation comparison.
-              Saving at procurement is direct profit for your company.
-            </p>
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import VideoHero from './components/VideoHero';
+import LogoMarquee from './components/LogoMarquee';
 import AboutSection from './components/AboutSection';
 import QuaAiSection from './components/QuaAiSection';
 import EquaAiSection from './components/EquaAiSection';
@@ -24,6 +25,9 @@ export default function App() {
 
       {/* Section 1: Home (#home) - Video Stream & Rotating Statements */}
       <VideoHero onOpenDemo={handleOpenDemo} />
+
+      {/* Brand Logos */}
+      <LogoMarquee />
 
       {/* Section 2: About us (#about) */}
       <AboutSection onOpenDemo={handleOpenDemo} />

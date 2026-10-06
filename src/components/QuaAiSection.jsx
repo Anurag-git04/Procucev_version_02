@@ -54,7 +54,7 @@ export default function QuaAiSection({ onOpenDemo }) {
               <a href="mailto:RFQ@procucev.com" style={{ color: '#F97316', fontWeight: 700 }}>
                 RFQ@procucev.com
               </a>{' '}
-              or fill in a short form. Our AI turns it into a structured RFQ,
+              . Our AI turns it into a structured RFQ,
               sends it to matching verified suppliers and returns competitive quotes —
               usually within 24 hours. No phone follow-ups.
             </p>
