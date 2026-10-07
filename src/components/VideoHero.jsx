@@ -401,7 +401,7 @@ export default function VideoHero({ onOpenDemo }) {
         .v2-video-overlay {
           position: absolute;
           inset: 0;
-          background: rgba(248, 250, 252, 0.88);
+          background: rgba(248, 250, 252, 0.70);
           backdrop-filter: blur(4px);
           z-index: 0;
         }
