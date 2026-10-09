@@ -57,7 +57,7 @@ export default function AboutSection({ onOpenDemo }) {
         {/* How We Work */}
         <div className="about-how-block">
           <h3 className="about-sub-title text-center">
-            How We Work: <span style={{ color: '#10B981' }}>Strategize</span> ·{' '}
+            <span style={{ color: '#10B981' }}>Strategize</span> ·{' '}
             <span style={{ color: '#0EA5E9' }}>Optimize</span> ·{' '}
             <span style={{ color: '#0C4A6E' }}>Empower</span>
           </h3>
