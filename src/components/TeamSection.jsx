@@ -1,43 +1,45 @@
-import React, { useState } from 'react';
-import { Users, Award, GraduationCap, Briefcase, ChevronDown, ChevronUp, Zap } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Users, Award, GraduationCap, Briefcase, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Zap } from 'lucide-react';
 
 export default function TeamSection() {
-  const [expanded, setExpanded] = useState({ 0: false, 1: false });
+  const [slideIndex, setSlideIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(3);
+  const [expanded, setExpanded] = useState({});
 
   const leadership = [
     {
       name: 'Srinivas Mukku',
       role: 'Co-Founder & CEO',
+      initials: 'SM',
       photo: 'https://procucev.com/wp-content/uploads/2026/02/WhatsApp-Image-2021-06-09-at-8.33.27-PM-e1646728037406.webp',
-      tags: ['Co-Founder & CEO', 'Ex-ISRO Scientist', 'CPSM Certified', 'IIM Welingkar MBA'],
-      shortBio:
-        'A Senior Procurement Professional and subject matter expert with market insights across varied product categories. Has handled procurement of products/services worth more than $2 Billion across manufacturing, retail and services sectors.',
+      tags: ['Co-Founder & CEO', 'Ex-ISRO Scientist', 'CPSM Certified'],
+      shortBio: 'Senior Procurement Professional with $2B+ in procurement across manufacturing, retail and services. Ex-ISRO Scientist turned enterprise procurement strategist.',
       fullBio: [
         'A Senior Procurement Professional and subject matter expert, he comes with a wealth of market insights across varied product categories. Throughout his career, he has handled procurement of products/services worth more than $2 Billion across sectors like manufacturing, retail and services.',
-        'His passion lies in transforming procurement departments from being operational focused to becoming a true strategic constituent in a company\'s growth. He is a "Certified Professional in Supply Management (CPSM)" by ISM, USA — and a reputed conference speaker in multiple national & international forums, contributing to renowned magazines and publications in his field.',
-        'Srini is a strong advocate of adopting innovative technologies to drive efficiencies and effectiveness of the procurement processes. Opportunities to create tangible business impact motivated Srini to move from the staid world of Space as a Scientist at Indian Space Research Organization (ISRO) to the hustle and bustle of Corporate India.',
-        'He is a University Topper in Mechanical Engineering from Andhra University & has an MBA from Welingkar Institute of Management, Mumbai.',
+        'His passion lies in transforming procurement departments from being operational focused to becoming a true strategic constituent in a company\'s growth. He is a "Certified Professional in Supply Management (CPSM)" by ISM, USA - and a reputed conference speaker in multiple national & international forums.',
+        'Srini is a strong advocate of adopting innovative technologies to drive efficiencies and effectiveness of the procurement processes.',
+        'He is a University Topper in Mechanical Engineering from Andhra University & has an MBA from Welingkar Institute of Management, Mumbai.'
       ],
       highlights: [
         { icon: <Briefcase size={14} />, text: '$2 Billion+ procurement handled' },
         { icon: <Award size={14} />, text: 'CPSM Certified (ISM, USA)' },
-        { icon: <GraduationCap size={14} />, text: 'MBA – Welingkar Institute, Mumbai' },
+        { icon: <GraduationCap size={14} />, text: 'MBA – Welingkar Institute' },
         { icon: <Award size={14} />, text: 'Ex-Scientist, ISRO' },
       ],
       accentColor: '#0EA5E9',
+      gradient: 'linear-gradient(135deg, #0EA5E9, #0284C7)',
     },
     {
       name: 'M N Rao',
-      role: 'Co-Founder, Chief of Business Development & Finance',
+      role: 'Co-Founder, Chief of BD & Finance',
+      initials: 'MN',
       photo: 'https://procucev.com/wp-content/uploads/2026/02/WhatsApp-Image-2021-06-09-at-8.32.58-PM-e1646728070294.webp',
-      tags: ['Co-Founder', 'Chief BD & Finance', '20+ Years Experience', 'Chartered Accountant'],
-      shortBio:
-        'An Expert Commercial Professional with more than 20 years of industry experience. Successfully driven profitability of retail stores with a business turnover of ₹3,000 Cr and handled ₹1,000 Cr procurement across Capex and Opex cost segments.',
+      tags: ['Co-Founder', 'Chief BD & Finance', 'Chartered Accountant'],
+      shortBio: 'Expert Commercial Professional with 20+ years experience. Driven profitability of ₹3,000 Cr turnover retail stores and handled ₹1,000 Cr procurement across Capex and Opex.',
       fullBio: [
-        'An Expert Commercial Professional with more than 20 years of industry experience, he has handled Procurement, Inventory and Commercial departments from scratch until they transform to become the best in class.',
-        'During his career, he has successfully driven profitability of retail stores with a business turnover of ₹3,000 Cr and handled ₹1,000 Cr procurement across Capex and Opex cost segments.',
-        'His strength lies in his passion towards setting up processes and designing customer centric solutions. During his experience with Landmark Group, India as a Head of Project Commercial, he had implemented industry best procurement practices and set benchmarking prices for all Capex Procurements.',
-        'His deep understanding and experience in formulating and implementing financial systems and controls and customer engagement are the key driving forces for Procucev. He holds a Bachelor\'s Degree in Commerce and is a Chartered Accountant.',
+        'Expert Commercial Professional with 20+ years of deep domain experience in enterprise finance, commercial operations, and procurement management.',
+        'He has driven profitability of ₹3,000 Cr turnover retail stores and handled ₹1,000 Cr procurement across Capex and Opex segments.',
+        'Ex-Head of Project Commercial at Landmark Group India, bringing rigorous financial discipline and strategic vendor management.'
       ],
       highlights: [
         { icon: <Briefcase size={14} />, text: '₹1,000 Cr+ procurement handled' },
@@ -46,37 +48,40 @@ export default function TeamSection() {
         { icon: <Briefcase size={14} />, text: 'Ex-Landmark Group India' },
       ],
       accentColor: '#F97316',
+      gradient: 'linear-gradient(135deg, #F97316, #EA580C)',
     },
     {
       name: 'Sudheer Kangala',
       role: 'Head of Growth & Marketing',
+      initials: 'SK',
       photo: 'https://ui-avatars.com/api/?name=Sudheer+Kangala&background=0284c7&color=fff&size=200',
-      tags: ['Growth & Business Strategy', 'Revenue Growth', 'Strategic Partnerships', 'PGDM – IT & Marketing'],
-      shortBio: 'Sudheer Kangala is a strategic business and growth professional with experience across sales leadership, customer relationship management, business development, and strategic partnerships.',
+      tags: ['Growth Strategy', 'Revenue Growth', 'PGDM – IIM Rohtak'],
+      shortBio: 'Strategic growth professional with 12+ years across sales leadership, CRM, and business development. Led ₹350 Cr+ annual revenue across B2B and real estate sectors.',
       fullBio: [
-        'Sudheer Kangala is a strategic business and growth professional with experience across sales leadership, customer relationship management, business development, and strategic partnerships. His work focuses on driving revenue growth, expanding market presence, and building customer-centric business operations.',
-        'Throughout his career, he has led sales and CRM operations, managed high-performing teams, developed strategic partnerships, and implemented data-driven strategies to improve business performance. His experience spans real estate, B2B sales, customer success, and business operations.',
-        'Sudheer brings a combination of commercial strategy, relationship management, and operational leadership to growth initiatives. His focus is on building scalable business processes, strengthening customer relationships, and creating sustainable revenue opportunities.',
-        'Education: Post Graduate Diploma in Management (IT & Marketing) – Indian Institute of Management Rohtak. B.Tech in Electrical & Electronics Engineering – Mahatma Gandhi Institute of Technology.'
+        'Sudheer Kangala is a strategic business and growth professional with experience across sales leadership, customer relationship management, business development, and strategic partnerships.',
+        'Throughout his career, he has led sales and CRM operations, managed high-performing teams, developed strategic partnerships with 15+ top developers, and implemented data-driven strategies that improved business performance.',
+        'He holds a PGDM from IIM Rohtak with dual specialization in IT and Marketing.'
       ],
       highlights: [
-        { icon: <Briefcase size={14} />, text: '12+ Years of Professional Experience' },
-        { icon: <Award size={14} />, text: '₹350 Cr+ Annual Revenue Leadership' },
+        { icon: <Briefcase size={14} />, text: '12+ Years Experience' },
+        { icon: <Award size={14} />, text: '₹350 Cr+ Revenue Led' },
         { icon: <Users size={14} />, text: '15+ Developer Partnerships' },
         { icon: <GraduationCap size={14} />, text: 'IIM Rohtak – PGDM' },
       ],
       accentColor: '#0284C7',
+      gradient: 'linear-gradient(135deg, #0284C7, #0369A1)',
     },
     {
       name: 'Anshul Goel',
       role: 'Head of IT',
+      initials: 'AG',
       photo: 'https://ui-avatars.com/api/?name=Anshul+Goel&background=ea580c&color=fff&size=200',
-      tags: ['IT Strategy & Management', 'Technology Infrastructure', 'Software & Systems', 'Digital Transformation'],
-      shortBio: 'Anshul Goel leads IT strategy and technology initiatives, focusing on reliable systems, efficient operations, and technology solutions aligned with business objectives.',
+      tags: ['IT Strategy', 'Tech Infrastructure', 'Digital Transformation'],
+      shortBio: 'Leads IT strategy and technology initiatives, focusing on reliable systems, scalable infrastructure, and digital solutions aligned with business objectives.',
       fullBio: [
-        'Anshul Goel leads IT strategy and technology initiatives, focusing on reliable systems, efficient operations, and technology solutions aligned with business objectives.',
-        'His role as Head of IT encompasses technology planning, infrastructure management, system performance, and coordination across technical and business teams. His focus is on building secure, scalable, and efficient technology environments that support organizational growth.',
-        'By aligning technology investments with business priorities, he aims to improve operational efficiency, strengthen system reliability, and enable digital transformation.'
+        'Leads IT strategy and technology initiatives, focusing on reliable systems, scalable infrastructure, and digital solutions aligned with business objectives.',
+        'Builds secure, efficient technology environments that support organizational growth and smooth day-to-day operations.',
+        'Expertise across enterprise IT systems, infrastructure management, data protection, and process automation.'
       ],
       highlights: [
         { icon: <Briefcase size={14} />, text: 'IT Operations & Infrastructure' },
@@ -85,14 +90,61 @@ export default function TeamSection() {
         { icon: <GraduationCap size={14} />, text: 'Digital Solutions & Automation' },
       ],
       accentColor: '#EA580C',
-    }
+      gradient: 'linear-gradient(135deg, #EA580C, #C2410C)',
+    },
   ];
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 680) {
+        setVisibleCount(1);
+      } else if (window.innerWidth < 1024) {
+        setVisibleCount(2);
+      } else {
+        setVisibleCount(3);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxSlide = Math.max(0, leadership.length - visibleCount);
+
+  useEffect(() => {
+    if (slideIndex > maxSlide) {
+      setSlideIndex(maxSlide);
+    }
+  }, [maxSlide, slideIndex]);
+
+  const handlePrev = () => {
+    setSlideIndex(prev => (prev > 0 ? prev - 1 : maxSlide));
+  };
+
+  const handleNext = () => {
+    setSlideIndex(prev => (prev < maxSlide ? prev + 1 : 0));
+  };
+
+  const toggleExpand = (idx) => {
+    setExpanded(prev => ({ ...prev, [idx]: !prev[idx] }));
+  };
+
+  // Calculate sliding transform
+  const getTransform = () => {
+    if (visibleCount === 3) {
+      return `translateX(calc(-${slideIndex} * ((100% - 48px) / 3 + 24px)))`;
+    } else if (visibleCount === 2) {
+      return `translateX(calc(-${slideIndex} * ((100% - 20px) / 2 + 20px)))`;
+    } else {
+      return `translateX(calc(-${slideIndex} * (100% + 16px)))`;
+    }
+  };
 
   return (
     <section className="v2-team-section section" id="team">
       <div className="container">
 
-        {/* Header */}
+        {/* Section Header */}
         <div className="v2-section-header text-center">
           <div className="badge-tag-pill">
             <Users size={14} style={{ color: '#0EA5E9' }} /> Our Leadership
@@ -107,243 +159,438 @@ export default function TeamSection() {
           </p>
         </div>
 
-        {/* Founder Cards */}
-        <div className="team-founders-grid">
-          {leadership.map((member, idx) => {
-            const isExpanded = expanded[idx];
-            return (
-              <div
-                key={idx}
-                className="team-founder-card"
-                style={{ borderTop: `3px solid ${member.accentColor}` }}
-              >
-                {/* Photo + Name Header */}
-                <div className="team-card-header">
-                  <div className="team-photo-wrap" style={{ borderColor: member.accentColor }}>
-                    <img
-                      src={member.photo}
-                      alt={member.name}
-                      className="team-photo"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="team-name-block">
-                    <h3 className="team-leader-name">{member.name}</h3>
-                    <div className="team-leader-role" style={{ color: member.accentColor }}>
-                      {member.role}
-                    </div>
-                    <div className="team-tags">
-                      {member.tags.map((tag, ti) => (
-                        <span key={ti} className="team-tag-chip">{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+        {/* Carousel Root with Side Arrows */}
+        <div className="team-carousel-wrapper">
 
-                {/* Highlights */}
-                <div className="team-highlights">
-                  {member.highlights.map((h, hi) => (
-                    <div key={hi} className="team-highlight-item">
-                      <span className="team-hl-icon" style={{ color: member.accentColor }}>{h.icon}</span>
-                      <span>{h.text}</span>
-                    </div>
-                  ))}
-                </div>
+          {/* Prev Arrow */}
+          <button 
+            className="team-nav-arrow prev" 
+            onClick={handlePrev} 
+            aria-label="Previous leadership members"
+          >
+            <ChevronLeft size={22} />
+          </button>
 
-                {/* Bio */}
-                <div className="team-bio-block">
-                  {/* Always show short bio */}
-                  <p className="team-bio-para">{member.shortBio}</p>
-
-                  {/* Expanded bio */}
-                  {isExpanded && (
-                    <div className="team-bio-expanded">
-                      {member.fullBio.slice(1).map((para, pi) => (
-                        <p key={pi} className="team-bio-para">{para}</p>
-                      ))}
-                    </div>
-                  )}
-
-                  <button
-                    className="team-expand-btn"
-                    onClick={() => setExpanded(prev => ({ ...prev, [idx]: !prev[idx] }))}
-                    style={{ color: member.accentColor }}
-                    id={`expand-bio-${idx}`}
+          {/* Carousel Viewport */}
+          <div className="team-carousel-viewport">
+            <div 
+              className="team-carousel-track"
+              style={{ transform: getTransform() }}
+            >
+              {leadership.map((member, idx) => {
+                const isExpanded = !!expanded[idx];
+                return (
+                  <div 
+                    className="team-founder-card" 
+                    key={idx}
+                    style={{ '--accent': member.accentColor }}
                   >
-                    {isExpanded ? (
-                      <>Read Less <ChevronUp size={15} /></>
-                    ) : (
-                      <>Read Full Bio <ChevronDown size={15} /></>
-                    )}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+                    {/* Top colored accent border line is set via CSS border-top */}
+
+                    {/* Avatar box */}
+                    <div className="founder-avatar-box" style={{ background: member.gradient }}>
+                      {member.photo && (
+                        <img 
+                          src={member.photo} 
+                          alt={member.name} 
+                          onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                          className="founder-avatar-img"
+                        />
+                      )}
+                      <span className="founder-avatar-initials">{member.initials}</span>
+                    </div>
+
+                    {/* Name & Role */}
+                    <h3 className="founder-name">{member.name}</h3>
+                    <div className="founder-role" style={{ color: member.accentColor }}>{member.role}</div>
+
+                    {/* Tags */}
+                    <div className="founder-tags">
+                      {member.tags.map((tag, ti) => (
+                        <span 
+                          key={ti} 
+                          className="founder-tag"
+                          style={{
+                            background: `${member.accentColor}12`,
+                            color: member.accentColor,
+                            borderColor: `${member.accentColor}30`,
+                          }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Key Highlights */}
+                    <div className="founder-highlights">
+                      {member.highlights.map((h, hi) => (
+                        <div key={hi} className="founder-hl-item">
+                          <span className="founder-hl-icon" style={{ color: member.accentColor }}>
+                            {h.icon}
+                          </span>
+                          <span className="founder-hl-text">{h.text}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Bio */}
+                    <div className="founder-bio-box">
+                      <p className="founder-bio-text">{member.shortBio}</p>
+                      {isExpanded && (
+                        <div className="founder-bio-expanded">
+                          {member.fullBio.slice(1).map((para, pi) => (
+                            <p key={pi} className="founder-bio-text" style={{ marginTop: '8px' }}>
+                              {para}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+                      <button 
+                        className="founder-bio-toggle"
+                        onClick={() => toggleExpand(idx)}
+                        style={{ color: member.accentColor }}
+                      >
+                        {isExpanded ? (
+                          <>Read Less <ChevronUp size={14} /></>
+                        ) : (
+                          <>Read Full Bio <ChevronDown size={14} /></>
+                        )}
+                      </button>
+                    </div>
+
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Next Arrow */}
+          <button 
+            className="team-nav-arrow next" 
+            onClick={handleNext} 
+            aria-label="Next leadership members"
+          >
+            <ChevronRight size={22} />
+          </button>
+
         </div>
+
+        {/* Carousel Pagination Dots */}
+        {maxSlide > 0 && (
+          <div className="team-carousel-dots">
+            {Array.from({ length: maxSlide + 1 }).map((_, i) => (
+              <button
+                key={i}
+                className={`team-dot ${slideIndex === i ? 'active' : ''}`}
+                onClick={() => setSlideIndex(i)}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
 
       </div>
 
       <style>{`
         .v2-team-section {
           background: #F8FAFC;
-          border-top: 1px solid #E2E8F0;
+          padding: 80px 0;
+          overflow: hidden;
         }
 
-        .team-founders-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 32px;
+        .badge-tag-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: #E0F2FE;
+          color: #0284C7;
+          font-size: 0.8rem;
+          font-weight: 700;
+          padding: 6px 14px;
+          border-radius: 999px;
+          margin-bottom: 14px;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
         }
 
+        .v2-section-title {
+          font-size: 2.25rem;
+          font-weight: 800;
+          color: #0F172A;
+          line-height: 1.25;
+          margin-bottom: 14px;
+        }
+
+        .v2-section-desc {
+          max-width: 680px;
+          margin: 0 auto 46px;
+          color: #64748B;
+          font-size: 1rem;
+          line-height: 1.6;
+        }
+
+        /* Carousel Wrapper */
+        .team-carousel-wrapper {
+          position: relative;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 48px;
+        }
+
+        .team-carousel-viewport {
+          overflow: hidden;
+          width: 100%;
+          padding: 10px 4px 20px;
+        }
+
+        .team-carousel-track {
+          display: flex;
+          gap: 24px;
+          transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1);
+          will-change: transform;
+        }
+
+        /* Founder Card */
         .team-founder-card {
-          background: #ffffff;
+          flex: 0 0 calc((100% - 48px) / 3);
+          width: calc((100% - 48px) / 3);
+          background: #FFFFFF;
           border: 1px solid #E2E8F0;
-          border-radius: 24px;
-          padding: 36px;
+          border-top: 4px solid var(--accent);
+          border-radius: 18px;
+          box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.06);
+          padding: 26px 22px;
           display: flex;
           flex-direction: column;
-          gap: 24px;
-          box-shadow: 0 2px 12px rgba(12, 74, 110, 0.06);
-          transition: all 0.3s ease;
-        }
-        .team-founder-card:hover {
-          box-shadow: 0 16px 40px rgba(12, 74, 110, 0.12);
-          transform: translateY(-3px);
+          box-sizing: border-box;
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
-        /* Photo + Name */
-        .team-card-header {
+        .team-founder-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.1);
+        }
+
+        /* Avatar */
+        .founder-avatar-box {
+          width: 58px;
+          height: 58px;
+          border-radius: 14px;
           display: flex;
-          gap: 20px;
-          align-items: flex-start;
-        }
-        .team-photo-wrap {
-          width: 96px;
-          height: 96px;
-          border-radius: 20px;
+          align-items: center;
+          justify-content: center;
+          position: relative;
           overflow: hidden;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          margin-bottom: 16px;
           flex-shrink: 0;
-          border: 3px solid transparent;
-          box-shadow: 0 6px 20px rgba(12, 74, 110, 0.16);
-          transition: border-color 0.3s;
         }
-        .team-photo {
+
+        .founder-avatar-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: top center;
-          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
         }
-        .team-name-block {
-          flex: 1;
-          min-width: 0;
-        }
-        .team-leader-name {
-          font-size: 1.35rem;
-          font-weight: 800;
-          color: #0C4A6E;
-          margin-bottom: 4px;
-          line-height: 1.2;
-        }
-        .team-leader-role {
-          font-size: 0.82rem;
+
+        .founder-avatar-initials {
+          color: #FFFFFF;
+          font-size: 1.2rem;
           font-weight: 700;
-          margin-bottom: 12px;
-          line-height: 1.4;
+          letter-spacing: -0.5px;
         }
-        .team-tags {
+
+        /* Name & Role */
+        .founder-name {
+          font-size: 1.18rem;
+          font-weight: 700;
+          color: #0F172A;
+          margin: 0 0 4px 0;
+          line-height: 1.3;
+        }
+
+        .founder-role {
+          font-size: 0.85rem;
+          font-weight: 600;
+          margin-bottom: 14px;
+          line-height: 1.3;
+        }
+
+        /* Tags */
+        .founder-tags {
           display: flex;
           flex-wrap: wrap;
           gap: 6px;
+          margin-bottom: 16px;
         }
-        .team-tag-chip {
-          background: #F1F5F9;
-          border: 1px solid #E2E8F0;
-          color: #334155;
-          font-size: 0.68rem;
-          font-weight: 700;
-          padding: 3px 10px;
+
+        .founder-tag {
+          font-size: 0.72rem;
+          font-weight: 600;
+          padding: 3px 9px;
           border-radius: 999px;
-          transition: all 0.2s;
-          white-space: nowrap;
-        }
-        .team-tag-chip:hover {
-          background: rgba(14, 165, 233, 0.10);
-          border-color: #0EA5E9;
-          color: #0284C7;
+          border: 1px solid;
+          line-height: 1.3;
         }
 
         /* Highlights */
-        .team-highlights {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 10px;
+        .founder-highlights {
           background: #F8FAFC;
           border: 1px solid #E2E8F0;
-          border-radius: 14px;
-          padding: 16px;
+          border-radius: 12px;
+          padding: 12px 14px;
+          margin-bottom: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 9px;
         }
-        .team-highlight-item {
+
+        .founder-hl-item {
           display: flex;
           align-items: center;
           gap: 8px;
           font-size: 0.8rem;
-          font-weight: 600;
           color: #334155;
+          font-weight: 500;
         }
-        .team-hl-icon {
+
+        .founder-hl-icon {
           flex-shrink: 0;
           display: flex;
+          align-items: center;
+        }
+
+        .founder-hl-text {
+          line-height: 1.35;
         }
 
         /* Bio */
-        .team-bio-block {
+        .founder-bio-box {
+          margin-top: auto;
           display: flex;
           flex-direction: column;
-          gap: 10px;
         }
-        .team-bio-para {
-          font-size: 0.9rem;
-          color: #475569;
-          line-height: 1.72;
+
+        .founder-bio-text {
+          font-size: 0.82rem;
+          line-height: 1.55;
+          color: #64748B;
+          margin: 0;
         }
-        .team-bio-expanded {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          animation: fadeUp 0.3s ease both;
+
+        .founder-bio-expanded {
+          margin-top: 4px;
         }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(6px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .team-expand-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 5px;
+
+        .founder-bio-toggle {
           background: none;
           border: none;
-          font-family: 'Poppins', sans-serif;
-          font-size: 0.82rem;
-          font-weight: 700;
+          padding: 8px 0 0;
+          font-size: 0.8rem;
+          font-weight: 600;
           cursor: pointer;
-          padding: 0;
-          margin-top: 4px;
-          transition: opacity 0.2s;
-          text-decoration: underline;
-          text-underline-offset: 3px;
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          margin-top: 6px;
+          text-align: left;
         }
-        .team-expand-btn:hover { opacity: 0.75; }
 
-        @media (max-width: 1024px) {
-          .team-founders-grid { grid-template-columns: 1fr; }
-          .team-highlights { grid-template-columns: repeat(2, 1fr); }
+        .founder-bio-toggle:hover {
+          text-decoration: underline;
         }
-        @media (max-width: 600px) {
-          .team-card-header { flex-direction: column; }
-          .team-photo-wrap { width: 80px; height: 80px; }
-          .team-highlights { grid-template-columns: 1fr; }
+
+        /* Navigation Arrows */
+        .team-nav-arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          background: #FFFFFF;
+          border: 1px solid #E2E8F0;
+          box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 10;
+          color: #334155;
+          transition: all 0.2s ease;
+        }
+
+        .team-nav-arrow:hover {
+          background: #FFFFFF;
+          color: #0EA5E9;
+          border-color: #0EA5E9;
+          box-shadow: 0 6px 18px rgba(14, 165, 233, 0.2);
+          transform: translateY(-50%) scale(1.08);
+        }
+
+        .team-nav-arrow.prev {
+          left: 0;
+        }
+
+        .team-nav-arrow.next {
+          right: 0;
+        }
+
+        /* Dots */
+        .team-carousel-dots {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+          margin-top: 14px;
+        }
+
+        .team-dot {
+          width: 9px;
+          height: 9px;
+          border-radius: 999px;
+          border: none;
+          background: #CBD5E1;
+          cursor: pointer;
+          transition: all 0.25s ease;
+          padding: 0;
+        }
+
+        .team-dot.active {
+          width: 26px;
+          background: #0EA5E9;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+          .team-founder-card {
+            flex: 0 0 calc((100% - 20px) / 2);
+            width: calc((100% - 20px) / 2);
+          }
+          .team-carousel-track {
+            gap: 20px;
+          }
+        }
+
+        @media (max-width: 680px) {
+          .team-carousel-wrapper {
+            padding: 0 20px;
+          }
+          .team-founder-card {
+            flex: 0 0 100%;
+            width: 100%;
+          }
+          .team-carousel-track {
+            gap: 16px;
+          }
+          .team-nav-arrow.prev {
+            left: -10px;
+          }
+          .team-nav-arrow.next {
+            right: -10px;
+          }
         }
       `}</style>
     </section>

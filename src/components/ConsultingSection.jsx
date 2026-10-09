@@ -58,8 +58,8 @@ export default function ConsultingSection({ onOpenDemo }) {
             <TrendingUp size={14} style={{ color: '#0EA5E9' }} /> Procurement Consulting
           </div>
           <h2 className="v2-section-title">
-            Savings you can see on the <br />
-            <span style={{ color: '#F97316', fontStyle: 'italic' }}>P&amp;L Statement</span>
+            Get the visibility of your procurement savings within 24-48 hours <br />
+            <span style={{ color: '#F97316', fontStyle: 'italic' }}>executed by industry experts</span>
           </h2>
           <p className="v2-section-desc">
             Our consultants work inside your procurement process to find savings and lock them in.
