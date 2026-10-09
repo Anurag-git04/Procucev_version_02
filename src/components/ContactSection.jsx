@@ -16,7 +16,7 @@ export default function ContactSection() {
     {
       icon: <Mail size={18} style={{ color: '#F97316' }} />,
       iconBg: 'rgba(249,115,22,0.10)',
-      label: 'General Enquiries',
+      label: 'Enterprise (eQua AI) General Enquiries',
       val: 'info@procucev.com',
       href: 'mailto:info@procucev.com',
     },
@@ -26,13 +26,6 @@ export default function ContactSection() {
       label: 'Send Buying Requirements',
       val: 'RFQ@procucev.com',
       href: 'mailto:RFQ@procucev.com',
-    },
-    {
-      icon: <ShieldCheck size={18} style={{ color: '#0C4A6E' }} />,
-      iconBg: 'rgba(12,74,110,0.10)',
-      label: 'Enterprise (eQua AI)',
-      val: 'client@procucev.com',
-      href: 'mailto:client@procucev.com',
     },
     {
       icon: <Phone size={18} style={{ color: '#10B981' }} />,

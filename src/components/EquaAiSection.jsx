@@ -3,12 +3,10 @@ import { Cpu, CheckCircle2, ArrowRight, Server, Sparkles } from 'lucide-react';
 
 export default function EquaAiSection({ onOpenDemo }) {
   const workflowSteps = [
-    'Email or upload your RFQ/BOQ',
-    'AI reads the documents',
-    'Choose your sourcing mode',
-    'Automatic quote follow-up by email, SMS & WhatsApp',
-    'Comparison matrix',
-    'Approvals & automatic PO',
+    'Intelligent RFQ Automation',
+    'AI-Powered Vendor Sourcing',
+    'Automated Quotation Tracking',
+    'Follow-Ups',
   ];
 
   const sourcingModes = [
@@ -30,7 +28,7 @@ export default function EquaAiSection({ onOpenDemo }) {
   ];
 
   const enterpriseFeatures = [
-    'White-label portal',
+    'End-to-end encrypted',
     'API access',
     'Single sign-on',
     'Role-based access',
@@ -62,38 +60,17 @@ export default function EquaAiSection({ onOpenDemo }) {
 
         {/* Workflow Pipeline */}
         <div className="equa-pipeline-box">
-          <h3 className="equa-pipe-label">Automated End-to-End Workflow Pipeline</h3>
+          <h3 className="equa-pipe-label">AI Automated End-to-End Workflow Pipeline</h3>
           <div className="equa-pipe-grid">
             {workflowSteps.map((step, idx) => (
               <div key={idx} className="equa-pipe-card">
-                <span className="equa-pipe-num">{idx + 1}</span>
                 <span className="equa-pipe-txt">{step}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Three Sourcing Modes */}
-        <div className="equa-modes-block">
-          <h3 className="v2-section-title" style={{ fontSize: '1.4rem', marginBottom: '24px', textAlign: 'center' }}>
-            Three Ways to Source
-          </h3>
-          <div className="equa-modes-grid">
-            {sourcingModes.map((mode, idx) => (
-              <div
-                key={idx}
-                className="equa-mode-card"
-                style={{ borderTop: `3px solid ${mode.color}` }}
-              >
-                <span className="equa-mode-num" style={{ color: mode.color }}>
-                  0{idx + 1}
-                </span>
-                <h4 className="equa-mode-h">{mode.title}</h4>
-                <p className="equa-mode-p">{mode.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+
 
         {/* Enterprise Features Box */}
         <div className="equa-ent-box">
@@ -104,10 +81,7 @@ export default function EquaAiSection({ onOpenDemo }) {
               </span>
               <h3 className="equa-ent-h">Built for Enterprise Security &amp; Scale</h3>
             </div>
-            <div className="equa-azure-chip">
-              <Server size={15} style={{ color: '#0EA5E9' }} />
-              Built on Microsoft Azure
-            </div>
+
           </div>
           <div className="equa-ent-grid">
             {enterpriseFeatures.map((feat, idx) => (
@@ -148,7 +122,7 @@ export default function EquaAiSection({ onOpenDemo }) {
         }
         .equa-pipe-grid {
           display: grid;
-          grid-template-columns: repeat(6, 1fr);
+          grid-template-columns: repeat(4, 1fr);
           gap: 10px;
         }
         .equa-pipe-card {
@@ -157,7 +131,7 @@ export default function EquaAiSection({ onOpenDemo }) {
           border-radius: 14px;
           padding: 16px 10px;
           display: flex; flex-direction: column;
-          align-items: center; text-align: center;
+          align-items: center; justify-content: center; text-align: center;
           gap: 10px;
           box-shadow: 0 1px 4px rgba(0,0,0,0.04);
           transition: border-color 0.2s;

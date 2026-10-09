@@ -32,7 +32,6 @@ export default function VideoHero({ onOpenDemo }) {
 
   const [activeIdx, setActiveIdx] = useState(0);
   const [activeHighlightIdx, setActiveHighlightIdx] = useState(0);
-  const [dashStep, setDashStep] = useState(0);
   const [subWordIdx, setSubWordIdx] = useState(0);
 
   const highlights = [
@@ -65,33 +64,7 @@ export default function VideoHero({ onOpenDemo }) {
     return () => clearInterval(t2);
   }, [highlights.length]);
 
-  useEffect(() => {
-    const sequence = [
-      { step: 0, duration: 2000 },
-      { step: 1, duration: 800 },
-      { step: 2, duration: 800 },
-      { step: 3, duration: 300 },
-      { step: 4, duration: 800 },
-      { step: 5, duration: 800 },
-      { step: 6, duration: 300 },
-      { step: 7, duration: 600 },
-      { step: 8, duration: 1500 },
-      { step: 9, duration: 600 },
-      { step: 10, duration: 300 },
-      { step: 11, duration: 600 },
-    ];
-    let i = 0;
-    let t;
-    const run = () => {
-      setDashStep(sequence[i].step);
-      t = setTimeout(() => {
-        i = (i + 1) % sequence.length;
-        run();
-      }, sequence[i].duration);
-    };
-    run();
-    return () => clearTimeout(t);
-  }, []);
+
 
   const stats = [
     { label: 'Verified Suppliers', value: '6 Lakh+', icon: <Users size={16} /> },
@@ -99,14 +72,7 @@ export default function VideoHero({ onOpenDemo }) {
     { label: 'Quote Turnaround', value: '< 24 Hrs', icon: <Clock size={16} /> },
   ];
 
-  const liveMetrics = [
-    { dept: 'Packaging Material', rfqs: 112, savings: '18.4%', color: '#0EA5E9' },
-    { dept: 'MRO & Spares',       rfqs: 95,  savings: '19.1%', color: '#F97316' },
-    { dept: 'IT Consumables',     rfqs: 48,  savings: '16.8%', color: '#0C4A6E' },
-    { dept: 'Chemicals',          rfqs: 29,  savings: '15.5%', color: '#0EA5E9' },
-    { dept: 'Logistics',          rfqs: 74,  savings: '14.2%', color: '#10B981' },
-    { dept: 'Office Supplies',    rfqs: 31,  savings: '12.0%', color: '#F97316' },
-  ];
+
 
   return (
     <section className="v2-hero" id="home">
@@ -227,156 +193,7 @@ export default function VideoHero({ onOpenDemo }) {
           </div>
         </div>
 
-        {/* ── Right Column: Live Procurement Dashboard ── */}
-        <div className="v2-hero-right" aria-label="Live procurement platform preview">
-          <div className="v2-dashboard-card">
-            {/* Animated Cursor */}
-            <div className={`v2-demo-cursor step-${dashStep}`}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ fill: '#334155', stroke: '#fff', strokeWidth: 1.5 }}>
-                <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
-              </svg>
-            </div>
 
-            {/* Screen 1 */}
-            <div className={`v2-dash-screen-1 ${dashStep >= 7 && dashStep <= 10 ? 'inactive' : 'active'}`}>
-              {/* Dashboard header */}
-            <div className="v2-dash-header">
-              <div className="v2-dash-title-row">
-                <div className="v2-dash-dot green" />
-                <span className="v2-dash-title">Procucev Live Platform</span>
-              </div>
-              <span className="v2-dash-live-badge">
-                <span className="blink-dot" />
-                LIVE
-              </span>
-            </div>
-
-            {/* Summary row */}
-            <div className="v2-dash-summary">
-              <div className="v2-dash-summary-item">
-                <TrendingUp size={14} className="ds-icon orange" />
-                <span className="ds-label">Active RFQs</span>
-                <span className="ds-val orange">284</span>
-              </div>
-              <div className="v2-dash-summary-item">
-                <CheckCircle2 size={14} className="ds-icon blue" />
-                <span className="ds-label">Orders Today</span>
-                <span className="ds-val blue">47</span>
-              </div>
-              <div className="v2-dash-summary-item">
-                <BarChart3 size={14} className="ds-icon green" />
-                <span className="ds-label">Avg. Savings</span>
-                <span className="ds-val green">17.4%</span>
-              </div>
-            </div>
-
-            {/* Live metrics table */}
-            <div className="v2-dash-table-head">
-              <span>Department</span>
-              <span>Live RFQs</span>
-              <span>Savings</span>
-            </div>
-            <div className="v2-dash-scroll-window">
-              <div className={`v2-dash-rows scroll-step-${dashStep}`}>
-                {liveMetrics.map((m, i) => {
-                  const isHovered = (dashStep === 2 || dashStep === 3) && i === 2;
-                  const isClicked = dashStep === 3 && i === 2;
-                  return (
-                    <div 
-                      key={i} 
-                      className={`v2-dash-row ${isHovered ? 'simulated-hover' : ''} ${isClicked ? 'simulated-click' : ''}`}
-                      style={{ animationDelay: `${i * 120}ms` }}
-                    >
-                      <div className="v2-dept-col">
-                        <span className="v2-dept-dot" style={{ background: m.color }} />
-                        <span className="v2-dept-name">{m.dept}</span>
-                      </div>
-                      <span className="v2-rfq-count">{m.rfqs}</span>
-                      <span className="v2-savings-tag">{m.savings}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Footer */}
-            <div className="v2-dash-footer">
-              <span className="v2-dash-footer-text">6 Lakh+ verified suppliers · Quotes within 24h</span>
-              <button 
-                className={`v2-dash-action btn btn-primary ${(dashStep === 5 || dashStep === 6) ? 'simulated-btn-hover' : ''} ${dashStep === 6 ? 'simulated-btn-click' : ''}`} 
-                onClick={onOpenDemo}
-              >
-                View Dashboard <ArrowUpRight size={13} />
-              </button>
-            </div>
-            </div>
-
-            {/* Screen 2: Inner Dashboard View */}
-            <div className={`v2-dash-screen-2 ${dashStep >= 7 && dashStep <= 10 ? 'active' : ''}`}>
-              <div className="v2-dash-header" style={{ padding: '16px 20px', borderBottom: '1px solid #F1F5F9', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div className={`v2-back-btn ${dashStep === 9 || dashStep === 10 ? 'simulated-btn-hover' : ''} ${dashStep === 10 ? 'simulated-btn-click' : ''}`}>
-                  <ChevronLeft size={18} />
-                </div>
-                <div style={{ fontWeight: 700, color: '#0C4A6E', fontSize: '0.9rem' }}>Enterprise Overview</div>
-              </div>
-              <div style={{ padding: '20px 24px' }}>
-                <div style={{ height: '110px', background: 'linear-gradient(135deg, rgba(14,165,233,0.1), rgba(16,185,129,0.1))', borderRadius: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '1px dashed #cbd5e1', marginBottom: '16px' }}>
-                  <div style={{ textAlign: 'center' }}>
-                    <BarChart3 size={24} color="#0EA5E9" style={{ margin: '0 auto 6px' }} />
-                    <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#0C4A6E' }}>₹ 14.5 Cr Saved</div>
-                    <div style={{ fontSize: '0.75rem', color: '#64748B' }}>This Quarter</div>
-                  </div>
-                </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                  <div style={{ background: '#F8FAFC', padding: '12px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
-                     <div style={{ fontSize: '0.65rem', color: '#64748B', fontWeight: 600, textTransform: 'uppercase' }}>Total RFQs</div>
-                     <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0C4A6E', marginTop: '2px' }}>1,248</div>
-                  </div>
-                  <div style={{ background: '#F8FAFC', padding: '12px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
-                     <div style={{ fontSize: '0.65rem', color: '#64748B', fontWeight: 600, textTransform: 'uppercase' }}>Suppliers</div>
-                     <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0C4A6E', marginTop: '2px' }}>350+</div>
-                  </div>
-                </div>
-
-                {/* New Activity Section */}
-                <div style={{ marginTop: '20px' }}>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#0C4A6E', marginBottom: '10px' }}>Recent AI Activity</div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 12px', background: '#F8FAFC', borderRadius: '10px', border: '1px solid #E2E8F0' }}>
-                      <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: '#DEF7EC', color: '#10B981', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                        <CheckCircle2 size={16} />
-                      </div>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#0F172A', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>L1 Auto-Awarded</div>
-                        <div style={{ fontSize: '0.7rem', color: '#64748B', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>IT Consumables · ₹ 1.2L Saved</div>
-                      </div>
-                      <div style={{ fontSize: '0.7rem', color: '#94A3B8', flexShrink: 0 }}>2m ago</div>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 12px', background: '#F8FAFC', borderRadius: '10px', border: '1px solid #E2E8F0' }}>
-                      <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: '#E0F2FE', color: '#0EA5E9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                        <TrendingUp size={16} />
-                      </div>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#0F172A', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>New RFQ Created</div>
-                        <div style={{ fontSize: '0.7rem', color: '#64748B', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Packaging · 14 Vendors</div>
-                      </div>
-                      <div style={{ fontSize: '0.7rem', color: '#94A3B8', flexShrink: 0 }}>15m ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Floating accent card */}
-          <div className={`v2-float-card ${dashStep >= 7 && dashStep <= 10 ? 'inactive' : 'active'}`}>
-            <CheckCircle2 size={18} className="fc-icon" />
-            <div>
-              <div className="fc-val">₹284 Cr+</div>
-              <div className="fc-label">Procurement Managed</div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <style>{`

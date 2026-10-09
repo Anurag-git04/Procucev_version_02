@@ -53,6 +53,7 @@ export default function AboutSection({ onOpenDemo }) {
           </p>
         </div>
 
+
         {/* How We Work */}
         <div className="about-how-block">
           <h3 className="about-sub-title text-center">
@@ -60,18 +61,6 @@ export default function AboutSection({ onOpenDemo }) {
             <span style={{ color: '#0EA5E9' }}>Optimize</span> ·{' '}
             <span style={{ color: '#0C4A6E' }}>Empower</span>
           </h3>
-          <div className="about-cards-grid">
-            {howWeWork.map((item, idx) => (
-              <div key={idx} className="about-card" style={{ '--card-accent': item.accent }}>
-                <span className="about-step-num">{item.step}</span>
-                <div className="about-icon-box">
-                  {item.icon}
-                </div>
-                <h4 className="about-card-title">{item.title}</h4>
-                <p className="about-card-desc">{item.desc}</p>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Why Procucev Banner */}
@@ -129,7 +118,7 @@ export default function AboutSection({ onOpenDemo }) {
         }
 
         /* How We Work */
-        .about-how-block { margin-bottom: 56px; }
+        .about-how-block { margin-bottom: 24px; }
         .about-sub-title {
           font-size: 1.35rem;
           font-weight: 700;

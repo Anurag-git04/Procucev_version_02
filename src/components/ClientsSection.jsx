@@ -66,30 +66,8 @@ export default function ClientsSection() {
           </p>
         </div>
 
-        {/* Brand chips Marquee */}
-        <div className="cl-marquee-container">
-          <div className="cl-marquee-track">
-            <div className="cl-marquee-set">
-              {clients.map((brand, i) => (
-                <div key={`a-${i}`} className="cl-brand-chip">
-                  <span className="cl-brand-dot" />
-                  <span>{brand}</span>
-                </div>
-              ))}
-            </div>
-            <div className="cl-marquee-set" aria-hidden="true">
-              {clients.map((brand, i) => (
-                <div key={`b-${i}`} className="cl-brand-chip">
-                  <span className="cl-brand-dot" />
-                  <span>{brand}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Industries */}
-        <div className="cl-ind-box">
+        {/* Industries We Serve */}
+        <div className="cl-ind-box" style={{ marginTop: '40px' }}>
           <h3 className="cl-ind-title">Industries We Serve</h3>
           <div className="cl-ind-pills">
             {industries.map((ind, i) => (

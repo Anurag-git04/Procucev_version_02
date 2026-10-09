@@ -6,7 +6,6 @@ import AboutSection from './components/AboutSection';
 import QuaAiSection from './components/QuaAiSection';
 import EquaAiSection from './components/EquaAiSection';
 import ConsultingSection from './components/ConsultingSection';
-import ClientsSection from './components/ClientsSection';
 import TeamSection from './components/TeamSection';
 import ContactSection from './components/ContactSection';
 import QuaAiWidget from './components/QuaAiWidget';
@@ -40,9 +39,6 @@ export default function App() {
 
       {/* Section 5: Consulting (#consulting) - Services & Interactive Savings Calculator */}
       <ConsultingSection onOpenDemo={handleOpenDemo} />
-
-      {/* Section 6: Our Clients (#clients) - Brands, Industries & Testimonials */}
-      <ClientsSection />
 
       {/* Section 7: Team (#team) - Leadership */}
       <TeamSection />
