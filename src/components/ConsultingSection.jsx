@@ -4,14 +4,7 @@ import { TrendingUp, Layers, BarChart3, DollarSign, RefreshCw, ArrowRight, Calcu
 export default function ConsultingSection({ onOpenDemo }) {
   // Form state can be added here if needed
 
-  const industries = [
-    'Retail',
-    'Food & Beverage',
-    'Financial Services',
-    'Fashion & Apparel',
-    'Home & Interiors',
-    'FMCG Ingredients',
-  ];
+  const industries = [];
 
   const services = [
     {
@@ -96,7 +89,9 @@ export default function ConsultingSection({ onOpenDemo }) {
         <div className="cons-calc-box">
           <div className="cons-calc-header" style={{ marginBottom: '16px' }}>
             <div>
-              <h3 className="cons-calc-h">How Aicev can Help you do saving?</h3>
+              <h3 className="cons-calc-h" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                How <img src="/aicev_logo.png" alt="aiCEV" style={{ height: '52px' }} /> can Help you do saving?
+              </h3>
             </div>
           </div>
           <form className="saving-form" onSubmit={(e) => e.preventDefault()}>
@@ -132,15 +127,7 @@ export default function ConsultingSection({ onOpenDemo }) {
           </form>
         </div>
 
-        {/* Industries We Serve */}
-        <div className="cl-ind-box" style={{ marginTop: '40px' }}>
-          <h3 className="cl-ind-title">Industries We Serve</h3>
-          <div className="cl-ind-pills">
-            {industries.map((ind, i) => (
-              <span key={i} className="cl-ind-pill">{ind}</span>
-            ))}
-          </div>
-        </div>
+
 
       </div>
 
@@ -148,6 +135,7 @@ export default function ConsultingSection({ onOpenDemo }) {
         .v2-consulting-section {
           background: #F8FAFC;
           border-top: 1px solid #E2E8F0;
+          padding-bottom: 24px !important;
         }
 
         /* Services grid */
@@ -264,37 +252,6 @@ export default function ConsultingSection({ onOpenDemo }) {
           .cons-calc-box { padding: 24px; }
         }
 
-        /* Industries */
-        .cl-ind-box {
-          background: #F8FAFC;
-          border: 1px solid #E2E8F0;
-          border-radius: 20px;
-          padding: 32px;
-          text-align: center;
-          margin-bottom: 48px;
-        }
-        .cl-ind-title {
-          font-size: 1.1rem; font-weight: 800;
-          color: #0C4A6E; margin-bottom: 18px;
-        }
-        .cl-ind-pills {
-          display: flex; flex-wrap: wrap;
-          justify-content: center; gap: 10px;
-        }
-        .cl-ind-pill {
-          background: #ffffff;
-          border: 1px solid #E2E8F0;
-          border-radius: 999px;
-          padding: 7px 18px;
-          font-size: 0.85rem; font-weight: 600;
-          color: #334155;
-          box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-          transition: all 0.2s;
-        }
-        .cl-ind-pill:hover {
-          border-color: #F97316;
-          color: #EA6C00;
-        }
       `}</style>
     </section>
   );

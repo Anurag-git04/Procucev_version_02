@@ -5,8 +5,7 @@ export default function EquaAiSection({ onOpenDemo }) {
   const workflowSteps = [
     'Intelligent RFQ Automation',
     'AI-Powered Vendor Sourcing',
-    'Automated Quotation Tracking',
-    'Follow-Ups',
+    'Automated Quotation Tracking & Follow-Ups',
   ];
 
   const sourcingModes = [
@@ -52,9 +51,7 @@ export default function EquaAiSection({ onOpenDemo }) {
             <span style={{ color: '#F97316', fontStyle: 'italic' }}>inside your workflow</span>
           </h2>
           <p className="v2-section-desc">
-            eQua AI is a private procurement platform for enterprise buying teams. Send RFQs and
-            BOQs by email, and eQua AI reads them, chases suppliers for quotes, builds the
-            comparison and routes it for approval — all the way to a purchase order.
+            eQua AI is a private procurement platform for enterprise buying teams. Send RFQs and BOQs by email, and eQua AI reads them, chases suppliers for quotes, builds the comparison and routes it for approval, all the way to a purchase order.
           </p>
         </div>
 
@@ -122,7 +119,7 @@ export default function EquaAiSection({ onOpenDemo }) {
         }
         .equa-pipe-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           gap: 10px;
         }
         .equa-pipe-card {

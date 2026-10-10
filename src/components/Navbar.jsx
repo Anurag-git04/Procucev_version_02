@@ -12,16 +12,15 @@ export default function Navbar({ onOpenDemo }) {
   }, []);
 
   const navLinks = [
-    { label: 'Home',        href: '#home' },
-    { label: 'About us',    href: '#about' },
-    { label: 'Qua AI',      href: '#qua-ai' },
-    { label: 'eQua AI',     href: '#equa-ai' },
-    { label: 'DPSNXT',      href: '#dpsnxt' },
-    { label: 'proCPX',      href: '#procpx' },
-    { label: 'aiCEV (Consulting)', href: '#consulting' },
-    { label: 'Our Clients', href: '#clients' },
-    { label: 'Team',        href: '#team' },
-    { label: 'Contact us',  href: '#contact' },
+    { label: 'Home', href: '#home' },
+    { label: 'About us', href: '#about' },
+    { label: 'Qua AI', href: '#qua-ai' },
+    { label: 'eQua AI', href: '#equa-ai' },
+    { label: 'DPSNXT', href: '#dpsnxt' },
+    { label: 'proCPX', href: '#procpx' },
+    { label: <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><img src="/aicev_logo.png" alt="aiCEV" style={{ height: '28px' }} /> </span>, href: '#consulting' },
+    { label: 'Team', href: '#team' },
+    { label: 'Contact us', href: '#contact' },
   ];
 
   return (

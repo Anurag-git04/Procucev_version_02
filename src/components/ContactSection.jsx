@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck, MessageCircle } from 'lucide-react';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -16,7 +16,7 @@ export default function ContactSection() {
     {
       icon: <Mail size={18} style={{ color: '#F97316' }} />,
       iconBg: 'rgba(249,115,22,0.10)',
-      label: 'Enterprise (eQua AI) General Enquiries',
+      label: 'Enterprise Qua AI & General Inquiries',
       val: 'info@procucev.com',
       href: 'mailto:info@procucev.com',
     },
@@ -33,6 +33,13 @@ export default function ContactSection() {
       label: 'Phone Support',
       val: '+91 80 4567 8900',
       href: 'tel:+918045678900',
+    },
+    {
+      icon: <MessageCircle size={18} style={{ color: '#25D366' }} />,
+      iconBg: 'rgba(37,211,102,0.10)',
+      label: 'WhatsApp Support',
+      val: '+91 70901 70801',
+      href: 'https://wa.me/917090170801',
     },
   ];
 
