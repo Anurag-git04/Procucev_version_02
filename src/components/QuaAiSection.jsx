@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Cpu, Mail, Zap, ArrowRight, CheckCircle2, Package, Sparkles } from 'lucide-react';
+import { Cpu, Mail, Zap, ArrowRight, CheckCircle2, Package, Sparkles, MessageCircle } from 'lucide-react';
 
 export default function QuaAiSection({ onOpenDemo }) {
   const [activeForm, setActiveForm] = useState('buyer');
@@ -55,28 +55,44 @@ export default function QuaAiSection({ onOpenDemo }) {
 
           {/* Left Column: Info Boxes */}
           <div className="qua-info-stack">
-            <div className="qua-role-card" style={{ borderTop: '3px solid #F97316' }}>
-              <span className="qua-badge orange" style={{ marginBottom: '12px' }}>For Buyers</span>
+            <div className="qua-role-card" style={{ borderTop: '3px solid #0EA5E9' }}>
+              <span className="qua-badge blue" style={{ marginBottom: '12px' }}>For Buyers</span>
               <h3 className="qua-role-h" style={{ textTransform: 'none' }}>Free and Unlimited Sourcing</h3>
               <p className="qua-role-p">
                 Raise as many RFQs as you need, get quotes from verified suppliers
                 and compare them on price, delivery and terms.
               </p>
-              <button onClick={onOpenDemo} className="btn btn-primary" id="buyer-rfq-btn">
-                I'm a Buyer: Raise an RFQ <ArrowRight size={16} />
-              </button>
+              <div className="qua-card-actions">
+                <button onClick={onOpenDemo} className="btn btn-secondary" id="buyer-rfq-btn">
+                  I'm a Buyer: Raise an RFQ <ArrowRight size={16} />
+                </button>
+                <a href="mailto:info@procucev.com" className="btn btn-email-link" id="buyer-email-btn">
+                  <Mail size={16} /> Email: info@procucev.com
+                </a>
+              </div>
             </div>
 
-            <div className="qua-role-card" style={{ borderTop: '3px solid #0EA5E9' }}>
-              <span className="qua-badge blue" style={{ marginBottom: '12px' }}>For Suppliers</span>
+            <div className="qua-role-card" style={{ borderTop: '3px solid #F97316' }}>
+              <span className="qua-badge orange" style={{ marginBottom: '12px' }}>For Suppliers</span>
               <h3 className="qua-role-h" style={{ textTransform: 'none' }}>Verified High-Intent Leads</h3>
               <p className="qua-role-p">
                 Get real buyer RFQs in your category. Buy credit packs to download
                 RFQs and send your quote. Clear idle stock through BFS.
               </p>
-              <button onClick={onOpenDemo} className="btn btn-secondary" id="supplier-join-btn">
-                I'm a Supplier: Join Qua AI <ArrowRight size={16} />
-              </button>
+              <div className="qua-card-actions">
+                <button onClick={onOpenDemo} className="btn btn-primary" id="supplier-join-btn">
+                  I'm a Supplier: Join Qua AI <ArrowRight size={16} />
+                </button>
+                <a
+                  href="https://wa.me/917090170801"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-whatsapp-link"
+                  id="supplier-whatsapp-btn"
+                >
+                  <MessageCircle size={16} /> WhatsApp: +91 70901 70801
+                </a>
+              </div>
             </div>
           </div>
 
@@ -324,6 +340,54 @@ export default function QuaAiSection({ onOpenDemo }) {
           line-height: 1.6;
           margin: 0;
           flex: 1;
+        }
+        .qua-card-actions {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          flex-wrap: wrap;
+          margin-top: auto;
+          padding-top: 10px;
+          width: 100%;
+        }
+        .btn-email-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: #ffffff;
+          color: #0284C7;
+          border: 1.5px solid #0EA5E9;
+          padding: 8px 16px;
+          border-radius: 8px;
+          font-weight: 700;
+          font-size: 0.85rem;
+          text-decoration: none;
+          transition: all 0.2s ease;
+        }
+        .btn-email-link:hover {
+          background: #F0F9FF;
+          color: #0369A1;
+          border-color: #0284C7;
+        }
+        .btn-whatsapp-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: #25D366;
+          color: #ffffff;
+          border: 1.5px solid #25D366;
+          padding: 8px 16px;
+          border-radius: 8px;
+          font-weight: 700;
+          font-size: 0.85rem;
+          text-decoration: none;
+          transition: all 0.2s ease;
+        }
+        .btn-whatsapp-link:hover {
+          background: #1EBE5D;
+          border-color: #1EBE5D;
+          color: #ffffff;
+          box-shadow: 0 4px 12px rgba(37,211,102,0.3);
         }
 
         /* ── Form Wrapper ────────────────────────── */

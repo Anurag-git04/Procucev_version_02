@@ -59,9 +59,9 @@ export default function DemoModal({ isOpen, onClose }) {
       <div
         style={{
           position: 'relative', width: '100%', maxWidth: '560px',
+          maxHeight: '95vh', overflowY: 'auto',
           background: '#ffffff', borderRadius: '24px',
           boxShadow: '0 32px 80px rgba(12,74,110,0.22)',
-          overflow: 'hidden',
           border: '1px solid #E2E8F0',
           animation: 'modalIn 0.28s ease',
         }}

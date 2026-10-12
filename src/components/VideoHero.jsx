@@ -365,16 +365,18 @@ export default function VideoHero({ onOpenDemo }) {
           display: flex;
           align-items: center;
           gap: 10px;
-          padding: 0 20px;
+          padding: 0 16px;
+          white-space: nowrap;
         }
         .v2-stat:first-of-type { padding-left: 0; }
-        .v2-stat-icon { color: #0EA5E9; }
+        .v2-stat-icon { color: #0EA5E9; flex-shrink: 0; }
         .v2-stat-val {
           display: block;
           font-size: 1.35rem;
           font-weight: 800;
           color: #0C4A6E;
           line-height: 1;
+          white-space: nowrap;
         }
         .v2-stat-label {
           display: block;
@@ -384,6 +386,7 @@ export default function VideoHero({ onOpenDemo }) {
           text-transform: uppercase;
           letter-spacing: 0.4px;
           margin-top: 2px;
+          white-space: nowrap;
         }
         .v2-stat-divider {
           width: 1px; height: 36px;

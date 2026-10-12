@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
 
-export default function Navbar({ onOpenDemo }) {
+export default function Navbar({ onOpenDemo, currentRoute = '/', onNavigate }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -16,19 +16,54 @@ export default function Navbar({ onOpenDemo }) {
     { label: 'About us', href: '#about' },
     { label: 'Qua AI', href: '#qua-ai' },
     { label: 'eQua AI', href: '#equa-ai' },
-    { label: 'DPSNXT', href: '#dpsnxt' },
-    { label: 'proCPX', href: '#procpx' },
+    { label: 'DPSNXT', href: '/digital-procurement-services', isRoute: true },
+    { label: 'proCPX', href: '/capex-procurement', isRoute: true },
     { label: <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><img src="/aicev_logo.png" alt="aiCEV" style={{ height: '28px' }} /> </span>, href: '#consulting' },
     { label: 'Team', href: '#team' },
     { label: 'Contact us', href: '#contact' },
   ];
+
+  const handleLinkClick = (e, link) => {
+    if (link.isRoute) {
+      e.preventDefault();
+      if (onNavigate) {
+        onNavigate(link.href);
+      } else {
+        window.location.href = link.href;
+      }
+      return;
+    }
+
+    if (currentRoute !== '/' && link.href.startsWith('#')) {
+      e.preventDefault();
+      if (onNavigate) {
+        onNavigate('/', link.href);
+      } else {
+        window.location.href = '/' + link.href;
+      }
+    }
+  };
+
+  const isDpsActive = currentRoute === '/digital-procurement-services';
+  const isProcpxActive = currentRoute === '/capex-procurement';
 
   return (
     <header className={`v2-nav-header${scrolled ? ' scrolled' : ''}`}>
       <div className="container v2-nav-inner">
 
         {/* Brand */}
-        <a href="#home" className="v2-brand" aria-label="Procucev Home">
+        <a
+          href="#home"
+          className="v2-brand"
+          aria-label="Procucev Home"
+          onClick={(e) => {
+            if (currentRoute !== '/') {
+              e.preventDefault();
+              if (onNavigate) onNavigate('/', '#home');
+              else window.location.href = '/#home';
+            }
+          }}
+        >
           <img
             src="/procucev-logo.png"
             alt="Procucev"
@@ -46,11 +81,21 @@ export default function Navbar({ onOpenDemo }) {
 
         {/* Desktop Nav */}
         <nav className="v2-desktop-nav" aria-label="Main navigation">
-          {navLinks.map(link => (
-            <a key={link.href} href={link.href} className="v2-nav-link">
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map(link => {
+            const isActive = link.isRoute
+              ? (link.href === '/digital-procurement-services' ? isDpsActive : isProcpxActive)
+              : false;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`v2-nav-link ${isActive ? 'active-route' : ''}`}
+                onClick={(e) => handleLinkClick(e, link)}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </nav>
 
         {/* CTA + Hamburger */}
@@ -72,16 +117,24 @@ export default function Navbar({ onOpenDemo }) {
       {/* Mobile Drawer */}
       {mobileOpen && (
         <div className="v2-mobile-drawer">
-          {navLinks.map(link => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="v2-mobile-link"
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map(link => {
+            const isActive = link.isRoute
+              ? (link.href === '/digital-procurement-services' ? isDpsActive : isProcpxActive)
+              : false;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`v2-mobile-link ${isActive ? 'active-route' : ''}`}
+                onClick={(e) => {
+                  setMobileOpen(false);
+                  handleLinkClick(e, link);
+                }}
+              >
+                {link.label}
+              </a>
+            );
+          })}
           <button
             className="btn btn-primary"
             style={{ marginTop: '8px' }}
@@ -176,6 +229,16 @@ export default function Navbar({ onOpenDemo }) {
         .v2-nav-link:hover {
           color: #0EA5E9;
           background: rgba(14, 165, 233, 0.08);
+        }
+        .v2-nav-link.active-route {
+          color: #0EA5E9;
+          background: rgba(14, 165, 233, 0.12);
+          font-weight: 700;
+        }
+        .v2-mobile-link.active-route {
+          color: #0EA5E9;
+          background: rgba(14, 165, 233, 0.12);
+          font-weight: 700;
         }
 
         /* Nav CTA */

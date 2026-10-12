@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck, MessageCircle } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, ShieldCheck, MessageCircle, ExternalLink } from 'lucide-react';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -26,13 +26,6 @@ export default function ContactSection() {
       label: 'Send Buying Requirements',
       val: 'RFQ@procucev.com',
       href: 'mailto:RFQ@procucev.com',
-    },
-    {
-      icon: <Phone size={18} style={{ color: '#10B981' }} />,
-      iconBg: 'rgba(16,185,129,0.10)',
-      label: 'Phone Support',
-      val: '+91 80 4567 8900',
-      href: 'tel:+918045678900',
     },
     {
       icon: <MessageCircle size={18} style={{ color: '#25D366' }} />,
@@ -84,11 +77,34 @@ export default function ContactSection() {
                 <strong style={{ display: 'block', color: '#0C4A6E', marginBottom: '4px', fontSize: '0.88rem' }}>
                   Head Office:
                 </strong>
-                <p style={{ fontSize: '0.85rem', color: '#64748B', lineHeight: 1.5 }}>
+                <p style={{ fontSize: '0.85rem', color: '#64748B', lineHeight: 1.5, margin: 0 }}>
                   302, Sharada, AECS Layout, Kundalahalli,<br />
                   Bengaluru 560037, India
                 </p>
               </div>
+            </div>
+
+            {/* Embedded Google Map */}
+            <div className="ct-map-container">
+              <iframe
+                title="Procucev Enterprise Solutions Location"
+                src="https://maps.google.com/maps?q=12.9643645,77.7134303&hl=en&z=16&output=embed"
+                width="100%"
+                height="200"
+                style={{ border: 0, display: 'block', width: '100%' }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <a
+                href="https://www.google.com/maps/place/Procucev+Enterprise+Solutions+Private+Limited/@12.9643645,77.7108554,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae136f36919f15:0x51124838dca8c279!8m2!3d12.9643645!4d77.7134303!16s%2Fg%2F11pz1c87s7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ct-map-direct-link"
+              >
+                <span>View on Google Maps</span>
+                <ExternalLink size={13} />
+              </a>
             </div>
           </div>
 
@@ -256,6 +272,32 @@ export default function ContactSection() {
           display: flex; gap: 12px;
           border-top: 1px solid #E2E8F0;
           padding-top: 20px;
+        }
+        .ct-map-container {
+          margin-top: 18px;
+          border-radius: 14px;
+          overflow: hidden;
+          border: 1px solid #E2E8F0;
+          background: #F8FAFC;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .ct-map-direct-link {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          padding: 8px 12px;
+          font-size: 0.82rem;
+          font-weight: 700;
+          color: #0EA5E9;
+          text-decoration: none;
+          background: #ffffff;
+          border-top: 1px solid #E2E8F0;
+          transition: all 0.2s;
+        }
+        .ct-map-direct-link:hover {
+          color: #F97316;
+          background: #FFF7ED;
         }
 
         /* Form card */
