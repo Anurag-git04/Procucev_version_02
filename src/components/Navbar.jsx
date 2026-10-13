@@ -1,26 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
 
-export default function Navbar({ onOpenDemo, currentRoute = '/', onNavigate }) {
+export default function Navbar({ onOpenDemo, currentRoute = "/", onNavigate }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const navLinks = [
-    { label: 'Home', href: '#home' },
-    { label: 'About us', href: '#about' },
-    { label: 'Qua AI', href: '#qua-ai' },
-    { label: 'eQua AI', href: '#equa-ai' },
-    { label: 'DPSNXT', href: '/digital-procurement-services', isRoute: true },
-    { label: 'proCPX', href: '/capex-procurement', isRoute: true },
-    { label: <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><img src="/aicev_logo.png" alt="aiCEV" style={{ height: '28px' }} /> </span>, href: '#consulting' },
-    { label: 'Team', href: '#team' },
-    { label: 'Contact us', href: '#contact' },
+    { label: "Home", href: "#home" },
+    { label: "About us", href: "#about" },
+    { label: "Qua AI", href: "#qua-ai" },
+    { label: "eQua AI", href: "#equa-ai" },
+    { label: "DPSNXT", href: "/digital-procurement-services", isRoute: true },
+    { label: "proCPX", href: "/capex-procurement", isRoute: true },
+    {
+      label: (
+        <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <img
+            src="/aicev_logo.png"
+            alt="aiCEV"
+            style={{ height: "28px" }}
+          />{" "}
+        </span>
+      ),
+      href: "#consulting",
+    },
+    { label: "Team", href: "#team" },
+    { label: "Contact us", href: "#contact" },
   ];
 
   const handleLinkClick = (e, link) => {
@@ -34,33 +45,43 @@ export default function Navbar({ onOpenDemo, currentRoute = '/', onNavigate }) {
       return;
     }
 
-    if (currentRoute !== '/' && link.href.startsWith('#')) {
+    if (link.href.startsWith("#")) {
       e.preventDefault();
-      if (onNavigate) {
-        onNavigate('/', link.href);
+      const targetId = link.href.substring(1);
+
+      if (currentRoute === "/") {
+        // On home page, scroll to element
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       } else {
-        window.location.href = '/' + link.href;
+        // On other pages, navigate to home with hash
+        if (onNavigate) {
+          onNavigate("/", link.href);
+        } else {
+          window.location.href = "/" + link.href;
+        }
       }
     }
   };
 
-  const isDpsActive = currentRoute === '/digital-procurement-services';
-  const isProcpxActive = currentRoute === '/capex-procurement';
+  const isDpsActive = currentRoute === "/digital-procurement-services";
+  const isProcpxActive = currentRoute === "/capex-procurement";
 
   return (
-    <header className={`v2-nav-header${scrolled ? ' scrolled' : ''}`}>
+    <header className={`v2-nav-header${scrolled ? " scrolled" : ""}`}>
       <div className="container v2-nav-inner">
-
         {/* Brand */}
         <a
           href="#home"
           className="v2-brand"
           aria-label="Procucev Home"
           onClick={(e) => {
-            if (currentRoute !== '/') {
+            if (currentRoute !== "/") {
               e.preventDefault();
-              if (onNavigate) onNavigate('/', '#home');
-              else window.location.href = '/#home';
+              if (onNavigate) onNavigate("/", "#home");
+              else window.location.href = "/#home";
             }
           }}
         >
@@ -69,11 +90,11 @@ export default function Navbar({ onOpenDemo, currentRoute = '/', onNavigate }) {
             alt="Procucev"
             className="v2-brand-logo"
             onError={(e) => {
-              e.target.style.display = 'none';
-              e.target.nextSibling.style.display = 'flex';
+              e.target.style.display = "none";
+              e.target.nextSibling.style.display = "flex";
             }}
           />
-          <div className="v2-brand-fallback" style={{ display: 'none' }}>
+          <div className="v2-brand-fallback" style={{ display: "none" }}>
             <span className="v2-brand-icon">P</span>
             <span className="v2-brand-text">PROCUCEV</span>
           </div>
@@ -81,15 +102,17 @@ export default function Navbar({ onOpenDemo, currentRoute = '/', onNavigate }) {
 
         {/* Desktop Nav */}
         <nav className="v2-desktop-nav" aria-label="Main navigation">
-          {navLinks.map(link => {
+          {navLinks.map((link) => {
             const isActive = link.isRoute
-              ? (link.href === '/digital-procurement-services' ? isDpsActive : isProcpxActive)
+              ? link.href === "/digital-procurement-services"
+                ? isDpsActive
+                : isProcpxActive
               : false;
             return (
               <a
                 key={link.href}
                 href={link.href}
-                className={`v2-nav-link ${isActive ? 'active-route' : ''}`}
+                className={`v2-nav-link ${isActive ? "active-route" : ""}`}
                 onClick={(e) => handleLinkClick(e, link)}
               >
                 {link.label}
@@ -100,12 +123,16 @@ export default function Navbar({ onOpenDemo, currentRoute = '/', onNavigate }) {
 
         {/* CTA + Hamburger */}
         <div className="v2-nav-actions">
-          <button className="btn btn-primary v2-nav-cta" onClick={onOpenDemo} id="nav-rfq-btn">
+          <button
+            className="btn btn-primary v2-nav-cta"
+            onClick={onOpenDemo}
+            id="nav-rfq-btn"
+          >
             Raise an RFQ <ArrowUpRight size={16} />
           </button>
           <button
             className="v2-hamburger"
-            onClick={() => setMobileOpen(o => !o)}
+            onClick={() => setMobileOpen((o) => !o)}
             aria-label="Toggle mobile menu"
             aria-expanded={mobileOpen}
           >
@@ -117,15 +144,17 @@ export default function Navbar({ onOpenDemo, currentRoute = '/', onNavigate }) {
       {/* Mobile Drawer */}
       {mobileOpen && (
         <div className="v2-mobile-drawer">
-          {navLinks.map(link => {
+          {navLinks.map((link) => {
             const isActive = link.isRoute
-              ? (link.href === '/digital-procurement-services' ? isDpsActive : isProcpxActive)
+              ? link.href === "/digital-procurement-services"
+                ? isDpsActive
+                : isProcpxActive
               : false;
             return (
               <a
                 key={link.href}
                 href={link.href}
-                className={`v2-mobile-link ${isActive ? 'active-route' : ''}`}
+                className={`v2-mobile-link ${isActive ? "active-route" : ""}`}
                 onClick={(e) => {
                   setMobileOpen(false);
                   handleLinkClick(e, link);
@@ -137,8 +166,11 @@ export default function Navbar({ onOpenDemo, currentRoute = '/', onNavigate }) {
           })}
           <button
             className="btn btn-primary"
-            style={{ marginTop: '8px' }}
-            onClick={() => { setMobileOpen(false); onOpenDemo(); }}
+            style={{ marginTop: "8px" }}
+            onClick={() => {
+              setMobileOpen(false);
+              onOpenDemo();
+            }}
           >
             Raise an RFQ, it's free <ArrowUpRight size={15} />
           </button>
@@ -146,13 +178,20 @@ export default function Navbar({ onOpenDemo, currentRoute = '/', onNavigate }) {
       )}
 
       <style>{`
+        /* Smooth scrolling */
+        html {
+          scroll-behavior: smooth;
+        }
+
         /* ── V2 Navbar ── */
         .v2-nav-header {
-          position: sticky;
+          position: fixed;
           top: 0;
+          left: 0;
+          right: 0;
           z-index: 100;
           width: 100%;
-          background: rgba(248, 250, 252, 0.90);
+          background: rgba(248, 250, 252, 0.95);
           backdrop-filter: blur(14px);
           border-bottom: 1px solid transparent;
           transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;

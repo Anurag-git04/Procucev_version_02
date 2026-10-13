@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   FileText,
   Send,
@@ -25,8 +25,8 @@ import {
   Cpu,
   RefreshCw,
   Sliders,
-  DollarSign
-} from 'lucide-react';
+  DollarSign,
+} from "lucide-react";
 
 export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
   const [activeModule, setActiveModule] = useState(0);
@@ -34,237 +34,237 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
 
   const modules = [
     {
-      id: 'pr-workbench',
-      name: 'PR Workbench',
-      tag: 'Requisition Intelligence',
+      id: "pr-workbench",
+      name: "PR Workbench",
+      tag: "Requisition Intelligence",
       icon: FileText,
-      color: '#0EA5E9',
-      bgColor: 'rgba(14, 165, 233, 0.1)',
-      headline: 'Automated Purchase Requisition & Approval Automation',
-      desc: 'Centralize and accelerate purchase requests from every department. Eliminate manual paperwork, enforce budget controls, and automatically map requests to pre-approved categories.',
+      color: "#0EA5E9",
+      bgColor: "rgba(14, 165, 233, 0.1)",
+      headline: "Automated Purchase Requisition & Approval Automation",
+      desc: "Centralize and accelerate purchase requests from every department. Eliminate manual paperwork, enforce budget controls, and automatically map requests to pre-approved categories.",
       highlights: [
-        'Multi-tiered dynamic approval hierarchies based on cost centers & thresholds',
-        'Direct catalog lookup and automated category taxonomy mapping',
-        'Instant 1-click conversion of approved PRs into competitive RFQs or POs',
-        'Zero duplicate data entry with real-time audit logging for complete compliance'
+        "Multi-tiered dynamic approval hierarchies based on cost centers & thresholds",
+        "Direct catalog lookup and automated category taxonomy mapping",
+        "Instant 1-click conversion of approved PRs into competitive RFQs or POs",
+        "Zero duplicate data entry with real-time audit logging for complete compliance",
       ],
-      metrics: { primary: '80% Faster', label: 'PR Approval Turnaround' }
+      metrics: { primary: "80% Faster", label: "PR Approval Turnaround" },
     },
     {
-      id: 'rfq-management',
-      name: 'RFQ Management',
-      tag: 'Strategic Dispatch',
+      id: "rfq-management",
+      name: "RFQ Management",
+      tag: "Strategic Dispatch",
       icon: Send,
-      color: '#F97316',
-      bgColor: 'rgba(249, 115, 22, 0.1)',
-      headline: 'Automated Multi-Supplier Quote Orchestration',
-      desc: 'Effortlessly launch, track, and analyze multi-item Requests for Quotation (RFQs). Distribute specs to qualified vendor panels and evaluate quotes through automated side-by-side matrices.',
+      color: "#F97316",
+      bgColor: "rgba(249, 115, 22, 0.1)",
+      headline: "Automated Multi-Supplier Quote Orchestration",
+      desc: "Effortlessly launch, track, and analyze multi-item Requests for Quotation (RFQs). Distribute specs to qualified vendor panels and evaluate quotes through automated side-by-side matrices.",
       highlights: [
-        'Pre-configured templates for Raw Materials, Capex, MRO, and Services',
-        'Automated dispatch to verified category suppliers with encrypted bids',
-        'Side-by-side automated comparison matrices for technical and commercial bids',
-        'Real-time response tracking with automated deadline countdowns and alerts'
+        "Pre-configured templates for Raw Materials, Capex, MRO, and Services",
+        "Automated dispatch to verified category suppliers with encrypted bids",
+        "Side-by-side automated comparison matrices for technical and commercial bids",
+        "Real-time response tracking with automated deadline countdowns and alerts",
       ],
-      metrics: { primary: '3x More', label: 'Competitive Supplier Bids' }
+      metrics: { primary: "3x More", label: "Competitive Supplier Bids" },
     },
     {
-      id: 'e-auctions',
-      name: 'E-Auctions',
-      tag: 'Real-Time Dynamic Bidding',
+      id: "e-auctions",
+      name: "E-Auctions",
+      tag: "Real-Time Dynamic Bidding",
       icon: Gavel,
-      color: '#8B5CF6',
-      bgColor: 'rgba(139, 92, 246, 0.1)',
-      headline: 'Forward & Reverse Auctions for Accelerated Price Discovery',
-      desc: 'Drive real-time competitive bidding in high-stakes procurement. Enable qualified suppliers to compete transparently, driving maximum cost reduction within a compressed timeframe.',
+      color: "#8B5CF6",
+      bgColor: "rgba(139, 92, 246, 0.1)",
+      headline: "Forward & Reverse Auctions for Accelerated Price Discovery",
+      desc: "Drive real-time competitive bidding in high-stakes procurement. Enable qualified suppliers to compete transparently, driving maximum cost reduction within a compressed timeframe.",
       highlights: [
-        'Supports English, Dutch, Japanese reverse auctions and sealed-bid formats',
-        'Live dynamic rank ticker, real-time bid decrements, and overtime extensions',
-        'Strict compliance rules preventing collusion with masked supplier identities',
-        'Instant award letters and contract generation upon auction completion'
+        "Supports English, Dutch, Japanese reverse auctions and sealed-bid formats",
+        "Live dynamic rank ticker, real-time bid decrements, and overtime extensions",
+        "Strict compliance rules preventing collusion with masked supplier identities",
+        "Instant award letters and contract generation upon auction completion",
       ],
-      metrics: { primary: '8-18%', label: 'Additional Cost Savings' }
+      metrics: { primary: "8-18%", label: "Additional Cost Savings" },
     },
     {
-      id: 'dynamic-pricing',
-      name: 'Dynamic Pricing',
-      tag: 'Proprietary Market Intelligence',
+      id: "dynamic-pricing",
+      name: "Dynamic Pricing",
+      tag: "Proprietary Market Intelligence",
       icon: TrendingDown,
-      color: '#10B981',
-      bgColor: 'rgba(16, 185, 129, 0.1)',
-      headline: 'Price Discovery & Market Benchmark Intelligence',
-      desc: 'A unique signature feature of Procucev facilitating transparent Price Discovery. Real-time updated pricing from our qualified vendor panel shields businesses from commodity volatility and eliminates repetitive negotiations.',
+      color: "#10B981",
+      bgColor: "rgba(16, 185, 129, 0.1)",
+      headline: "Price Discovery & Market Benchmark Intelligence",
+      desc: "A unique signature feature of Procucev facilitating transparent Price Discovery. Real-time updated pricing from our qualified vendor panel shields businesses from commodity volatility and eliminates repetitive negotiations.",
       highlights: [
-        'Real-time market benchmark analysis across 50,000+ pan-India verified suppliers',
-        'Protects operational margins against sudden raw material price surges',
-        'Eliminates repeated quotations with pre-negotiated, index-linked price baskets',
-        'Actionable price trend forecasting powered by category intelligence'
+        "Real-time market benchmark analysis across 50,000+ pan-India verified suppliers",
+        "Protects operational margins against sudden raw material price surges",
+        "Eliminates repeated quotations with pre-negotiated, index-linked price baskets",
+        "Actionable price trend forecasting powered by category intelligence",
       ],
-      metrics: { primary: 'Real-Time', label: 'Updated Price Benchmarks' }
+      metrics: { primary: "Real-Time", label: "Updated Price Benchmarks" },
     },
     {
-      id: 'sourcing-supplier',
-      name: 'Sourcing & Supplier Management',
-      tag: '360° Supplier Ecosystem',
+      id: "sourcing-supplier",
+      name: "Sourcing & Supplier Management",
+      tag: "360° Supplier Ecosystem",
       icon: Users,
-      color: '#0284C7',
-      bgColor: 'rgba(2, 132, 199, 0.1)',
-      headline: 'End-to-End Onboarding, Vetting & Category Mapping',
-      desc: 'Access a vetted panel of reliable enterprise suppliers. Manage digital onboarding, statutory compliance checks, quality certifications, and performance scorecards from a single dashboard.',
+      color: "#0284C7",
+      bgColor: "rgba(2, 132, 199, 0.1)",
+      headline: "End-to-End Onboarding, Vetting & Category Mapping",
+      desc: "Access a vetted panel of reliable enterprise suppliers. Manage digital onboarding, statutory compliance checks, quality certifications, and performance scorecards from a single dashboard.",
       highlights: [
-        'Rigorous technical, financial, and regulatory compliance screening (GST, MSME, ISO)',
-        'Centralized digital document vault with automated expiry alerts',
-        'Dynamic vendor performance scorecards tracking OTIF delivery, quality, and responsiveness',
-        'Dedicated category specialists providing proactive supplier development'
+        "Rigorous technical, financial, and regulatory compliance screening (GST, MSME, ISO)",
+        "Centralized digital document vault with automated expiry alerts",
+        "Dynamic vendor performance scorecards tracking OTIF delivery, quality, and responsiveness",
+        "Dedicated category specialists providing proactive supplier development",
       ],
-      metrics: { primary: '50,000+', label: 'Verified Vendor Network' }
+      metrics: { primary: "50,000+", label: "Verified Vendor Network" },
     },
     {
-      id: 'po-management',
-      name: 'PO Management',
-      tag: 'Order Execution',
+      id: "po-management",
+      name: "PO Management",
+      tag: "Order Execution",
       icon: Sliders,
-      color: '#EA580C',
-      bgColor: 'rgba(234, 88, 12, 0.1)',
-      headline: 'Streamlined Purchase Order Generation & Lifecycle Tracking',
-      desc: 'Convert awarded quotes into formal legal Purchase Orders with zero friction. Enable digital supplier acknowledgments, delivery milestone schedules, and live shipment tracking.',
+      color: "#EA580C",
+      bgColor: "rgba(234, 88, 12, 0.1)",
+      headline: "Streamlined Purchase Order Generation & Lifecycle Tracking",
+      desc: "Convert awarded quotes into formal legal Purchase Orders with zero friction. Enable digital supplier acknowledgments, delivery milestone schedules, and live shipment tracking.",
       highlights: [
-        'Single-click automated PO generation directly from approved RFQ or auction outcome',
-        'Digital vendor acknowledgment tracking with delivery timeline commitments',
-        'Milestone-based delivery scheduling and advance payment linkage',
-        'Real-time dispatch, transit, and warehouse gate-in tracking'
+        "Single-click automated PO generation directly from approved RFQ or auction outcome",
+        "Digital vendor acknowledgment tracking with delivery timeline commitments",
+        "Milestone-based delivery scheduling and advance payment linkage",
+        "Real-time dispatch, transit, and warehouse gate-in tracking",
       ],
-      metrics: { primary: '65% Less', label: 'Order Processing Time' }
+      metrics: { primary: "65% Less", label: "Order Processing Time" },
     },
     {
-      id: 'invoice-matching',
-      name: 'Invoice Matching & Payment',
-      tag: '3-Way Reconciliation',
+      id: "invoice-matching",
+      name: "Invoice Matching & Payment",
+      tag: "3-Way Reconciliation",
       icon: Receipt,
-      color: '#059669',
-      bgColor: 'rgba(5, 150, 105, 0.1)',
-      headline: 'Automated 3-Way Reconciliation (PO vs. GRN vs. Invoice)',
-      desc: 'Eliminate billing disputes and fraudulent invoices. Our intelligent engine matches line items, quantities, and pricing between Purchase Orders, Goods Receipt Notes (GRN), and vendor invoices.',
+      color: "#059669",
+      bgColor: "rgba(5, 150, 105, 0.1)",
+      headline: "Automated 3-Way Reconciliation (PO vs. GRN vs. Invoice)",
+      desc: "Eliminate billing disputes and fraudulent invoices. Our intelligent engine matches line items, quantities, and pricing between Purchase Orders, Goods Receipt Notes (GRN), and vendor invoices.",
       highlights: [
-        'Automated tolerance checks for quantity and unit price variance',
-        'Automated routing of exceptions to category managers for instant clearance',
-        'Seamless bidirectional sync with ERPs (SAP, Oracle, Tally, Zoho) for automated payment runs',
-        'Audit-ready electronic records ensuring 100% tax and GST compliance'
+        "Automated tolerance checks for quantity and unit price variance",
+        "Automated routing of exceptions to category managers for instant clearance",
+        "Seamless bidirectional sync with ERPs (SAP, Oracle, Tally, Zoho) for automated payment runs",
+        "Audit-ready electronic records ensuring 100% tax and GST compliance",
       ],
-      metrics: { primary: '100%', label: 'Reconciliation Accuracy' }
-    }
+      metrics: { primary: "100%", label: "Reconciliation Accuracy" },
+    },
   ];
 
   const differentiators = [
     {
       icon: TrendingDown,
-      color: '#0EA5E9',
-      title: 'Dynamic Pricing',
-      desc: 'Its unique feature facilitates you with Price Discovery. Real-time updated prices by our qualified vendor panel avoid repeated quotations, negotiations, and volatility surprises.'
+      color: "#0EA5E9",
+      title: "Dynamic Pricing",
+      desc: "Its unique feature facilitates you with Price Discovery. Real-time updated prices by our qualified vendor panel avoid repeated quotations, negotiations, and volatility surprises.",
     },
     {
       icon: Coins,
-      color: '#F97316',
-      title: 'Cost Optimization',
-      desc: 'Achieve significant cost savings through Strategic Sourcing, Expert Negotiation, and rigorous Category Management excellence tailored to your spend categories.'
+      color: "#F97316",
+      title: "Cost Optimization",
+      desc: "Achieve significant cost savings through Strategic Sourcing, Expert Negotiation, and rigorous Category Management excellence tailored to your spend categories.",
     },
     {
       icon: Zap,
-      color: '#8B5CF6',
-      title: 'Category Expertise',
-      desc: 'Our team of seasoned procurement professionals supports you in vendor sourcing, technical negotiation, and ongoing supplier performance diagnostics.'
+      color: "#8B5CF6",
+      title: "Category Expertise",
+      desc: "Our team of seasoned procurement professionals supports you in vendor sourcing, technical negotiation, and ongoing supplier performance diagnostics.",
     },
     {
       icon: ShieldCheck,
-      color: '#10B981',
-      title: 'Verified Vendor Network',
-      desc: 'Suppliers are validated on defined technical, commercial, and statutory compliance criteria, ensuring trustworthy partnerships and on-time fulfillment.'
+      color: "#10B981",
+      title: "Verified Vendor Network",
+      desc: "Suppliers are validated on defined technical, commercial, and statutory compliance criteria, ensuring trustworthy partnerships and on-time fulfillment.",
     },
     {
       icon: Cloud,
-      color: '#0284C7',
-      title: 'Cloud-Based In-House Tech',
-      desc: 'Procucev uses an in-house proprietary cloud platform to ensure streamlined processes, customized to your internal controls without compromising data security.'
+      color: "#0284C7",
+      title: "Cloud-Based In-House Tech",
+      desc: "Procucev uses an in-house proprietary cloud platform to ensure streamlined processes, customized to your internal controls without compromising data security.",
     },
     {
       icon: Layers,
-      color: '#EA580C',
-      title: 'Seamless ERP Integration',
-      desc: 'Pre-built connectors integrate smoothly with major ERPs and accounting systems (SAP, Oracle, Tally, Microsoft Dynamics) for frictionless data flow.'
-    }
+      color: "#EA580C",
+      title: "Seamless ERP Integration",
+      desc: "Pre-built connectors integrate smoothly with major ERPs and accounting systems (SAP, Oracle, Tally, Microsoft Dynamics) for frictionless data flow.",
+    },
   ];
 
   const benefits = [
     {
-      title: 'Boosted Procurement Efficiency',
-      metric: '75%',
-      sub: 'Faster Process Cycle',
-      desc: 'Eliminate bottlenecks across the source-to-pay lifecycle with automated workflows, instant quote comparisons, and digital approvals.'
+      title: "Boosted Procurement Efficiency",
+      metric: "75%",
+      sub: "Faster Process Cycle",
+      desc: "Eliminate bottlenecks across the source-to-pay lifecycle with automated workflows, instant quote comparisons, and digital approvals.",
     },
     {
-      title: 'Significant Cost Optimization',
-      metric: '12-25%',
-      sub: 'Cumulative Savings',
-      desc: 'Leverage competitive bidding, real-time e-auctions, and commodity price benchmarks to achieve bottom-line financial impact.'
+      title: "Significant Cost Optimization",
+      metric: "12-25%",
+      sub: "Cumulative Savings",
+      desc: "Leverage competitive bidding, real-time e-auctions, and commodity price benchmarks to achieve bottom-line financial impact.",
     },
     {
-      title: 'Access to Trusted Vendor Base',
-      metric: '50,000+',
-      sub: 'Pre-Vetted Suppliers',
-      desc: 'Expand your supply chain reach with pre-screened manufacturers and distributors validated for quality and financial stability.'
+      title: "Access to Trusted Vendor Base",
+      metric: "50,000+",
+      sub: "Pre-Vetted Suppliers",
+      desc: "Expand your supply chain reach with pre-screened manufacturers and distributors validated for quality and financial stability.",
     },
     {
-      title: 'Automated Price Discovery',
-      metric: '100%',
-      sub: 'Transparent Market Rates',
-      desc: 'Gain instant visibility into prevailing market rates and benchmark prices across raw materials, packaging, and indirect categories.'
+      title: "Automated Price Discovery",
+      metric: "100%",
+      sub: "Transparent Market Rates",
+      desc: "Gain instant visibility into prevailing market rates and benchmark prices across raw materials, packaging, and indirect categories.",
     },
     {
-      title: 'Improved Sourcing Speed & Accuracy',
-      metric: '48h',
-      sub: 'Quote Turnaround Time',
-      desc: 'Standardized RFQ specifications ensure zero miscommunication, leading to highly accurate quotes and rapid order execution.'
+      title: "Improved Sourcing Speed & Accuracy",
+      metric: "48h",
+      sub: "Quote Turnaround Time",
+      desc: "Standardized RFQ specifications ensure zero miscommunication, leading to highly accurate quotes and rapid order execution.",
     },
     {
-      title: 'Data-Driven Analytics & Decisions',
-      metric: '360°',
-      sub: 'Spend Visibility',
-      desc: 'Actionable executive dashboards reveal spend patterns, vendor rating trends, and savings opportunities across business units.'
-    }
+      title: "Data-Driven Analytics & Decisions",
+      metric: "360°",
+      sub: "Spend Visibility",
+      desc: "Actionable executive dashboards reveal spend patterns, vendor rating trends, and savings opportunities across business units.",
+    },
   ];
 
   const faqs = [
     {
-      q: 'What is Digital Procurement Services (DPS)?',
-      a: 'DPS is a cloud-based, end-to-end procurement solution combined with expert managed services that digitizes and optimizes your entire Source-to-Procure-to-Pay (S2P2P) cycle.'
+      q: "What is Digital Procurement Services (DPS)?",
+      a: "DPS is a cloud-based, end-to-end procurement solution combined with expert managed services that digitizes and optimizes your entire Source-to-Procure-to-Pay (S2P2P) cycle.",
     },
     {
-      q: 'How is DPS different from other S2P platforms?',
-      a: 'DPS is a tailor-made solution built for strategic procurement. It enables smarter sourcing decisions through analytics, competitive bidding (e-auctions), Dynamic Pricing, a pre-vetted quality vendor base, and human category expertise—capabilities most standard ERPs do not offer out-of-the-box.'
+      q: "How is DPS different from other S2P platforms?",
+      a: "DPS is a tailor-made solution built for strategic procurement. It enables smarter sourcing decisions through analytics, competitive bidding (e-auctions), Dynamic Pricing, a pre-vetted quality vendor base, and human category expertise—capabilities most standard ERPs do not offer out-of-the-box.",
     },
     {
-      q: 'Can DPS integrate with our existing ERP or finance system?',
-      a: 'Yes. DPS is engineered for seamless bidirectional integration with major enterprise ERP platforms including SAP, Oracle, Microsoft Dynamics, Tally, and Zoho, ensuring procurement data flows effortlessly across accounting systems.'
+      q: "Can DPS integrate with our existing ERP or finance system?",
+      a: "Yes. DPS is engineered for seamless bidirectional integration with major enterprise ERP platforms including SAP, Oracle, Microsoft Dynamics, Tally, and Zoho, ensuring procurement data flows effortlessly across accounting systems.",
     },
     {
-      q: 'Is there expert support included or is it just a platform?',
-      a: 'DPS includes dedicated expert-led services along with the software platform. Our procurement specialists help configure sourcing strategies, run complex e-auctions, onboard suppliers, and guide your team through cost-saving initiatives. It’s software plus elite expertise.'
+      q: "Is there expert support included or is it just a platform?",
+      a: "DPS includes dedicated expert-led services along with the software platform. Our procurement specialists help configure sourcing strategies, run complex e-auctions, onboard suppliers, and guide your team through cost-saving initiatives. It’s software plus elite expertise.",
     },
     {
-      q: 'Do we need to train our team to use DPS?',
-      a: 'Minimal training is required. DPS features an intuitive, consumer-grade user interface. We provide hands-on onboarding workshops, role-based walkthroughs, and ongoing technical support to ensure rapid adoption.'
+      q: "Do we need to train our team to use DPS?",
+      a: "Minimal training is required. DPS features an intuitive, consumer-grade user interface. We provide hands-on onboarding workshops, role-based walkthroughs, and ongoing technical support to ensure rapid adoption.",
     },
     {
-      q: 'What kind of savings can we expect?',
-      a: 'Organizations using DPS typically report 12% to 25% cost savings through heightened sourcing competition, transparency, and benchmark intelligence. Exact results depend on category spend volume and initial procurement maturity.'
+      q: "What kind of savings can we expect?",
+      a: "Organizations using DPS typically report 12% to 25% cost savings through heightened sourcing competition, transparency, and benchmark intelligence. Exact results depend on category spend volume and initial procurement maturity.",
     },
     {
-      q: 'Is DPS suitable for all sizes of enterprises?',
-      a: 'DPS is scalable across mid-market and enterprise organizations. Whether you operate decentralized regional procurement or centralized multi-location sourcing, DPS adapts flexibly to your organizational structure.'
+      q: "Is DPS suitable for all sizes of enterprises?",
+      a: "DPS is scalable across mid-market and enterprise organizations. Whether you operate decentralized regional procurement or centralized multi-location sourcing, DPS adapts flexibly to your organizational structure.",
     },
     {
-      q: 'Is vendor onboarding included?',
-      a: 'Yes. DPS includes complete vendor onboarding support. We assist in qualifying, vetting, and training your suppliers using a structured onboarding protocol backed by our pan-India network.'
-    }
+      q: "Is vendor onboarding included?",
+      a: "Yes. DPS includes complete vendor onboarding support. We assist in qualifying, vetting, and training your suppliers using a structured onboarding protocol backed by our pan-India network.",
+    },
   ];
 
   const currentMod = modules[activeModule];
@@ -280,23 +280,32 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
           </div>
 
           <h1 className="v2-dps-hero-title">
-            Digital Procurement Services <span className="highlight-text">(DPS)</span>
+            Digital Procurement Services{" "}
+            <span className="highlight-text">(DPS)</span>
           </h1>
 
           <p className="v2-dps-hero-subtitle">
-            Make your procurement a strategic driver. Faster Procurement. Smarter Insights. Lower Costs.
+            Make your procurement a strategic driver. Faster Procurement.
+            Smarter Insights. Lower Costs.
           </p>
 
           <p className="v2-dps-hero-desc">
-            DPS automates your entire Source-to-Pay cycle, enhances operational efficiency with its 7 specialized modules,
-            real-time dynamic pricing, and an elite network of 50,000+ verified suppliers.
+            DPS automates your entire Source-to-Pay cycle, enhances operational
+            efficiency with its 7 specialized modules, real-time dynamic
+            pricing, and an elite network of 50,000+ verified suppliers.
           </p>
 
           <div className="v2-dps-hero-actions">
-            <button className="btn btn-primary v2-dps-btn-primary" onClick={onOpenDemo}>
+            <button
+              className="btn btn-primary v2-dps-btn-primary"
+              onClick={onOpenDemo}
+            >
               Schedule Platform Demo <ArrowUpRight size={18} />
             </button>
-            <a href="#dps-modules" className="btn btn-secondary v2-dps-btn-secondary">
+            <a
+              href="#dps-modules"
+              className="btn btn-secondary v2-dps-btn-secondary"
+            >
               Explore 7 Modules <ChevronDown size={18} />
             </a>
           </div>
@@ -330,7 +339,9 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
             <span className="section-tag">End-to-End Orchestration</span>
             <h2 className="section-title">The 7 Specialized Modules of DPS</h2>
             <p className="section-subtitle">
-              Comprehensive Source-to-Pay digitization designed to maximize transparency, automate approvals, and deliver measurable procurement ROI.
+              Comprehensive Source-to-Pay digitization designed to maximize
+              transparency, automate approvals, and deliver measurable
+              procurement ROI.
             </p>
           </div>
 
@@ -342,13 +353,16 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
               return (
                 <button
                   key={mod.id}
-                  className={`v2-dps-tab-btn ${isActive ? 'active' : ''}`}
+                  className={`v2-dps-tab-btn ${isActive ? "active" : ""}`}
                   onClick={() => setActiveModule(index)}
                   style={{
-                    borderBottomColor: isActive ? mod.color : 'transparent'
+                    borderBottomColor: isActive ? mod.color : "transparent",
                   }}
                 >
-                  <Icon size={17} style={{ color: isActive ? mod.color : '#64748B' }} />
+                  <Icon
+                    size={17}
+                    style={{ color: isActive ? mod.color : "#64748B" }}
+                  />
                   <span>{mod.name}</span>
                 </button>
               );
@@ -358,7 +372,13 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
           {/* Active Module Detail Card */}
           <div className="v2-dps-module-showcase">
             <div className="module-content-left">
-              <div className="module-badge" style={{ background: currentMod.bgColor, color: currentMod.color }}>
+              <div
+                className="module-badge"
+                style={{
+                  background: currentMod.bgColor,
+                  color: currentMod.color,
+                }}
+              >
                 <currentMod.icon size={16} />
                 <span>{currentMod.tag}</span>
               </div>
@@ -370,7 +390,13 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
               <div className="module-highlights-list">
                 {currentMod.highlights.map((h, i) => (
                   <div key={i} className="module-highlight-item">
-                    <div className="check-icon-wrap" style={{ background: currentMod.bgColor, color: currentMod.color }}>
+                    <div
+                      className="check-icon-wrap"
+                      style={{
+                        background: currentMod.bgColor,
+                        color: currentMod.color,
+                      }}
+                    >
                       <Check size={14} />
                     </div>
                     <span>{h}</span>
@@ -397,38 +423,81 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
                     <span className="dot dot-y"></span>
                     <span className="dot dot-g"></span>
                   </div>
-                  <span className="mockup-title">DPS NXT Platform // {currentMod.name}</span>
+                  <span className="mockup-title">
+                    DPS NXT Platform // {currentMod.name}
+                  </span>
                 </div>
 
                 <div className="mockup-body">
                   <div className="mockup-workflow-step">
-                    <div className="step-num" style={{ background: currentMod.color }}>01</div>
+                    <div
+                      className="step-num"
+                      style={{ background: currentMod.color }}
+                    >
+                      01
+                    </div>
                     <div className="step-info">
-                      <div className="step-title">Automated Ingestion & Validation</div>
-                      <div className="step-sub">System parses requisitions, line items & specs instantly</div>
+                      <div className="step-title">
+                        Automated Ingestion & Validation
+                      </div>
+                      <div className="step-sub">
+                        System parses requisitions, line items & specs instantly
+                      </div>
                     </div>
                   </div>
 
                   <div className="mockup-workflow-step">
-                    <div className="step-num" style={{ background: currentMod.color }}>02</div>
+                    <div
+                      className="step-num"
+                      style={{ background: currentMod.color }}
+                    >
+                      02
+                    </div>
                     <div className="step-info">
-                      <div className="step-title">Real-Time Rule-Based Execution</div>
-                      <div className="step-sub">Threshold matching, automated dispatch & workflow validation</div>
+                      <div className="step-title">
+                        Real-Time Rule-Based Execution
+                      </div>
+                      <div className="step-sub">
+                        Threshold matching, automated dispatch & workflow
+                        validation
+                      </div>
                     </div>
                   </div>
 
                   <div className="mockup-workflow-step">
-                    <div className="step-num" style={{ background: currentMod.color }}>03</div>
+                    <div
+                      className="step-num"
+                      style={{ background: currentMod.color }}
+                    >
+                      03
+                    </div>
                     <div className="step-info">
-                      <div className="step-title">Audit Log & ERP Synchronization</div>
-                      <div className="step-sub">Secure transactional sync with financial systems</div>
+                      <div className="step-title">
+                        Audit Log & ERP Synchronization
+                      </div>
+                      <div className="step-sub">
+                        Secure transactional sync with financial systems
+                      </div>
                     </div>
                   </div>
 
-                  <div className="mockup-stat-box" style={{ borderColor: currentMod.color }}>
-                    <div className="stat-label">Verified Enterprise Outcome</div>
-                    <div className="stat-val" style={{ color: currentMod.color }}>{currentMod.metrics.primary}</div>
-                    <div className="stat-sub">{currentMod.metrics.label} achieved with standard DPS rollout</div>
+                  <div
+                    className="mockup-stat-box"
+                    style={{ borderColor: currentMod.color }}
+                  >
+                    <div className="stat-label">
+                      Verified Enterprise Outcome
+                    </div>
+                    <div
+                      className="stat-val"
+                      style={{ color: currentMod.color }}
+                    >
+                      {currentMod.metrics.primary}
+                    </div>
+                    <div className="stat-sub">
+                      {currentMod.metrics.label} achieved with standard DPS
+                      rollout
+                    </div>
                   </div>
                 </div>
               </div>
@@ -440,11 +509,17 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
             <h4 className="flow-title">Continuous Source-to-Pay Lifecycle</h4>
             <div className="v2-dps-flow-grid">
               {modules.map((m, idx) => (
-                <div key={m.id} className="flow-step-box" onClick={() => setActiveModule(idx)}>
+                <div
+                  key={m.id}
+                  className="flow-step-box"
+                  onClick={() => setActiveModule(idx)}
+                >
                   <div className="flow-step-idx">{idx + 1}</div>
                   <m.icon size={20} style={{ color: m.color }} />
                   <div className="flow-step-name">{m.name}</div>
-                  {idx < modules.length - 1 && <ChevronRight size={16} className="flow-arrow" />}
+                  {idx < modules.length - 1 && (
+                    <ChevronRight size={16} className="flow-arrow" />
+                  )}
                 </div>
               ))}
             </div>
@@ -457,9 +532,13 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
         <div className="container">
           <div className="section-head text-center">
             <span className="section-tag">Why Enterprises Choose Procucev</span>
-            <h2 className="section-title">Strategic Value & Unique Capabilities</h2>
+            <h2 className="section-title">
+              Strategic Value & Unique Capabilities
+            </h2>
             <p className="section-subtitle">
-              Unlike generic standalone software tools, DPS pairs high-performance cloud technology with seasoned category specialists.
+              Unlike generic standalone software tools, DPS pairs
+              high-performance cloud technology with seasoned category
+              specialists.
             </p>
           </div>
 
@@ -468,7 +547,10 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
               const Icon = d.icon;
               return (
                 <div key={i} className="v2-dps-diff-card">
-                  <div className="diff-icon-wrap" style={{ background: `${d.color}15`, color: d.color }}>
+                  <div
+                    className="diff-icon-wrap"
+                    style={{ background: `${d.color}15`, color: d.color }}
+                  >
                     <Icon size={24} />
                   </div>
                   <h3 className="diff-card-title">{d.title}</h3>
@@ -487,7 +569,8 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
             <span className="section-tag">Tangible ROI</span>
             <h2 className="section-title">DPS Customer Benefits</h2>
             <p className="section-subtitle">
-              Measured results delivered across manufacturing, engineering, retail, infrastructure, and services enterprises.
+              Measured results delivered across manufacturing, engineering,
+              retail, infrastructure, and services enterprises.
             </p>
           </div>
 
@@ -505,67 +588,6 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
           </div>
         </div>
       </section>
-
-      {/* FAQ Accordion Section */}
-      <section className="v2-dps-faq-section">
-        <div className="container">
-          <div className="section-head text-center">
-            <span className="section-tag">Got Questions?</span>
-            <h2 className="section-title">Frequently Asked Questions</h2>
-            <p className="section-subtitle">
-              Everything you need to know about implementing Digital Procurement Services (DPS) for your organization.
-            </p>
-          </div>
-
-          <div className="v2-dps-faq-wrapper">
-            {faqs.map((faq, index) => {
-              const isOpen = openFaqIndex === index;
-              return (
-                <div key={index} className={`v2-dps-faq-item ${isOpen ? 'open' : ''}`}>
-                  <button
-                    className="faq-question-btn"
-                    onClick={() => setOpenFaqIndex(isOpen ? -1 : index)}
-                    aria-expanded={isOpen}
-                  >
-                    <span className="faq-q-text">{faq.q}</span>
-                    <ChevronDown size={20} className={`faq-arrow ${isOpen ? 'rotated' : ''}`} />
-                  </button>
-                  {isOpen && (
-                    <div className="faq-answer-pane">
-                      <p>{faq.a}</p>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Final Call to Action Banner */}
-      <section className="v2-dps-cta-section">
-        <div className="container">
-          <div className="v2-dps-cta-card">
-            <div className="cta-left">
-              <span className="cta-pill">Accelerate Your Procurement</span>
-              <h2 className="cta-heading">Ready to Transform Your Procurement Process?</h2>
-              <p className="cta-desc">
-                Partner with Procucev and unlock Smarter, Faster and cost-effective B2B Procurement Solutions.
-                From AI Enabled Sourcing to optimized Supply Chain Management, we help you stay ahead of the curve.
-              </p>
-            </div>
-            <div className="cta-right">
-              <button className="btn btn-primary cta-btn-main" onClick={onOpenDemo}>
-                Book a Platform Walkthrough <ArrowUpRight size={18} />
-              </button>
-              <a href="mailto:info@procucev.com" className="btn btn-secondary cta-btn-sub">
-                Email Our Specialists
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Styles for Digital Procurement Services Page (V2 Theme) */}
       <style>{`
         .v2-dps-page {
@@ -1142,80 +1164,6 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
           padding-top: 14px;
         }
 
-        /* CTA Card */
-        .v2-dps-cta-section {
-          padding: 30px 0 40px;
-        }
-        .v2-dps-cta-card {
-          background: linear-gradient(135deg, #0C4A6E 0%, #0369A1 100%);
-          color: #ffffff;
-          border-radius: 28px;
-          padding: 56px 48px;
-          display: grid;
-          grid-template-columns: 1.4fr 1fr;
-          gap: 36px;
-          align-items: center;
-          box-shadow: 0 20px 50px rgba(12, 74, 110, 0.25);
-        }
-        .cta-pill {
-          display: inline-block;
-          background: rgba(255, 255, 255, 0.15);
-          color: #E0F2FE;
-          padding: 4px 14px;
-          border-radius: 999px;
-          font-size: 0.8rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.8px;
-          margin-bottom: 14px;
-        }
-        .cta-heading {
-          font-size: 2.1rem;
-          font-weight: 800;
-          line-height: 1.25;
-          margin-bottom: 14px;
-          color: #ffffff;
-        }
-        .cta-desc {
-          font-size: 0.98rem;
-          color: #BAE6FD;
-          line-height: 1.6;
-        }
-        .cta-right {
-          display: flex;
-          flex-direction: column;
-          gap: 14px;
-        }
-        .cta-btn-main {
-          padding: 14px 28px;
-          font-size: 1rem;
-          font-weight: 700;
-          background: #F97316;
-          border-color: #F97316;
-          color: #ffffff;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-        }
-        .cta-btn-main:hover {
-          background: #EA580C;
-          border-color: #EA580C;
-        }
-        .cta-btn-sub {
-          padding: 14px 28px;
-          font-size: 0.95rem;
-          font-weight: 600;
-          background: rgba(255, 255, 255, 0.12);
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          color: #ffffff;
-          text-align: center;
-          text-decoration: none;
-        }
-        .cta-btn-sub:hover {
-          background: rgba(255, 255, 255, 0.2);
-        }
-
         /* Responsive */
         @media (max-width: 992px) {
           .v2-dps-hero-title { font-size: 2.2rem; }
@@ -1223,8 +1171,6 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
           .v2-dps-module-showcase { grid-template-columns: 1fr; }
           .v2-dps-diff-grid { grid-template-columns: repeat(2, 1fr); }
           .v2-dps-benefits-grid { grid-template-columns: repeat(2, 1fr); }
-          .v2-dps-cta-card { grid-template-columns: 1fr; text-align: center; }
-          .cta-right { max-width: 380px; margin: 0 auto; width: 100%; }
         }
 
         @media (max-width: 640px) {
@@ -1234,7 +1180,6 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
           .v2-dps-benefits-grid { grid-template-columns: 1fr; }
           .v2-dps-hero-actions { flex-direction: column; width: 100%; }
           .v2-dps-hero-actions button, .v2-dps-hero-actions a { width: 100%; justify-content: center; }
-          .v2-dps-cta-card { padding: 36px 24px; }
         }
       `}</style>
     </div>
