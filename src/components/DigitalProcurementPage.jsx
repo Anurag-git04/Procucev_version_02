@@ -1180,6 +1180,15 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
           .v2-dps-benefits-grid { grid-template-columns: 1fr; }
           .v2-dps-hero-actions { flex-direction: column; width: 100%; }
           .v2-dps-hero-actions button, .v2-dps-hero-actions a { width: 100%; justify-content: center; }
+          .v2-dps-tab-bar { flex-direction: column; align-items: stretch; }
+          .v2-dps-tab-btn { justify-content: flex-start; width: 100%; }
+          .v2-dps-module-showcase { gap: 24px; padding: 24px; }
+          .module-content-left, .module-visual-right { padding: 0; }
+          .module-cta-row { flex-direction: column; align-items: stretch; gap: 12px; }
+          .module-cta-row button { width: 100%; }
+          .v2-dps-flow-grid { flex-wrap: wrap; justify-content: center; gap: 12px; }
+          .flow-step-box { flex: 1 1 calc(50% - 8px); min-width: 140px; }
+          .flow-arrow { display: none; }
         }
       `}</style>
     </div>
