@@ -119,21 +119,21 @@ export default function QuaAiSection({ onOpenDemo }) {
 
       </div>
 
-        {/* Scrolling Industries We Serve Marquee */}
-        <div className="qua-ind-box">
-          <h3 className="qua-ind-title">Industries We Serve</h3>
-          <div className="qua-ind-marquee-container">
-            <div className="qua-ind-marquee-track">
-              {Array.from({ length: 4 }).map((_, setIdx) => (
-                <div key={setIdx} className="qua-ind-set">
-                  {industries.map((ind, i) => (
-                    <span key={i} className="qua-ind-pill">{ind}</span>
-                  ))}
-                </div>
-              ))}
-            </div>
+      {/* Scrolling Industries We Serve Marquee */}
+      <div className="qua-ind-box">
+        <h3 className="qua-ind-title">Industries We Serve</h3>
+        <div className="qua-ind-marquee-container">
+          <div className="qua-ind-marquee-track">
+            {Array.from({ length: 4 }).map((_, setIdx) => (
+              <div key={setIdx} className="qua-ind-set">
+                {industries.map((ind, i) => (
+                  <span key={i} className="qua-ind-pill">{ind}</span>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
+      </div>
 
       <style>{`
         .v2-qua-section {

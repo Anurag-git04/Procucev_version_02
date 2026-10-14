@@ -18,18 +18,7 @@ export default function Navbar({ onOpenDemo, currentRoute = "/", onNavigate }) {
     { label: "eQua AI", href: "#equa-ai" },
     { label: "DPSNXT", href: "/digital-procurement-services", isRoute: true },
     { label: "proCPX", href: "/capex-procurement", isRoute: true },
-    {
-      label: (
-        <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-          <img
-            src="/aicev_logo.png"
-            alt="aiCEV"
-            style={{ height: "28px" }}
-          />{" "}
-        </span>
-      ),
-      href: "#consulting",
-    },
+    { label: "aicev(consulting)", href: "#consulting" },
     { label: "Team", href: "#team" },
     { label: "Contact us", href: "#contact" },
   ];

@@ -11,7 +11,7 @@ export default function TeamSection() {
       name: 'Srinivas Mukku',
       role: 'Co-Founder & CEO',
       initials: 'SM',
-      photo: 'https://procucev.com/wp-content/uploads/2026/02/WhatsApp-Image-2021-06-09-at-8.33.27-PM-e1646728037406.webp',
+      photo: '/Srinivas_Mukku.webp',
       tags: ['Co-Founder & CEO', 'Ex-ISRO Scientist', 'CPSM Certified'],
       shortBio: 'Senior Procurement Professional with $2B+ in procurement across manufacturing, retail and services. Ex-ISRO Scientist turned enterprise procurement strategist.',
       fullBio: [
@@ -33,7 +33,7 @@ export default function TeamSection() {
       name: 'M N Rao',
       role: 'Co-Founder, Chief of BD & Finance',
       initials: 'MN',
-      photo: 'https://procucev.com/wp-content/uploads/2026/02/WhatsApp-Image-2021-06-09-at-8.32.58-PM-e1646728070294.webp',
+      photo: '/mnrao.webp',
       tags: ['Co-Founder', 'Chief BD & Finance', 'Chartered Accountant'],
       shortBio: 'Expert Commercial Professional with 20+ years experience. Driven profitability of ₹3,000 Cr turnover retail stores and handled ₹1,000 Cr procurement across Capex and Opex.',
       fullBio: [
@@ -54,7 +54,7 @@ export default function TeamSection() {
       name: 'Sudheer Kangala',
       role: 'Head of Growth & Marketing',
       initials: 'SK',
-      photo: 'https://ui-avatars.com/api/?name=Sudheer+Kangala&background=0284c7&color=fff&size=200',
+      photo: '/Sudheer-Kangala.jpeg',
       tags: ['Growth Strategy', 'Revenue Growth', 'PGDM – IIM Rohtak'],
       shortBio: 'Strategic growth professional with 12+ years across sales leadership, CRM, and business development. Led ₹350 Cr+ annual revenue across B2B and real estate sectors.',
       fullBio: [
@@ -75,7 +75,7 @@ export default function TeamSection() {
       name: 'Anshul Goel',
       role: 'Head of IT',
       initials: 'AG',
-      photo: 'https://ui-avatars.com/api/?name=Anshul+Goel&background=ea580c&color=fff&size=200',
+      photo: '/Anshul.png',
       tags: ['IT Strategy', 'Tech Infrastructure', 'Digital Transformation'],
       shortBio: 'Leads IT strategy and technology initiatives, focusing on reliable systems, scalable infrastructure, and digital solutions aligned with business objectives.',
       fullBio: [
@@ -163,9 +163,9 @@ export default function TeamSection() {
         <div className="team-carousel-wrapper">
 
           {/* Prev Arrow */}
-          <button 
-            className="team-nav-arrow prev" 
-            onClick={handlePrev} 
+          <button
+            className="team-nav-arrow prev"
+            onClick={handlePrev}
             aria-label="Previous leadership members"
           >
             <ChevronLeft size={22} />
@@ -173,15 +173,15 @@ export default function TeamSection() {
 
           {/* Carousel Viewport */}
           <div className="team-carousel-viewport">
-            <div 
+            <div
               className="team-carousel-track"
               style={{ transform: getTransform() }}
             >
               {leadership.map((member, idx) => {
                 const isExpanded = !!expanded[idx];
                 return (
-                  <div 
-                    className="team-founder-card" 
+                  <div
+                    className="team-founder-card"
                     key={idx}
                     style={{ '--accent': member.accentColor }}
                   >
@@ -189,15 +189,15 @@ export default function TeamSection() {
                     <div className="founder-header" style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '16px' }}>
                       {/* Avatar box */}
                       <div className="founder-avatar-box" style={{ background: member.gradient, marginBottom: 0 }}>
-                        {member.photo && (
-                          <img 
-                            src={member.photo} 
-                            alt={member.name} 
-                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                        {member.photo ? (
+                          <img
+                            src={member.photo}
+                            alt={member.name}
                             className="founder-avatar-img"
                           />
+                        ) : (
+                          <span className="founder-avatar-initials">{member.initials}</span>
                         )}
-                        <span className="founder-avatar-initials">{member.initials}</span>
                       </div>
 
                       {/* Name & Role */}
@@ -210,8 +210,8 @@ export default function TeamSection() {
                     {/* Tags */}
                     <div className="founder-tags">
                       {member.tags.map((tag, ti) => (
-                        <span 
-                          key={ti} 
+                        <span
+                          key={ti}
                           className="founder-tag"
                           style={{
                             background: `${member.accentColor}12`,
@@ -248,7 +248,7 @@ export default function TeamSection() {
                           ))}
                         </div>
                       )}
-                      <button 
+                      <button
                         className="founder-bio-toggle"
                         onClick={() => toggleExpand(idx)}
                         style={{ color: member.accentColor }}
@@ -268,9 +268,9 @@ export default function TeamSection() {
           </div>
 
           {/* Next Arrow */}
-          <button 
-            className="team-nav-arrow next" 
-            onClick={handleNext} 
+          <button
+            className="team-nav-arrow next"
+            onClick={handleNext}
             aria-label="Next leadership members"
           >
             <ChevronRight size={22} />

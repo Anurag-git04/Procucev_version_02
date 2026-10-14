@@ -48,9 +48,6 @@ export default function ContactSection() {
           <h2 className="v2-section-title">
             Let's talk <span style={{ color: '#F97316', fontStyle: 'italic' }}>procurement</span>
           </h2>
-          <p className="v2-section-desc">
-            Tell us what you need and the right team will get back to you within one working day.
-          </p>
         </div>
 
         <div className="ct-grid">
