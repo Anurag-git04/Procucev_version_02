@@ -228,9 +228,9 @@ export default function TeamSection() {
             Procurement people, building <br />
             <span style={{ color: '#F97316', fontStyle: 'italic' }}>procurement technology</span>
           </h2>
-          <p className="v2-section-desc">
+          <p className="v2-section-desc" style={{ maxWidth: '860px', margin: '0 auto 46px', textAlign: 'center', lineHeight: '1.65' }}>
             Our leadership brings experience from ISRO, Landmark Group, IIM, and decades of enterprise
-            <br />
+            <br className="desc-break" />
             procurement and technology — combining deep domain expertise with a passion for growth.
           </p>
         </div>
@@ -377,9 +377,9 @@ export default function TeamSection() {
             <h3 className="v2-advisory-title">
               Guided by Industry Veterans &amp; Tech Pioneers
             </h3>
-            <p className="v2-section-desc">
+            <p className="v2-section-desc" style={{ maxWidth: '860px', margin: '0 auto 36px', textAlign: 'center', lineHeight: '1.65' }}>
               Our advisory board provides strategic counsel across enterprise architecture,
-              <br />
+              <br className="desc-break" />
               global market expansion, and large-scale retail procurement operations.
             </p>
           </div>
@@ -506,11 +506,12 @@ export default function TeamSection() {
         }
 
         .v2-section-desc {
-          max-width: 680px;
+          max-width: 860px;
           margin: 0 auto 46px;
           color: #64748B;
           font-size: 1rem;
-          line-height: 1.6;
+          line-height: 1.65;
+          text-align: center !important;
         }
 
         /* Carousel Wrapper */
