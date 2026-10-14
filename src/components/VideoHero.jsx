@@ -42,6 +42,40 @@ export default function VideoHero({ onOpenDemo }) {
     'Spend less time and money',
   ];
 
+  /* 3 Hero rotating screens - exact dimensions: 1600 x 792 (~2.02:1 ratio) */
+  const heroScreens = [
+    {
+      src: '/hero1.png',
+      alt: 'QUA AI 2.0 Sourcing Dashboard',
+      badge: 'Dashboard',
+      title: 'Active Procurement Pipeline',
+    },
+    {
+      src: '/hero2.png',
+      alt: 'Supplier 6-Pillar Evaluation & Scorecard',
+      badge: 'Evaluation Summary',
+      title: '360° AI Supplier Scoring',
+    },
+    {
+      src: '/hero3.png',
+      alt: 'Vendor Master & PO Data Ingestion Setup',
+      badge: 'ERP Setup',
+      title: 'PO & Vendor Data Ingestion',
+    },
+  ];
+
+  const [activeHeroIdx, setActiveHeroIdx] = useState(0);
+  const [isHeroPaused, setIsHeroPaused] = useState(false);
+
+  /* Auto-rotate hero images every 3.2 seconds */
+  useEffect(() => {
+    if (isHeroPaused) return;
+    const t = setInterval(() => {
+      setActiveHeroIdx(prev => (prev + 1) % heroScreens.length);
+    }, 3200);
+    return () => clearInterval(t);
+  }, [isHeroPaused, heroScreens.length]);
+
   useEffect(() => {
     const delay = activeIdx === 3 ? 5500 : 4200;
     const t = setTimeout(() => setActiveIdx(i => (i + 1) % headlines.length), delay);
@@ -64,15 +98,11 @@ export default function VideoHero({ onOpenDemo }) {
     return () => clearInterval(t2);
   }, [highlights.length]);
 
-
-
   const stats = [
     { label: 'Verified Suppliers', value: '6 Lakh+', icon: <Users size={16} /> },
     { label: 'Registered Buyers', value: '2,000+', icon: <BarChart3 size={16} /> },
     { label: 'Quote Turnaround', value: '< 24 Hrs', icon: <Clock size={16} /> },
   ];
-
-
 
   return (
     <section className="v2-hero" id="home">
@@ -166,6 +196,7 @@ export default function VideoHero({ onOpenDemo }) {
               );
             })}
           </div>
+
           {/* CTAs */}
           <div className="v2-hero-ctas">
             <button className="btn btn-primary btn-lg" onClick={onOpenDemo} id="hero-rfq-btn">
@@ -193,14 +224,69 @@ export default function VideoHero({ onOpenDemo }) {
           </div>
         </div>
 
+        {/* ── Right Column: Snug-fit Rotating Hero Screenshots (Zero empty bottom space) ── */}
+        <div className="v2-hero-right">
+          <div
+            className="v2-hero-showcase-card"
+            onMouseEnter={() => setIsHeroPaused(true)}
+            onMouseLeave={() => setIsHeroPaused(false)}
+            onClick={onOpenDemo}
+            title="Click to explore interactive demo"
+          >
+            {/* Top Browser / App chrome */}
+            <div className="v2-showcase-browser-bar">
+              <div className="v2-browser-dots">
+                <span className="v2-b-dot red" />
+                <span className="v2-b-dot yellow" />
+                <span className="v2-b-dot green" />
+              </div>
+              <div className="v2-browser-url-pill">
+                <span>app.procucev.com/qua-ai</span>
+              </div>
+              <div className="v2-showcase-live-tag">
+                <span className="blink-dot" />
+                <span>LIVE PREVIEW</span>
+              </div>
+            </div>
 
+            {/* Stage with rotating hero images - exact snug 1600 / 792 aspect ratio */}
+            <div className="v2-showcase-stage">
+              {heroScreens.map((screen, idx) => (
+                <div
+                  key={idx}
+                  className={`v2-showcase-slide ${idx === activeHeroIdx ? 'active' : ''}`}
+                >
+                  <img
+                    src={screen.src}
+                    alt={screen.alt}
+                    className="v2-showcase-img"
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Clean Dots Indicator directly below the card */}
+          <div className="v2-showcase-dots">
+            {heroScreens.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                className={`v2-showcase-dot-btn ${idx === activeHeroIdx ? 'active' : ''}`}
+                onClick={() => setActiveHeroIdx(idx)}
+                aria-label={`View slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
 
       <style>{`
         /* ── V2 Hero ── */
         .v2-hero {
           position: relative;
-          padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(1rem, 2vw, 1.5rem);
+          padding: clamp(2rem, 4vw, 3.5rem) 0 clamp(1.2rem, 2vw, 1.8rem);
           overflow: hidden;
           background: #F8FAFC;
         }
@@ -225,16 +311,16 @@ export default function VideoHero({ onOpenDemo }) {
         .deco-circle {
           position: absolute;
           border-radius: 50%;
-          opacity: 0.45;
+          opacity: 0.55;
         }
         .deco-1 {
           width: 700px; height: 700px;
-          background: radial-gradient(circle, rgba(14,165,233,0.12) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(14,165,233,0.14) 0%, transparent 70%);
           top: -200px; right: -200px;
         }
         .deco-2 {
           width: 500px; height: 500px;
-          background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(249,115,22,0.10) 0%, transparent 70%);
           bottom: -100px; left: -100px;
         }
         .deco-stripe {
@@ -250,8 +336,8 @@ export default function VideoHero({ onOpenDemo }) {
           position: relative;
           z-index: 1;
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: clamp(2rem, 5vw, 5rem);
+          grid-template-columns: 1fr 1.15fr;
+          gap: clamp(2rem, 4vw, 3.5rem);
           align-items: center;
         }
 
@@ -263,6 +349,7 @@ export default function VideoHero({ onOpenDemo }) {
           display: grid;
           grid-template-areas: "slide";
           margin: 8px 0 16px;
+          min-height: 110px;
         }
         .v2-slide {
           grid-area: slide;
@@ -281,10 +368,10 @@ export default function VideoHero({ onOpenDemo }) {
         }
         .v2-hero-h1 {
           font-family: 'Poppins', sans-serif;
-          font-size: clamp(2rem, 4vw, 3rem);
+          font-size: clamp(2rem, 3.6vw, 2.9rem);
           font-weight: 800;
           color: #0C4A6E;
-          line-height: 1.2;
+          line-height: 1.22;
           letter-spacing: -0.5px;
           display: flex;
           flex-wrap: wrap;
@@ -309,15 +396,6 @@ export default function VideoHero({ onOpenDemo }) {
           background: #F97316;
           flex-shrink: 0;
           box-shadow: 0 0 8px rgba(249,115,22,0.6);
-        }
-
-        /* Sub-headline */
-        .v2-hero-sub {
-          font-size: 1rem;
-          color: #475569;
-          line-height: 1.7;
-          max-width: 540px;
-          margin-bottom: 24px;
         }
 
         /* Badge Animation */
@@ -345,7 +423,7 @@ export default function VideoHero({ onOpenDemo }) {
           display: flex;
           flex-wrap: wrap;
           gap: 12px;
-          margin-bottom: 32px;
+          margin-bottom: 24px;
         }
 
         /* Stats bar */
@@ -356,7 +434,7 @@ export default function VideoHero({ onOpenDemo }) {
           background: #ffffff;
           border: 1px solid #E2E8F0;
           border-radius: 12px;
-          padding: 16px 24px;
+          padding: 14px 20px;
           box-shadow: 0 2px 12px rgba(0,0,0,0.05);
           width: fit-content;
           max-width: 100%;
@@ -372,7 +450,7 @@ export default function VideoHero({ onOpenDemo }) {
         .v2-stat-icon { color: #0EA5E9; flex-shrink: 0; }
         .v2-stat-val {
           display: block;
-          font-size: 1.35rem;
+          font-size: 1.3rem;
           font-weight: 800;
           color: #0C4A6E;
           line-height: 1;
@@ -380,7 +458,7 @@ export default function VideoHero({ onOpenDemo }) {
         }
         .v2-stat-label {
           display: block;
-          font-size: 0.72rem;
+          font-size: 0.7rem;
           font-weight: 600;
           color: #64748B;
           text-transform: uppercase;
@@ -389,110 +467,83 @@ export default function VideoHero({ onOpenDemo }) {
           white-space: nowrap;
         }
         .v2-stat-divider {
-          width: 1px; height: 36px;
+          width: 1px; height: 32px;
           background: #E2E8F0;
           flex-shrink: 0;
         }
 
-        /* RIGHT: Dashboard card */
+        /* ── RIGHT COLUMN: ROTATING HERO SHOWCASE ── */
         .v2-hero-right {
           position: relative;
           display: flex;
           flex-direction: column;
-          align-items: flex-end;
+          align-items: center;
+          width: 100%;
         }
 
-        .v2-dashboard-card {
+        .v2-hero-showcase-card {
           position: relative;
           background: #ffffff;
           border: 1px solid #E2E8F0;
-          border-radius: 24px;
-          box-shadow: 0 20px 50px rgba(12,74,110,0.12);
+          border-radius: 16px;
+          box-shadow: 0 16px 40px rgba(12, 74, 110, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
           overflow: hidden;
           width: 100%;
-          max-width: 480px;
+          cursor: pointer;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .v2-hero-showcase-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 20px 48px rgba(12, 74, 110, 0.16), 0 4px 12px rgba(0, 0, 0, 0.06);
         }
 
-        /* Screen Transitions */
-        .v2-dash-screen-1 {
-          transition: opacity 0.5s ease, transform 0.5s ease;
-          background: #fff;
-          width: 100%;
-        }
-        .v2-dash-screen-1.inactive { opacity: 0; transform: translateX(-20px); pointer-events: none; }
-        .v2-dash-screen-1.active { opacity: 1; transform: translateX(0); pointer-events: auto; }
-        
-        .v2-dash-screen-2 { 
-          position: absolute;
-          top: 0; left: 0; width: 100%; height: 100%;
-          background: #fff;
-          transition: opacity 0.5s ease, transform 0.5s ease;
-          opacity: 0; transform: translateX(20px); pointer-events: none; 
-          z-index: 10;
-        }
-        .v2-dash-screen-2.active { opacity: 1; transform: translateX(0); pointer-events: auto; }
-
-        .v2-back-btn {
-          width: 32px; height: 32px;
-          border-radius: 8px;
-          display: flex; align-items: center; justify-content: center;
-          background: #F1F5F9; color: #475569;
-          transition: all 0.2s;
-        }
-        .v2-back-btn.simulated-btn-hover { background: #E2E8F0; color: #0F172A; }
-        .v2-back-btn.simulated-btn-click { transform: scale(0.9); }
-
-        /* Demo Cursor Animation */
-        .v2-demo-cursor {
-          position: absolute;
-          z-index: 50;
-          pointer-events: none;
-          transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-          top: 110%;
-          left: 90%;
-          opacity: 0;
-          transform: scale(1);
-        }
-        .v2-demo-cursor svg { filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); }
-        
-        .v2-demo-cursor.step-1 { top: 60%; left: 70%; opacity: 1; }
-        .v2-demo-cursor.step-2 { top: 55%; left: 50%; opacity: 1; }
-        .v2-demo-cursor.step-3 { top: 55%; left: 50%; opacity: 1; transform: scale(0.8); }
-        .v2-demo-cursor.step-4 { top: 75%; left: 60%; opacity: 1; }
-        .v2-demo-cursor.step-5 { top: 88%; left: 78%; opacity: 1; }
-        .v2-demo-cursor.step-6 { top: 88%; left: 78%; opacity: 1; transform: scale(0.8); }
-        .v2-demo-cursor.step-7 { top: 88%; left: 78%; opacity: 0; transform: scale(1); }
-        .v2-demo-cursor.step-8 { top: 40%; left: 50%; opacity: 1; transform: scale(1); }
-        .v2-demo-cursor.step-9 { top: 5%; left: 6%; opacity: 1; transform: scale(1); }
-        .v2-demo-cursor.step-10 { top: 5%; left: 6%; opacity: 1; transform: scale(0.8); }
-        .v2-demo-cursor.step-11 { top: 5%; left: 6%; opacity: 0; transform: scale(1); }
-
-        .v2-dash-header {
+        .v2-showcase-browser-bar {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 16px 20px;
-          border-bottom: 1px solid #F1F5F9;
+          padding: 8px 14px;
           background: #F8FAFC;
+          border-bottom: 1px solid #E2E8F0;
         }
-        .v2-dash-title-row {
-          display: flex; align-items: center; gap: 8px;
+        .v2-browser-dots {
+          display: flex;
+          align-items: center;
+          gap: 6px;
         }
-        .v2-dash-dot {
-          width: 9px; height: 9px; border-radius: 50%;
+        .v2-b-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
         }
-        .v2-dash-dot.green { background: #10B981; box-shadow: 0 0 6px #10B981; }
-        .v2-dash-title {
-          font-size: 0.82rem; font-weight: 700; color: #0C4A6E;
+        .v2-b-dot.red { background: #EF4444; }
+        .v2-b-dot.yellow { background: #F59E0B; }
+        .v2-b-dot.green { background: #10B981; }
+
+        .v2-browser-url-pill {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          background: #FFFFFF;
+          border: 1px solid #E2E8F0;
+          padding: 2px 12px;
+          border-radius: 999px;
+          font-size: 0.7rem;
+          color: #64748B;
+          font-weight: 500;
         }
-        .v2-dash-live-badge {
-          display: flex; align-items: center; gap: 5px;
-          background: rgba(16,185,129,0.12);
+
+        .v2-showcase-live-tag {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          background: rgba(16, 185, 129, 0.12);
           color: #059669;
-          font-size: 0.7rem; font-weight: 800;
-          padding: 3px 10px; border-radius: 999px;
-          border: 1px solid rgba(16,185,129,0.3);
-          letter-spacing: 0.5px;
+          font-size: 0.65rem;
+          font-weight: 800;
+          padding: 2px 8px;
+          border-radius: 999px;
+          border: 1px solid rgba(16, 185, 129, 0.3);
+          letter-spacing: 0.4px;
         }
         .blink-dot {
           width: 6px; height: 6px; border-radius: 50%;
@@ -504,161 +555,66 @@ export default function VideoHero({ onOpenDemo }) {
           100%{ opacity: 1; }
         }
 
-        .v2-dash-summary {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 0;
-          padding: 16px 20px;
-          border-bottom: 1px solid #F1F5F9;
-        }
-        .v2-dash-summary-item {
-          display: flex; flex-direction: column; align-items: center; gap: 3px;
-          text-align: center;
-          padding: 0 8px;
-          border-right: 1px solid #F1F5F9;
-        }
-        .v2-dash-summary-item:last-child { border-right: none; }
-        .ds-icon { margin-bottom: 2px; }
-        .ds-icon.orange { color: #F97316; }
-        .ds-icon.blue   { color: #0EA5E9; }
-        .ds-icon.green  { color: #10B981; }
-        .ds-label { font-size: 0.68rem; color: #64748B; font-weight: 500; }
-        .ds-val { font-size: 1.05rem; font-weight: 800; }
-        .ds-val.orange { color: #F97316; }
-        .ds-val.blue   { color: #0EA5E9; }
-        .ds-val.green  { color: #10B981; }
-
-        .v2-dash-table-head {
-          display: grid;
-          grid-template-columns: 1fr auto auto;
-          gap: 12px;
-          padding: 10px 20px;
-          font-size: 0.68rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          color: #94A3B8;
-          border-bottom: 1px solid #F1F5F9;
-          background: #FAFBFC;
-        }
-
-        .v2-dash-scroll-window {
-          max-height: 176px;
-          overflow: hidden;
+        .v2-showcase-stage {
           position: relative;
+          width: 100%;
+          aspect-ratio: 1600 / 792;
+          background: #FFFFFF;
+          overflow: hidden;
+          display: block;
         }
-        .v2-dash-rows {
-          padding: 8px 0;
-          transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .v2-dash-rows.scroll-step-1,
-        .v2-dash-rows.scroll-step-2,
-        .v2-dash-rows.scroll-step-3 {
-          transform: translateY(-44px);
-        }
-        .v2-dash-rows.scroll-step-4,
-        .v2-dash-rows.scroll-step-5,
-        .v2-dash-rows.scroll-step-6,
-        .v2-dash-rows.scroll-step-7 {
-          transform: translateY(-88px);
-        }
-
-        .v2-dash-row {
-          display: grid;
-          grid-template-columns: 1fr auto auto;
-          gap: 12px;
-          align-items: center;
-          padding: 10px 20px;
-          animation: fadeUp 0.42s ease both;
-          transition: background 0.2s, transform 0.1s;
-        }
-        .v2-dash-row:hover, .v2-dash-row.simulated-hover { background: #F1F5F9; }
-        .v2-dash-row.simulated-click { background: #E2E8F0; transform: scale(0.98); }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(8px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .v2-dept-col { display: flex; align-items: center; gap: 9px; }
-        .v2-dept-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-        .v2-dept-name { font-size: 0.8rem; font-weight: 600; color: #0C4A6E; }
-        .v2-rfq-count { font-size: 0.82rem; font-weight: 700; color: #334155; text-align: center; }
-        .v2-savings-tag {
-          font-size: 0.72rem; font-weight: 700;
-          background: rgba(16,185,129,0.1);
-          color: #059669;
-          border: 1px solid rgba(16,185,129,0.25);
-          padding: 2px 8px; border-radius: 6px;
-        }
-
-        .v2-dash-footer {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 14px 20px;
-          border-top: 1px solid #F1F5F9;
-          background: #F8FAFC;
-          gap: 12px;
-        }
-        .v2-dash-footer-text { font-size: 0.72rem; color: #64748B; font-weight: 500; }
-        .v2-dash-action { 
-          font-size: 0.75rem; 
-          padding: 6px 14px; 
-          transition: all 0.2s; 
-        }
-        .v2-dash-action.simulated-btn-hover {
-          background: #EA6C00;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(249, 115, 22, 0.45);
-        }
-        .v2-dash-action.simulated-btn-click {
-          transform: translateY(-1px);
-          background: #CC5A00;
-        }
-
-        /* Floating accent card */
-        .v2-float-card {
+        .v2-showcase-slide {
           position: absolute;
-          bottom: -20px;
-          left: -20px;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          background: #0C4A6E;
-          color: #fff;
-          padding: 14px 18px;
-          border-radius: 16px;
-          box-shadow: 0 12px 30px rgba(12,74,110,0.28);
-          animation: floatY 3.5s ease-in-out infinite alternate;
-          transition: opacity 0.5s ease;
-        }
-        .v2-float-card.inactive {
+          inset: 0;
           opacity: 0;
+          transition: opacity 0.5s ease;
           pointer-events: none;
         }
-        @keyframes floatY {
-          0%   { transform: translateY(0px); }
-          100% { transform: translateY(-8px); }
+        .v2-showcase-slide.active {
+          opacity: 1;
+          pointer-events: auto;
         }
-        .fc-icon { color: #F97316; flex-shrink: 0; }
-        .fc-val { font-size: 1.05rem; font-weight: 800; color: #fff; line-height: 1.1; }
-        .fc-label { font-size: 0.7rem; color: rgba(255,255,255,0.7); font-weight: 500; }
+        .v2-showcase-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          background: #ffffff;
+        }
+
+        .v2-showcase-dots {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          margin-top: 14px;
+        }
+        .v2-showcase-dot-btn {
+          width: 8px;
+          height: 8px;
+          border-radius: 999px;
+          background: #CBD5E1;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        .v2-showcase-dot-btn.active {
+          width: 24px;
+          background: #F97316;
+        }
 
         /* ── Responsive ── */
-        @media (max-width: 900px) {
+        @media (max-width: 960px) {
           .v2-hero-grid {
             grid-template-columns: 1fr;
+            gap: 2.2rem;
           }
           .v2-hero-right {
-            align-items: center;
-            margin-top: 32px;
+            max-width: 600px;
+            margin: 0 auto;
           }
-          .v2-float-card {
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -28px;
-          }
-          .v2-headline-stage { min-height: 160px; }
+          .v2-headline-stage { min-height: 140px; }
           .v2-stats-bar { width: 100%; justify-content: space-around; }
           .v2-stat { padding: 0 12px; }
         }

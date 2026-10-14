@@ -93,8 +93,9 @@ export default function ConsultingSection({ onOpenDemo }) {
             Get the visibility of your procurement savings within 24-48 hours <br />
             <span style={{ color: '#F97316', fontStyle: 'italic' }}>executed by industry experts</span>
           </h2>
-          <p className="v2-section-desc">
+          <p className="v2-section-desc" style={{ maxWidth: '820px', margin: '0 auto 36px', textAlign: 'center', lineHeight: '1.65' }}>
             Our consultants work inside your procurement process to find savings and lock them in.
+            <br />
             With our gain-share model there is no upfront fee — we earn only when the savings are realised.
           </p>
         </div>

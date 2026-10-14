@@ -5,6 +5,7 @@ export default function TeamSection() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
   const [expanded, setExpanded] = useState({});
+  const [expandedAdvisors, setExpandedAdvisors] = useState({});
 
   const leadership = [
     {
@@ -94,6 +95,76 @@ export default function TeamSection() {
     },
   ];
 
+  /* Strategic Advisory Board */
+  const advisors = [
+    {
+      name: 'Dr. Pradeep Pendse',
+      role: 'Strategic Technology Advisor',
+      initials: 'PP',
+      photo: '/Dr. Pradeep Pendse.webp',
+      tags: ['Strategic Advisor', 'CTO & Director – WeSchool', 'President – IIBA Mumbai'],
+      shortBio: 'In-charge Director (University Programs) & CTO at Welingkar Institute of Management (WeSchool). Instrumental in laying the technology foundation for Procucev.',
+      fullBio: [
+        'Dr. Pradeep Pendse has been instrumental in laying the foundation for Procucev and its underlying enterprise architecture.',
+        'He serves as the In-Charge Director (University Programs) and Chief Technology Officer (CTO) at the Prin. L.N. Welingkar Institute of Management Development and Research (WeSchool), Mumbai.',
+        'A pioneer of the Business Analysis movement in India and President of the IIBA Mumbai Chapter, he specializes in Emerging Technologies, Digital Transformation, and Design Thinking.',
+        'Dr. Pendse is a seasoned tech entrepreneur, PhD holder, and enterprise mentor guiding next-generation enterprise SaaS systems.'
+      ],
+      highlights: [
+        { icon: <Award size={14} />, text: 'CTO & Director – WeSchool Mumbai' },
+        { icon: <Briefcase size={14} />, text: 'President – IIBA Mumbai Chapter' },
+        { icon: <Zap size={14} />, text: 'Pioneer in Business Analysis & IT' },
+        { icon: <GraduationCap size={14} />, text: 'PhD – Tech Enterprise Mentor' },
+      ],
+      accentColor: '#0EA5E9',
+      gradient: 'linear-gradient(135deg, #0EA5E9, #0284C7)',
+    },
+    {
+      name: 'Mr. Venu Juvvala',
+      role: 'Enterprise Strategy & GTM Advisor',
+      initials: 'VJ',
+      photo: '/Mr.Venu-Juvvala.webp',
+      tags: ['Enterprise Advisor', 'Head – Adobe India', 'Ex-Director – IBM Cloud'],
+      shortBio: 'Technology industry leader and IIM Bangalore alumnus. Head of Digital Experience Business for India at Adobe, with former senior leadership at IBM, Salesforce, and Lenovo.',
+      fullBio: [
+        'Venu Juvvala is an accomplished technology executive with decades of experience leading enterprise software, cloud, and digital business units.',
+        'He currently serves as the Head of Digital Experience Business for India at Adobe, and previously held senior leadership roles including Director of Enterprise Business & Cloud Services at IBM.',
+        'He also held strategic executive positions at Salesforce and Lenovo, bringing proven mastery in B2B software scaling and client success.',
+        'An alumnus of IIM Bangalore, he advises Procucev on enterprise market expansion, go-to-market execution, and high-velocity SaaS partnerships.'
+      ],
+      highlights: [
+        { icon: <Briefcase size={14} />, text: 'Head – Digital Experience, Adobe India' },
+        { icon: <Award size={14} />, text: 'Ex-Director Enterprise & Cloud, IBM' },
+        { icon: <GraduationCap size={14} />, text: 'Alumnus – IIM Bangalore' },
+        { icon: <Users size={14} />, text: '25+ Yrs Enterprise Tech Leadership' },
+      ],
+      accentColor: '#F97316',
+      gradient: 'linear-gradient(135deg, #F97316, #EA580C)',
+    },
+    {
+      name: 'Mr. Vasanth Kumar',
+      role: 'Senior Advisor & Retail Strategist',
+      initials: 'VK',
+      photo: '/Mr.-Vasanth-Kumar.webp',
+      tags: ['Senior Advisor', 'Ex-MD – Landmark Group India', 'Advisor – Samara Capital'],
+      shortBio: 'Distinguished retail icon and angel investor. Former Managing Director of Landmark Group India; built Max Fashion India from inception and launched Peter England.',
+      fullBio: [
+        'M. Vasanth Kumar is a distinguished business leader and angel investor, instrumental in shaping Procucev’s strategic commercial vision and supply chain scale.',
+        'He previously served as the Managing Director of Landmark Group India, where he built Max Fashion India from inception into a multi-thousand crore retail powerhouse.',
+        'Earlier in his career, he established the Peter England brand in India, creating one of the country’s most recognizable apparel franchises.',
+        'He currently serves as a Senior Advisor at Samara Capital, offering unmatched insights into large-scale vendor ecosystems and procurement operations.'
+      ],
+      highlights: [
+        { icon: <Briefcase size={14} />, text: 'Ex-MD – Landmark Group India' },
+        { icon: <Award size={14} />, text: 'Senior Advisor – Samara Capital' },
+        { icon: <Zap size={14} />, text: 'Built Max Fashion India & Peter England' },
+        { icon: <Users size={14} />, text: 'Retail & Enterprise Commercial Icon' },
+      ],
+      accentColor: '#059669',
+      gradient: 'linear-gradient(135deg, #059669, #047857)',
+    },
+  ];
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 680) {
@@ -129,6 +200,10 @@ export default function TeamSection() {
     setExpanded(prev => ({ ...prev, [idx]: !prev[idx] }));
   };
 
+  const toggleExpandAdvisor = (idx) => {
+    setExpandedAdvisors(prev => ({ ...prev, [idx]: !prev[idx] }));
+  };
+
   // Calculate sliding transform
   const getTransform = () => {
     if (visibleCount === 3) {
@@ -155,6 +230,7 @@ export default function TeamSection() {
           </h2>
           <p className="v2-section-desc">
             Our leadership brings experience from ISRO, Landmark Group, IIM, and decades of enterprise
+            <br />
             procurement and technology — combining deep domain expertise with a passion for growth.
           </p>
         </div>
@@ -291,6 +367,110 @@ export default function TeamSection() {
             ))}
           </div>
         )}
+
+        {/* ── Strategic Advisory Board (Below Founding Members) ── */}
+        <div className="v2-advisory-section">
+          <div className="v2-section-header text-center">
+            <div className="badge-tag-pill advisory-pill">
+              <Award size={14} style={{ color: '#0EA5E9' }} /> Strategic Advisory Board
+            </div>
+            <h3 className="v2-advisory-title">
+              Guided by Industry Veterans &amp; Tech Pioneers
+            </h3>
+            <p className="v2-section-desc">
+              Our advisory board provides strategic counsel across enterprise architecture,
+              <br />
+              global market expansion, and large-scale retail procurement operations.
+            </p>
+          </div>
+
+          <div className="advisory-grid">
+            {advisors.map((advisor, idx) => {
+              const isExpanded = !!expandedAdvisors[idx];
+              return (
+                <div
+                  className="advisory-card"
+                  key={idx}
+                  style={{ '--accent': advisor.accentColor }}
+                >
+                  {/* Header: Avatar, Name & Role */}
+                  <div className="founder-header" style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '16px' }}>
+                    <div className="founder-avatar-box" style={{ background: advisor.gradient, marginBottom: 0 }}>
+                      {advisor.photo ? (
+                        <img
+                          src={advisor.photo}
+                          alt={advisor.name}
+                          className="founder-avatar-img"
+                        />
+                      ) : (
+                        <span className="founder-avatar-initials">{advisor.initials}</span>
+                      )}
+                    </div>
+
+                    <div className="founder-name-role">
+                      <h4 className="founder-name">{advisor.name}</h4>
+                      <div className="founder-role" style={{ color: advisor.accentColor, marginBottom: 0 }}>{advisor.role}</div>
+                    </div>
+                  </div>
+
+                  {/* Tags */}
+                  <div className="founder-tags">
+                    {advisor.tags.map((tag, ti) => (
+                      <span
+                        key={ti}
+                        className="founder-tag"
+                        style={{
+                          background: `${advisor.accentColor}12`,
+                          color: advisor.accentColor,
+                          borderColor: `${advisor.accentColor}30`,
+                        }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Key Highlights */}
+                  <div className="founder-highlights">
+                    {advisor.highlights.map((h, hi) => (
+                      <div key={hi} className="founder-hl-item">
+                        <span className="founder-hl-icon" style={{ color: advisor.accentColor }}>
+                          {h.icon}
+                        </span>
+                        <span className="founder-hl-text">{h.text}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Bio */}
+                  <div className="founder-bio-box">
+                    <p className="founder-bio-text">{advisor.shortBio}</p>
+                    {isExpanded && (
+                      <div className="founder-bio-expanded">
+                        {advisor.fullBio.slice(1).map((para, pi) => (
+                          <p key={pi} className="founder-bio-text" style={{ marginTop: '8px' }}>
+                            {para}
+                          </p>
+                        ))}
+                      </div>
+                    )}
+                    <button
+                      className="founder-bio-toggle"
+                      onClick={() => toggleExpandAdvisor(idx)}
+                      style={{ color: advisor.accentColor }}
+                    >
+                      {isExpanded ? (
+                        <>Read Less <ChevronUp size={14} /></>
+                      ) : (
+                        <>Read Full Bio <ChevronDown size={14} /></>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
       </div>
 
@@ -567,6 +747,53 @@ export default function TeamSection() {
           background: #0EA5E9;
         }
 
+        /* ── Strategic Advisory Board Styling ── */
+        .v2-advisory-section {
+          margin-top: 64px;
+          padding-top: 56px;
+          border-top: 1px solid #E2E8F0;
+        }
+
+        .advisory-pill {
+          background: rgba(14, 165, 233, 0.08);
+          color: #0284C7;
+          border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+
+        .v2-advisory-title {
+          font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+          font-weight: 800;
+          color: #0C4A6E;
+          line-height: 1.3;
+          margin-bottom: 12px;
+        }
+
+        .advisory-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .advisory-card {
+          background: #FFFFFF;
+          border: 1px solid #E2E8F0;
+          border-top: 4px solid var(--accent);
+          border-radius: 18px;
+          box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.06);
+          padding: 26px 22px;
+          display: flex;
+          flex-direction: column;
+          box-sizing: border-box;
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .advisory-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.1);
+        }
+
         /* Responsive Breakpoints */
         @media (max-width: 1024px) {
           .team-founder-card {
@@ -574,6 +801,10 @@ export default function TeamSection() {
             width: calc((100% - 20px) / 2);
           }
           .team-carousel-track {
+            gap: 20px;
+          }
+          .advisory-grid {
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
           }
         }
@@ -594,6 +825,10 @@ export default function TeamSection() {
           }
           .team-nav-arrow.next {
             right: -10px;
+          }
+          .advisory-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
           }
         }
       `}</style>
