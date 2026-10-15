@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.zip
+extract_docx.ps1
+extracted_docx_content.txt
