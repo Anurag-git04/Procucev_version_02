@@ -597,11 +597,7 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
           padding-bottom: 60px;
         }
 
-        .container {
-          max-width: 1240px;
-          margin: 0 auto;
-          padding: 0 24px;
-        }
+
 
         /* Hero */
         .v2-dps-hero {

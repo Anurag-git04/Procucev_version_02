@@ -198,6 +198,11 @@ export default function Navbar({ onOpenDemo, currentRoute = "/", onNavigate }) {
           gap: 16px;
           padding-top: 14px;
           padding-bottom: 14px;
+          max-width: 1280px;
+          width: 100%;
+          margin: 0 auto;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
         }
 
         /* Brand */
