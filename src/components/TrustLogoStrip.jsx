@@ -2,15 +2,28 @@ import React from 'react';
 
 export default function TrustLogoStrip() {
   const clientBrands = [
-    { name: "THIRD WAVE COFFEE", tag: "Coffee & Beverage" },
-    { name: "HDB FINANCIAL SERVICES", tag: "Financial Services" },
-    { name: "THALAPPAKATTI RESTAURANT", tag: "Food & Hospitality" },
+    { name: "DR. REDDY'S", tag: "Pharmaceuticals" },
     { name: "SPENCER'S", tag: "Retail & Hypermarket" },
     { name: "ARVIND FASHIONS", tag: "Apparel & Brands" },
-    { name: "ENAMOR", tag: "Consumer Brands" },
+    { name: "BOROSIL", tag: "Consumerware & Glass" },
+    { name: "FLYING MACHINE", tag: "Denim & Apparel" },
+    { name: "LIVSPACE", tag: "Home Interiors" },
+    { name: "AGS TRANSACT", tag: "Payment Solutions" },
+    { name: "THIRD WAVE COFFEE", tag: "Coffee & Beverage" },
+    { name: "WAAREE ENERGIES", tag: "Solar & Clean Energy" },
+    { name: "HOMELANE", tag: "Home Interiors" },
+    { name: "VIRAJ PROFILES", tag: "Stainless Steel & Manufacturing" },
     { name: "MUTHOOT FINANCE", tag: "Banking & NBFC" },
-    { name: "AB MAURI", tag: "Baking & Ingredients" },
-    { name: "HOMELANE", tag: "Home Interiors" }
+    { name: "KESORAM", tag: "Cement & Heavy Industry" },
+    { name: "ENAMOR", tag: "Consumer Brands" },
+    { name: "MODENIK LIFESTYLE", tag: "Apparel & Fashion" },
+    { name: "THALAPPAKATTI RESTAURANT", tag: "Food & Hospitality" },
+    { name: "NIRANI SUGARS", tag: "Sugar & Biofuels" },
+    { name: "HDB FINANCIAL SERVICES", tag: "Financial Services" },
+    { name: "SHIVA SHAKTHI", tag: "Agritech & Farming" },
+    { name: "ROBO SILICON", tag: "Construction & Sand" },
+    { name: "MAHAJAN & AIBARA", tag: "Advisory & Consulting" },
+    { name: "AB MAURI", tag: "Baking & Ingredients" }
   ];
 
   return (

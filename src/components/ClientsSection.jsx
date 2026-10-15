@@ -3,15 +3,28 @@ import { Building2, Quote } from 'lucide-react';
 
 export default function ClientsSection() {
   const clients = [
-    'Third Wave Coffee',
-    'HDB Financial Services',
-    'Thalappakatti Restaurant',
+    "Dr. Reddy's",
     "Spencer's",
     'Arvind Fashions',
-    'Enamor',
-    'Muthoot Finance',
-    'AB Mauri',
+    'Borosil',
+    'Flying Machine',
+    'Livspace',
+    'AGS Transact',
+    'Third Wave Coffee',
+    'Waaree Energies',
     'HomeLane',
+    'Viraj Profiles',
+    'Muthoot Finance',
+    'Kesoram',
+    'Enamor',
+    'Modenik Lifestyle',
+    'Thalappakatti Restaurant',
+    'Nirani Sugars',
+    'HDB Financial Services',
+    'Shiva Shakthi',
+    'Robo Silicon',
+    'Mahajan & Aibara',
+    'AB Mauri',
   ];
 
   const industries = [
