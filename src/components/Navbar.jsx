@@ -113,7 +113,7 @@ export default function Navbar({ onOpenDemo, currentRoute = "/", onNavigate }) {
         {/* CTA + Hamburger */}
         <div className="v2-nav-actions">
           <button
-            className="btn btn-primary v2-nav-cta"
+            className="btn btn-blue v2-nav-cta"
             onClick={onOpenDemo}
             id="nav-rfq-btn"
           >
@@ -154,7 +154,7 @@ export default function Navbar({ onOpenDemo, currentRoute = "/", onNavigate }) {
             );
           })}
           <button
-            className="btn btn-primary"
+            className="btn btn-blue"
             style={{ marginTop: "8px" }}
             onClick={() => {
               setMobileOpen(false);

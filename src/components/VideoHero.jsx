@@ -199,11 +199,11 @@ export default function VideoHero({ onOpenDemo }) {
 
           {/* CTAs */}
           <div className="v2-hero-ctas">
-            <button className="btn btn-primary btn-lg" onClick={onOpenDemo} id="hero-rfq-btn">
+            <button className="btn btn-blue btn-lg" onClick={onOpenDemo} id="hero-rfq-btn">
               Raise an RFQ, it's free <ArrowUpRight size={18} />
             </button>
-            <button className="btn btn-ghost btn-lg" onClick={onOpenDemo} id="hero-supplier-btn">
-              Become a Supplier
+            <button className="btn btn-orange btn-lg" onClick={onOpenDemo} id="hero-supplier-btn">
+              Become a Seller <ArrowUpRight size={18} />
             </button>
           </div>
 

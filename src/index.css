@@ -162,33 +162,56 @@ p {
 }
 
 /* Primary: Orange CTA */
-.btn-primary {
+.btn-primary,
+.btn-orange,
+.btn-seller,
+.btn-supplier {
   background: var(--color-orange);
-  color: var(--color-white);
+  color: var(--color-white) !important;
   box-shadow: 0 4px 18px rgba(249, 115, 22, 0.35);
+  border: none;
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-orange:hover,
+.btn-seller:hover,
+.btn-supplier:hover {
   background: var(--color-orange-hover);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(249, 115, 22, 0.45);
+  color: var(--color-white) !important;
 }
 
-.btn-primary:active {
+.btn-primary:active,
+.btn-orange:active,
+.btn-seller:active,
+.btn-supplier:active {
   transform: translateY(-1px);
 }
 
-/* Secondary: Sky-Blue */
-.btn-secondary {
-  background: var(--color-primary);
-  color: var(--color-white);
-  box-shadow: 0 4px 18px rgba(14, 165, 233, 0.30);
+/* Brand Blue CTA: Raise an RFQ (Matches Procucev Logo Blue) */
+.btn-secondary,
+.btn-blue,
+.btn-rfq {
+  background: #0284C7;
+  color: var(--color-white) !important;
+  box-shadow: 0 4px 18px rgba(2, 132, 199, 0.35);
+  border: none;
 }
 
-.btn-secondary:hover {
-  background: var(--color-primary-hover);
+.btn-secondary:hover,
+.btn-blue:hover,
+.btn-rfq:hover {
+  background: #0369A1;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.40);
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.45);
+  color: var(--color-white) !important;
+}
+
+.btn-secondary:active,
+.btn-blue:active,
+.btn-rfq:active {
+  transform: translateY(-1px);
 }
 
 /* Ghost / Outline */

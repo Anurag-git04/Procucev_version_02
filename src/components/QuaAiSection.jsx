@@ -63,7 +63,7 @@ export default function QuaAiSection({ onOpenDemo }) {
                 and compare them on price, delivery and terms.
               </p>
               <div className="qua-card-actions">
-                <button onClick={onOpenDemo} className="btn btn-secondary" id="buyer-rfq-btn">
+                <button onClick={onOpenDemo} className="btn btn-blue" id="buyer-rfq-btn">
                   I'm a Buyer: Raise an RFQ <ArrowRight size={16} />
                 </button>
                 <a href="mailto:info@procucev.com" className="btn btn-email-link" id="buyer-email-btn">
@@ -73,15 +73,15 @@ export default function QuaAiSection({ onOpenDemo }) {
             </div>
 
             <div className="qua-role-card" style={{ borderTop: '3px solid #F97316' }}>
-              <span className="qua-badge orange" style={{ marginBottom: '12px' }}>For Suppliers</span>
+              <span className="qua-badge orange" style={{ marginBottom: '12px' }}>For Sellers & Suppliers</span>
               <h3 className="qua-role-h" style={{ textTransform: 'none' }}>Verified High-Intent Leads</h3>
               <p className="qua-role-p">
                 Get real buyer RFQs in your category. Buy credit packs to download
                 RFQs and send your quote. Clear idle stock through BFS.
               </p>
               <div className="qua-card-actions">
-                <button onClick={onOpenDemo} className="btn btn-primary" id="supplier-join-btn">
-                  I'm a Supplier: Join Qua AI <ArrowRight size={16} />
+                <button onClick={onOpenDemo} className="btn btn-orange" id="supplier-join-btn">
+                  I'm a Seller: Join Qua AI <ArrowRight size={16} />
                 </button>
                 <a
                   href="https://wa.me/917090170801"
