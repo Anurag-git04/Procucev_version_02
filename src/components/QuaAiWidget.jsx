@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Send, Sparkles, ChevronUp, CheckCircle2 } from 'lucide-react';
 
 export default function QuaAiWidget({ onOpenDemo }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [bottomOffset, setBottomOffset] = useState(24);
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -18,6 +19,60 @@ export default function QuaAiWidget({ onOpenDemo }) {
     "What is the average savings ROI?",
     "Book a platform demo"
   ];
+
+  useEffect(() => {
+    let ticking = false;
+
+    const checkFooterOverlap = () => {
+      // Find the footer bar or footer container on the page
+      const footer =
+        document.querySelector('.v2-bottom-bar') ||
+        document.querySelector('.v2-footer') ||
+        document.querySelector('footer');
+
+      if (!footer) {
+        setBottomOffset(24);
+        return;
+      }
+
+      const rect = footer.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // If the top of the footer has entered the visible viewport
+      if (rect.top < viewportHeight) {
+        const visibleFooterHeight = viewportHeight - rect.top;
+        // Position comfortably above the footer with padding
+        setBottomOffset(Math.max(24, Math.round(visibleFooterHeight + 16)));
+      } else {
+        setBottomOffset(24);
+      }
+    };
+
+    const onScrollOrResize = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          checkFooterOverlap();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize, { passive: true });
+
+    // Initial check on mount
+    checkFooterOverlap();
+
+    // Re-check after slight delay in case content finishes rendering
+    const timer = setTimeout(checkFooterOverlap, 300);
+
+    return () => {
+      window.removeEventListener('scroll', onScrollOrResize);
+      window.removeEventListener('resize', onScrollOrResize);
+      clearTimeout(timer);
+    };
+  }, []);
 
   const handleSend = (textToSend) => {
     const query = textToSend || input;
@@ -55,7 +110,13 @@ export default function QuaAiWidget({ onOpenDemo }) {
   };
 
   return (
-    <div className="v2-qua-widget-container">
+    <div
+      className="v2-qua-widget-container"
+      style={{
+        bottom: `${bottomOffset}px`,
+        transition: 'bottom 0.18s cubic-bezier(0.2, 0, 0, 1)',
+      }}
+    >
       
       {/* Expanded Chat Drawer */}
       {isOpen && (
@@ -164,7 +225,6 @@ export default function QuaAiWidget({ onOpenDemo }) {
       <style>{`
         .v2-qua-widget-container {
           position: fixed;
-          bottom: 24px;
           right: 24px;
           z-index: 9999;
           display: flex;
@@ -181,6 +241,7 @@ export default function QuaAiWidget({ onOpenDemo }) {
           border-radius: 20px;
           box-shadow: 0 24px 60px rgba(12, 74, 110, 0.20);
           width: 360px;
+          max-height: calc(100vh - 120px);
           overflow: hidden;
           margin-bottom: 12px;
           animation: slideUp 0.25s cubic-bezier(0.4, 0, 0.2, 1);

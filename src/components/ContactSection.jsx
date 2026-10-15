@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, MapPin, Send, CheckCircle2, ShieldCheck, MessageCircle, ExternalLink } from 'lucide-react';
 
-export default function ContactSection() {
+export default function ContactSection({ onNavigate }) {
   const [formData, setFormData] = useState({
     name: '', email: '', phone: '', company: '', roleType: 'Buyer', message: '',
   });
@@ -210,9 +210,27 @@ export default function ContactSection() {
         <div className="container v2-bottom-inner">
           <span>© 2026 Procucev Enterprise Solutions Pvt Ltd. All rights reserved.</span>
           <div className="v2-bottom-links">
-            <a href="#">Privacy Policy</a>
+            <a
+              href="/privacy-policy"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigate) onNavigate("/privacy-policy");
+                else window.location.href = "/privacy-policy";
+              }}
+            >
+              Privacy Policy
+            </a>
             <span>·</span>
-            <a href="#">Terms of Service</a>
+            <a
+              href="/privacy-policy#terms"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigate) onNavigate("/privacy-policy", "#preamble");
+                else window.location.href = "/privacy-policy#preamble";
+              }}
+            >
+              Terms of Service
+            </a>
           </div>
         </div>
       </footer>

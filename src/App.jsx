@@ -12,6 +12,7 @@ import QuaAiWidget from "./components/QuaAiWidget";
 import DemoModal from "./components/DemoModal";
 import DigitalProcurementPage from "./components/DigitalProcurementPage";
 import ProCpxPage from "./components/ProCpxPage";
+import PrivacyPolicyPage from "./components/PrivacyPolicyPage";
 
 export default function App() {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
@@ -32,6 +33,14 @@ export default function App() {
       hash === "#procpx"
     ) {
       return "/capex-procurement";
+    }
+    if (
+      path.includes("privacy-policy") ||
+      hash.includes("privacy-policy") ||
+      hash === "#privacy" ||
+      hash === "#terms"
+    ) {
+      return "/privacy-policy";
     }
     return "/";
   };
@@ -54,6 +63,13 @@ export default function App() {
         hash === "#procpx"
       ) {
         setCurrentRoute("/capex-procurement");
+      } else if (
+        path.includes("privacy-policy") ||
+        hash.includes("privacy-policy") ||
+        hash === "#privacy" ||
+        hash === "#terms"
+      ) {
+        setCurrentRoute("/privacy-policy");
       } else {
         setCurrentRoute("/");
       }
@@ -98,6 +114,11 @@ export default function App() {
 
     if (currentRoute === "/capex-procurement") {
       document.title = "proCPX | Capex Procurement Platform - Procucev";
+      return;
+    }
+
+    if (currentRoute === "/privacy-policy") {
+      document.title = "Privacy Policy & Disclaimer | Procucev";
       return;
     }
 
@@ -156,6 +177,19 @@ export default function App() {
       window.history.pushState(null, "", "/capex-procurement");
       setCurrentRoute("/capex-procurement");
       window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (route === "/privacy-policy") {
+      window.history.pushState(null, "", "/privacy-policy" + (hashTarget || ""));
+      setCurrentRoute("/privacy-policy");
+      if (hashTarget) {
+        setTimeout(() => {
+          const el = document.querySelector(hashTarget);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 60);
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     } else {
       window.history.pushState(null, "", route + (hashTarget || ""));
       setCurrentRoute("/");
@@ -205,6 +239,12 @@ export default function App() {
           onOpenDemo={handleOpenDemo}
           onNavigateHome={() => navigateTo("/")}
         />
+      ) : currentRoute === "/privacy-policy" ? (
+        /* Dedicated Privacy Policy & Service Disclaimer Page */
+        <PrivacyPolicyPage
+          onOpenDemo={handleOpenDemo}
+          onNavigateHome={() => navigateTo("/")}
+        />
       ) : (
         /* Standard Landing Page Sections */
         <>
@@ -232,7 +272,7 @@ export default function App() {
       )}
 
       {/* Section 8: Contact us (#contact) - Enquiry Form, Details & Footer (Shown on all pages) */}
-      <ContactSection />
+      <ContactSection onNavigate={navigateTo} />
 
       {/* Floating QUA AI Assistant */}
       <QuaAiWidget onOpenDemo={handleOpenDemo} />

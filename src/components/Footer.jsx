@@ -109,10 +109,10 @@ export default function Footer({ onOpenDemo }) {
             </span>
           </div>
           <div className="v2-fb-mid">
-            <a href="#">Security</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Cookie Settings</a>
+            <a href="/privacy-policy#data-security">Security</a>
+            <a href="/privacy-policy#preamble">Terms of Service</a>
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/privacy-policy#cookies">Cookie Settings</a>
           </div>
           <div className="v2-fb-right">
             <a href="#" className="v2-social-btn" aria-label="Website"><Globe size={15} /></a>
