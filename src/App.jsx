@@ -78,7 +78,7 @@ export default function App() {
         document.head.appendChild(iconLink);
       }
       iconLink.type = "image/svg+xml";
-      iconLink.href = "/favicon.svg";
+      iconLink.href = "/favicon1.svg";
 
       let appleIcon = document.querySelector("link[rel='apple-touch-icon']");
       if (!appleIcon) {
@@ -86,7 +86,7 @@ export default function App() {
         appleIcon.rel = "apple-touch-icon";
         document.head.appendChild(appleIcon);
       }
-      appleIcon.href = "/favicon.svg";
+      appleIcon.href = "/favicon1.svg";
     };
 
     updateFavicon();
