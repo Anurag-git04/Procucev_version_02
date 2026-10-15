@@ -67,6 +67,86 @@ export default function App() {
     };
   }, []);
 
+  /* Synchronize browser tab title and favicon dynamically across pages and sections */
+  useEffect(() => {
+    // Ensure favicon is set to /favicon.svg
+    const updateFavicon = () => {
+      let iconLink = document.querySelector("link[rel~='icon']");
+      if (!iconLink) {
+        iconLink = document.createElement("link");
+        iconLink.rel = "icon";
+        document.head.appendChild(iconLink);
+      }
+      iconLink.type = "image/svg+xml";
+      iconLink.href = "/favicon.svg";
+
+      let appleIcon = document.querySelector("link[rel='apple-touch-icon']");
+      if (!appleIcon) {
+        appleIcon = document.createElement("link");
+        appleIcon.rel = "apple-touch-icon";
+        document.head.appendChild(appleIcon);
+      }
+      appleIcon.href = "/favicon.svg";
+    };
+
+    updateFavicon();
+
+    if (currentRoute === "/digital-procurement-services") {
+      document.title = "DPSNXT | Digital Procurement Services - Procucev";
+      return;
+    }
+
+    if (currentRoute === "/capex-procurement") {
+      document.title = "proCPX | Capex Procurement Platform - Procucev";
+      return;
+    }
+
+    // On Home route ("/")
+    const sectionTitles = {
+      home: "Procucev | Redefining Procurement",
+      about: "About Us | Procucev - Redefining Procurement",
+      "qua-ai": "Qua AI | Autonomous RFQ Engine - Procucev",
+      "equa-ai": "eQua AI | Enterprise AI Platform - Procucev",
+      consulting: "aicev Consulting | Strategic Procurement - Procucev",
+      team: "Leadership & Advisory | Procucev",
+      contact: "Contact Us | Procucev - Redefining Procurement",
+    };
+
+    const updateTitleFromHashOrScroll = () => {
+      const hash = window.location.hash.replace("#", "").toLowerCase();
+      if (hash && sectionTitles[hash]) {
+        document.title = sectionTitles[hash];
+        return;
+      }
+
+      // Check which section is currently in view
+      const sections = ["contact", "team", "consulting", "equa-ai", "qua-ai", "about", "home"];
+      const scrollPos = window.scrollY + 250;
+
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPos >= top) {
+            document.title = sectionTitles[id] || "Procucev | Redefining Procurement";
+            return;
+          }
+        }
+      }
+      document.title = "Procucev | Redefining Procurement";
+    };
+
+    updateTitleFromHashOrScroll();
+
+    window.addEventListener("scroll", updateTitleFromHashOrScroll, { passive: true });
+    window.addEventListener("hashchange", updateTitleFromHashOrScroll);
+
+    return () => {
+      window.removeEventListener("scroll", updateTitleFromHashOrScroll);
+      window.removeEventListener("hashchange", updateTitleFromHashOrScroll);
+    };
+  }, [currentRoute]);
+
   const navigateTo = (route, hashTarget = null) => {
     if (route === "/digital-procurement-services") {
       window.history.pushState(null, "", "/digital-procurement-services");

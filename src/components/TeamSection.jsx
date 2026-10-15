@@ -77,16 +77,16 @@ export default function TeamSection() {
       role: 'Head of IT',
       initials: 'AG',
       photo: '/Anshul.png',
-      tags: ['IT Strategy', 'Tech Infrastructure', 'Digital Transformation'],
-      shortBio: 'Leads IT strategy and technology initiatives, focusing on reliable systems, scalable infrastructure, and digital solutions aligned with business objectives.',
+      tags: ['IIT Bombay', 'IT Strategy', 'Tech Infrastructure', 'Digital Transformation'],
+      shortBio: 'IIT Bombay alumnus and Ex-SAP Labs technologist leading IT strategy, reliable systems, scalable infrastructure, and enterprise digital solutions.',
       fullBio: [
         'Leads IT strategy and technology initiatives, focusing on reliable systems, scalable infrastructure, and digital solutions aligned with business objectives.',
-        'Builds secure, efficient technology environments that support organizational growth and smooth day-to-day operations.',
+        'An alumnus of IIT Bombay with prior experience at SAP Labs, building secure, efficient enterprise technology environments that support rapid organizational growth.',
         'Expertise across enterprise IT systems, infrastructure management, data protection, and process automation.'
       ],
       highlights: [
         { icon: <Briefcase size={14} />, text: 'IT Operations & Infrastructure' },
-        { icon: <Zap size={14} />, text: 'Technology Strategy' },
+        { icon: <Briefcase size={14} />, text: 'Ex-SAP Labs' },
         { icon: <Award size={14} />, text: 'Systems Reliability & Security' },
         { icon: <GraduationCap size={14} />, text: 'Digital Solutions & Automation' },
       ],
@@ -229,7 +229,7 @@ export default function TeamSection() {
             <span style={{ color: '#F97316', fontStyle: 'italic' }}>procurement technology</span>
           </h2>
           <p className="v2-section-desc" style={{ maxWidth: '860px', margin: '0 auto 46px', textAlign: 'center', lineHeight: '1.65' }}>
-            Our leadership brings experience from ISRO, Landmark Group, IIM, and decades of enterprise
+            Our leadership brings experience from ISRO, Landmark Group, IIM, IIT and decades of enterprise
             <br className="desc-break" />
             procurement and technology — combining deep domain expertise with a passion for growth.
           </p>
