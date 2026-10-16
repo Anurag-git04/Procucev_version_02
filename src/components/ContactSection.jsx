@@ -1,15 +1,85 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle2, ShieldCheck, MessageCircle, ExternalLink } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, ShieldCheck, MessageCircle, ExternalLink, Loader2, AlertCircle } from 'lucide-react';
 
 export default function ContactSection({ onNavigate }) {
   const [formData, setFormData] = useState({
     name: '', email: '', phone: '', company: '', roleType: 'Buyer', message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [botcheck, setBotcheck] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setErrorMessage(null);
+
+    // Spam honeypot: silently discard if bot filled hidden field
+    if (botcheck) {
+      setSubmitted(true);
+      return;
+    }
+
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+    if (!accessKey || accessKey === 'your_web3forms_access_key_here') {
+      setErrorMessage(
+        'Web3Forms Access Key is not configured. Please add VITE_WEB3FORMS_ACCESS_KEY in your .env or Vercel environment variables.'
+      );
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const payload = {
+        access_key: accessKey,
+        subject: `New Procucev Lead: ${formData.company ? formData.company + ' - ' : ''}${formData.name}`,
+        from_name: 'Procucev Website Form',
+        replyto: formData.email,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        role: formData.roleType,
+        message: formData.message,
+        botcheck: false,
+      };
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          roleType: 'Buyer',
+          message: '',
+        });
+        setErrorMessage(null);
+      } else {
+        setErrorMessage(
+          result.message || 'Something went wrong while submitting the enquiry. Please try again or reach out directly to info@procucev.com.'
+        );
+      }
+    } catch (err) {
+      console.error('Submission error:', err);
+      setErrorMessage(
+        'Unable to send message due to a network error. Please try again or email us directly at info@procucev.com.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactItems = [
@@ -114,67 +184,106 @@ export default function ContactSection({ onNavigate }) {
                 </div>
                 <h3 className="ct-success-h">Enquiry Submitted!</h3>
                 <p className="ct-success-p">
-                  Thank you for reaching out to Procucev. Our procurement specialists
-                  will get back to you within one working day.
+                  Thank you for reaching out to Procucev. Your enquiry has been received and forwarded to <strong>info@procucev.com</strong>.
+                  Our procurement specialists will get back to you within one working day.
                 </p>
-                <button onClick={() => setSubmitted(false)} className="btn btn-primary" style={{ marginTop: '16px' }}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSubmitted(false);
+                    setErrorMessage(null);
+                  }}
+                  className="btn btn-primary"
+                  style={{ marginTop: '16px' }}
+                >
                   Send another message
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="ct-form">
                 <h3 className="ct-form-h">Send an Enquiry</h3>
+
+                {/* Honeypot field for spam prevention */}
+                <input
+                  type="checkbox"
+                  name="botcheck"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  style={{ display: 'none' }}
+                  checked={botcheck}
+                  onChange={(e) => setBotcheck(e.target.checked)}
+                />
+
+                {errorMessage && (
+                  <div className="ct-error-alert" role="alert">
+                    <AlertCircle size={18} style={{ color: '#EF4444', flexShrink: 0, marginTop: '2px' }} />
+                    <div style={{ flex: 1 }}>
+                      <strong style={{ display: 'block', color: '#991B1B', fontSize: '0.86rem', marginBottom: '2px' }}>
+                        Submission Failed
+                      </strong>
+                      <span style={{ fontSize: '0.82rem', color: '#B91C1C', lineHeight: 1.4 }}>
+                        {errorMessage}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
                 <div className="ct-form-2col">
                   <div className="ct-fg">
-                    <label className="form-label">Name *</label>
+                    <label className="form-label" htmlFor="contact-name">Name *</label>
                     <input
                       type="text" required placeholder="Your full name"
                       className="form-input"
                       value={formData.name}
                       onChange={e => setFormData({ ...formData, name: e.target.value })}
                       id="contact-name"
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div className="ct-fg">
-                    <label className="form-label">Work Email *</label>
+                    <label className="form-label" htmlFor="contact-email">Work Email *</label>
                     <input
                       type="email" required placeholder="name@company.com"
                       className="form-input"
                       value={formData.email}
                       onChange={e => setFormData({ ...formData, email: e.target.value })}
                       id="contact-email"
+                      disabled={isSubmitting}
                     />
                   </div>
                 </div>
                 <div className="ct-form-2col">
                   <div className="ct-fg">
-                    <label className="form-label">Phone *</label>
+                    <label className="form-label" htmlFor="contact-phone">Phone *</label>
                     <input
                       type="tel" required placeholder="+91 98765 43210"
                       className="form-input"
                       value={formData.phone}
                       onChange={e => setFormData({ ...formData, phone: e.target.value })}
                       id="contact-phone"
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div className="ct-fg">
-                    <label className="form-label">Company *</label>
+                    <label className="form-label" htmlFor="contact-company">Company *</label>
                     <input
                       type="text" required placeholder="Company Name"
                       className="form-input"
                       value={formData.company}
                       onChange={e => setFormData({ ...formData, company: e.target.value })}
                       id="contact-company"
+                      disabled={isSubmitting}
                     />
                   </div>
                 </div>
                 <div className="ct-fg">
-                  <label className="form-label">I am a *</label>
+                  <label className="form-label" htmlFor="contact-role">I am a *</label>
                   <select
                     className="cons-select"
                     value={formData.roleType}
                     onChange={e => setFormData({ ...formData, roleType: e.target.value })}
                     id="contact-role"
+                    disabled={isSubmitting}
                   >
                     <option value="Buyer">Buyer</option>
                     <option value="Supplier">Supplier</option>
@@ -183,7 +292,7 @@ export default function ContactSection({ onNavigate }) {
                   </select>
                 </div>
                 <div className="ct-fg">
-                  <label className="form-label">Message *</label>
+                  <label className="form-label" htmlFor="contact-message">Message *</label>
                   <textarea
                     rows={4} required
                     placeholder="Tell us about your requirement or procurement spend..."
@@ -192,10 +301,33 @@ export default function ContactSection({ onNavigate }) {
                     value={formData.message}
                     onChange={e => setFormData({ ...formData, message: e.target.value })}
                     id="contact-message"
+                    disabled={isSubmitting}
                   />
                 </div>
-                <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%' }} id="contact-submit">
-                  Submit Enquiry <Send size={16} />
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-lg"
+                  style={{
+                    width: '100%',
+                    opacity: isSubmitting ? 0.8 : 1,
+                    cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px'
+                  }}
+                  id="contact-submit"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      Sending Enquiry... <Loader2 size={16} className="spin-animate" />
+                    </>
+                  ) : (
+                    <>
+                      Submit Enquiry <Send size={16} />
+                    </>
+                  )}
                 </button>
               </form>
             )}
@@ -333,7 +465,29 @@ export default function ContactSection({ onNavigate }) {
         }
         .ct-fg { margin-bottom: 16px; }
 
-        /* Success state */
+        .ct-error-alert {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          background: #FEF2F2;
+          border: 1px solid #FECACA;
+          border-radius: 12px;
+          padding: 14px 16px;
+          margin-bottom: 20px;
+        }
+
+        .spin-animate {
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
         .ct-success {
           text-align: center;
           display: flex; flex-direction: column; align-items: center;
