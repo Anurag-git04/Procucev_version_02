@@ -199,12 +199,24 @@ export default function VideoHero({ onOpenDemo }) {
 
           {/* CTAs */}
           <div className="v2-hero-ctas">
-            <button className="btn btn-blue btn-lg" onClick={onOpenDemo} id="hero-rfq-btn">
+            <a
+              href="https://qua.procucev.com/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-blue btn-lg"
+              id="hero-rfq-btn"
+            >
               Raise an RFQ, it's free <ArrowUpRight size={18} />
-            </button>
-            <button className="btn btn-orange btn-lg" onClick={onOpenDemo} id="hero-supplier-btn">
+            </a>
+            <a
+              href="https://qua.procucev.com/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-orange btn-lg"
+              id="hero-supplier-btn"
+            >
               Become a Seller <ArrowUpRight size={18} />
-            </button>
+            </a>
           </div>
 
           {/* Stats bar */}

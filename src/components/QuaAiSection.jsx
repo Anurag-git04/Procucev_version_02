@@ -63,9 +63,15 @@ export default function QuaAiSection({ onOpenDemo }) {
                 and compare them on price, delivery and terms.
               </p>
               <div className="qua-card-actions">
-                <button onClick={onOpenDemo} className="btn btn-blue" id="buyer-rfq-btn">
+                <a
+                  href="https://qua.procucev.com/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-blue"
+                  id="buyer-rfq-btn"
+                >
                   I'm a Buyer: Raise an RFQ <ArrowRight size={16} />
-                </button>
+                </a>
                 <a href="mailto:info@procucev.com" className="btn btn-email-link" id="buyer-email-btn">
                   <Mail size={16} /> Email: info@procucev.com
                 </a>
@@ -80,9 +86,15 @@ export default function QuaAiSection({ onOpenDemo }) {
                 RFQs and send your quote. Clear idle stock through BFS.
               </p>
               <div className="qua-card-actions">
-                <button onClick={onOpenDemo} className="btn btn-orange" id="supplier-join-btn">
+                <a
+                  href="https://qua.procucev.com/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-orange"
+                  id="supplier-join-btn"
+                >
                   I'm a Seller: Join Qua AI <ArrowRight size={16} />
-                </button>
+                </a>
                 <a
                   href="https://wa.me/917090170801"
                   target="_blank"

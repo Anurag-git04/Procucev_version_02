@@ -112,13 +112,15 @@ export default function Navbar({ onOpenDemo, currentRoute = "/", onNavigate }) {
 
         {/* CTA + Hamburger */}
         <div className="v2-nav-actions">
-          <button
+          <a
+            href="https://qua.procucev.com/login"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn btn-blue v2-nav-cta"
-            onClick={onOpenDemo}
             id="nav-rfq-btn"
           >
             Raise an RFQ <ArrowUpRight size={16} />
-          </button>
+          </a>
           <button
             className="v2-hamburger"
             onClick={() => setMobileOpen((o) => !o)}
@@ -153,16 +155,16 @@ export default function Navbar({ onOpenDemo, currentRoute = "/", onNavigate }) {
               </a>
             );
           })}
-          <button
+          <a
+            href="https://qua.procucev.com/login"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn btn-blue"
             style={{ marginTop: "8px" }}
-            onClick={() => {
-              setMobileOpen(false);
-              onOpenDemo();
-            }}
+            onClick={() => setMobileOpen(false)}
           >
             Raise an RFQ, it's free <ArrowUpRight size={15} />
-          </button>
+          </a>
         </div>
       )}
 
