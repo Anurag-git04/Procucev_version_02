@@ -94,7 +94,7 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
       headline: "Price Discovery & Market Benchmark Intelligence",
       desc: "A unique signature feature of Procucev facilitating transparent Price Discovery. Real-time updated pricing from our qualified vendor panel shields businesses from commodity volatility and eliminates repetitive negotiations.",
       highlights: [
-        "Real-time market benchmark analysis across 50,000+ pan-India verified suppliers",
+        "Real-time market benchmark analysis across 6 Lakh+ pan-India verified suppliers",
         "Protects operational margins against sudden raw material price surges",
         "Eliminates repeated quotations with pre-negotiated, index-linked price baskets",
         "Actionable price trend forecasting powered by category intelligence",
@@ -116,7 +116,7 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
         "Dynamic vendor performance scorecards tracking OTIF delivery, quality, and responsiveness",
         "Dedicated category specialists providing proactive supplier development",
       ],
-      metrics: { primary: "50,000+", label: "Verified Vendor Network" },
+      metrics: { primary: "6 Lakh+", label: "Verified Vendor Network" },
     },
     {
       id: "po-management",
@@ -208,7 +208,7 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
     },
     {
       title: "Access to Trusted Vendor Base",
-      metric: "50,000+",
+      metric: "6 Lakh+",
       sub: "Pre-Vetted Suppliers",
       desc: "Expand your supply chain reach with pre-screened manufacturers and distributors validated for quality and financial stability.",
     },
@@ -220,7 +220,7 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
     },
     {
       title: "Improved Sourcing Speed & Accuracy",
-      metric: "48h",
+      metric: "< 24 Hrs",
       sub: "Quote Turnaround Time",
       desc: "Standardized RFQ specifications ensure zero miscommunication, leading to highly accurate quotes and rapid order execution.",
     },
@@ -292,7 +292,7 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
           <p className="v2-dps-hero-desc">
             DPS automates your entire Source-to-Pay cycle, enhances operational
             efficiency with its 7 specialized modules, real-time dynamic
-            pricing, and an elite network of 50,000+ verified suppliers.
+            pricing, and an elite network of 6 Lakh+ verified suppliers.
           </p>
 
           <div className="v2-dps-hero-actions">
@@ -313,20 +313,20 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
           {/* Key Value Stat Strip */}
           <div className="v2-dps-stats-grid">
             <div className="v2-dps-stat-card">
-              <div className="stat-number">12-25%</div>
-              <div className="stat-label">Cumulative Cost Savings</div>
-            </div>
-            <div className="v2-dps-stat-card">
-              <div className="stat-number">65%</div>
-              <div className="stat-label">Cycle Time Reduction</div>
-            </div>
-            <div className="v2-dps-stat-card">
-              <div className="stat-number">50,000+</div>
+              <div className="stat-number">6 Lakh+</div>
               <div className="stat-label">Verified Suppliers</div>
             </div>
             <div className="v2-dps-stat-card">
-              <div className="stat-number">100%</div>
-              <div className="stat-label">3-Way Match Accuracy</div>
+              <div className="stat-number">2,000+</div>
+              <div className="stat-label">Registered Buyers</div>
+            </div>
+            <div className="v2-dps-stat-card">
+              <div className="stat-number">&lt; 24 Hrs</div>
+              <div className="stat-label">Quote Turnaround</div>
+            </div>
+            <div className="v2-dps-stat-card">
+              <div className="stat-number">12-25%</div>
+              <div className="stat-label">Cumulative Cost Savings</div>
             </div>
           </div>
         </div>

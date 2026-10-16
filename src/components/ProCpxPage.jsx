@@ -156,7 +156,7 @@ export default function ProCpxPage({ onOpenDemo, onNavigateHome }) {
     },
     {
       title: "PAN INDIA Capex Vendor Network",
-      tag: "55,000+ Pre-Vetted Partners",
+      tag: "6 Lakh+ Pre-Vetted Partners",
       desc: "Access verified Capex vendors across every Indian state for Turnkey Projects, Bought-outs, Civil works, MEP, and specialized technical services.",
       icon: Users,
       color: "#F97316",
@@ -248,7 +248,7 @@ export default function ProCpxPage({ onOpenDemo, onNavigateHome }) {
     },
     {
       title: "Pre-Qualified Vendors Across Locations",
-      desc: "Tap into 55,000+ verified suppliers with verified delivery track records, GST compliance, and local footprint in Tier 1, 2, and 3 cities.",
+      desc: "Tap into 6 Lakh+ verified suppliers with verified delivery track records, GST compliance, and local footprint in Tier 1, 2, and 3 cities.",
     },
     {
       title: "Vendor Performance Scorecards",
@@ -267,7 +267,7 @@ export default function ProCpxPage({ onOpenDemo, onNavigateHome }) {
     },
     {
       q: "What kind of vendor base does proCPX offer access to?",
-      a: "proCPX connects you to a curated network of over 55,000+ pre-vetted vendors across Capex categories ranging from interior contractors and MEP vendors to structural steel fabricators, OEMs, and turnkey solution providers. Each vendor is evaluated on quality, compliance, and delivery track record, making sourcing for projects like restaurant fitouts or warehouse setups both faster and more reliable.",
+      a: "proCPX connects you to a curated network of over 6 Lakh+ pre-vetted vendors across Capex categories ranging from interior contractors and MEP vendors to structural steel fabricators, OEMs, and turnkey solution providers. Each vendor is evaluated on quality, compliance, and delivery track record, making sourcing for projects like restaurant fitouts or warehouse setups both faster and more reliable.",
     },
     {
       q: "How is proCPX unique compared to general procurement tools?",
@@ -307,7 +307,7 @@ export default function ProCpxPage({ onOpenDemo, onNavigateHome }) {
     },
     {
       q: "Beyond software, what managed services are included with proCPX?",
-      a: "Beyond our software platform, we deliver comprehensive managed procurement services including PAN India Vendor On-boarding and Management (leveraging our 50,000+ pre-vetted network) and Category Negotiation Support where senior industry specialists assist in negotiating high-ticket packages to maximize commercial savings.",
+      a: "Beyond our software platform, we deliver comprehensive managed procurement services including PAN India Vendor On-boarding and Management (leveraging our 6 Lakh+ pre-vetted network) and Category Negotiation Support where senior industry specialists assist in negotiating high-ticket packages to maximize commercial savings.",
     },
   ];
 
@@ -537,24 +537,24 @@ export default function ProCpxPage({ onOpenDemo, onNavigateHome }) {
           >
             {[
               {
-                val: "55,000+",
-                lbl: "Pre-Vetted Capex Vendors",
+                val: "6 Lakh+",
+                lbl: "Verified Suppliers",
                 sub: "Turnkey, MEP, Civil & OEMs",
+              },
+              {
+                val: "2,000+",
+                lbl: "Registered Buyers",
+                sub: "Active enterprise & growth brands",
+              },
+              {
+                val: "< 24 Hrs",
+                lbl: "Quote Turnaround",
+                sub: "From Technical BOQ to vendor quotes",
               },
               {
                 val: "15-28%",
                 lbl: "Capex Cost Savings",
                 sub: "Via e-bidding & benchmark intelligence",
-              },
-              {
-                val: "70% Faster",
-                lbl: "Turnaround Time",
-                sub: "From Technical BOQ to PO issuance",
-              },
-              {
-                val: "100%",
-                lbl: "SOP & Audit Compliance",
-                sub: "Transparent approval audit trails",
               },
             ].map((stat, i) => (
               <div
@@ -916,7 +916,7 @@ export default function ProCpxPage({ onOpenDemo, onNavigateHome }) {
                           color: "#0F172A",
                         }}
                       >
-                        55,000+ Pre-Vetted National Network
+                        6 Lakh+ Pre-Vetted National Network
                       </div>
                       <div
                         style={{
@@ -1232,7 +1232,7 @@ export default function ProCpxPage({ onOpenDemo, onNavigateHome }) {
                       Vendor On-boarding & Management
                     </h3>
                     <span style={{ fontSize: "13px", color: "#BAE6FD" }}>
-                      55,000+ Pre-Qualified Enterprise Network
+                      6 Lakh+ Pre-Qualified Enterprise Network
                     </span>
                   </div>
                 </div>
@@ -1244,7 +1244,7 @@ export default function ProCpxPage({ onOpenDemo, onNavigateHome }) {
                     margin: 0,
                   }}
                 >
-                  Leverage our extensive 50,000+ qualified and diversified
+                  Leverage our extensive 6 Lakh+ qualified and diversified
                   vendor network and expertise. We handle contractor background
                   verifications, GST statutory checks, machine shop inspections,
                   and past project track records.
