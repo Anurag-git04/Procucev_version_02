@@ -168,6 +168,17 @@ export default function App() {
     };
   }, [currentRoute]);
 
+  // Track page views in Google Analytics for SPA route changes
+  useEffect(() => {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "page_view", {
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: currentRoute,
+      });
+    }
+  }, [currentRoute]);
+
   const navigateTo = (route, hashTarget = null) => {
     if (route === "/digital-procurement-services") {
       window.history.pushState(null, "", "/digital-procurement-services");
